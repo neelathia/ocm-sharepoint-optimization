@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coupa Implementation - OCM Project Landing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://tilda.cc/tilda-font/tilda-sans/tilda-sans.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,46 +14,57 @@
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f3f2f1;
+            font-family: 'TildaSans', 'Inter', sans-serif;
+            background: #fafbfc;
             line-height: 1.4;
         }
 
         /* SharePoint Header */
         .sp-header {
-            background: #072635;
+            background: #1a1a1a;
             color: white;
             height: 48px;
             display: flex;
             align-items: center;
             padding: 0 16px;
             gap: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
 
         .sp-waffle {
             width: 20px;
             height: 20px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="1" y="1" width="4" height="4" fill="white"/><rect x="7" y="1" width="4" height="4" fill="white"/><rect x="13" y="1" width="4" height="4" fill="white"/><rect x="1" y="7" width="4" height="4" fill="white"/><rect x="7" y="7" width="4" height="4" fill="white"/><rect x="13" y="7" width="4" height="4" fill="white"/><rect x="1" y="13" width="4" height="4" fill="white"/><rect x="7" y="13" width="4" height="4" fill="white"/><rect x="13" y="13" width="4" height="4" fill="white"/></svg>') no-repeat center;
             cursor: pointer;
         }
 
         .sp-title {
             font-size: 15px;
-            font-weight: 400;
+            font-weight: 500;
+        }
+
+        .sp-search {
+            margin-left: auto;
+            width: 440px;
+            height: 32px;
+            background: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0 12px;
+            font-size: 14px;
+            font-family: 'TildaSans', 'Inter', sans-serif;
         }
 
         /* Breadcrumb */
         .breadcrumb {
             background: white;
             padding: 8px 40px;
-            border-bottom: 1px solid #edebe9;
+            border-bottom: 1px solid #e8ecef;
             font-size: 13px;
-            color: #605e5c;
+            color: #4a4a4a;
         }
 
         .breadcrumb a {
-            color: #072635;
+            color: #1a1a1a;
             text-decoration: none;
             font-weight: 500;
         }
@@ -64,7 +77,7 @@
         .page-header {
             background: white;
             padding: 24px 40px;
-            border-bottom: 1px solid #edebe9;
+            border-bottom: 1px solid #e8ecef;
         }
 
         .header-top {
@@ -77,23 +90,23 @@
         .page-icon {
             width: 48px;
             height: 48px;
-            background: #3366FF;
-            border-radius: 4px;
+            background: #1a1a1a;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            color: white;
         }
 
         .header-content h1 {
             font-size: 28px;
-            font-weight: 600;
-            color: #072635;
+            font-weight: 700;
+            color: #1a1a1a;
             margin-bottom: 4px;
         }
 
         .header-content p {
-            color: #605e5c;
+            color: #4a4a4a;
             font-size: 16px;
         }
 
@@ -104,12 +117,14 @@
         }
 
         .header-btn {
-            background: #072635;
+            background: #1a1a1a;
             color: white;
             border: none;
             padding: 8px 16px;
-            border-radius: 2px;
+            border-radius: 6px;
             font-size: 14px;
+            font-family: 'TildaSans', 'Inter', sans-serif;
+            font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -118,22 +133,22 @@
         }
 
         .header-btn:hover {
-            background: #0a3242;
+            background: #333333;
         }
 
         .header-btn.secondary {
             background: transparent;
-            color: #072635;
-            border: 1px solid #d2d0ce;
+            color: #1a1a1a;
+            border: 1px solid #e8ecef;
         }
 
         .header-btn.secondary:hover {
-            background: #f3f2f1;
+            background: #f8f9fa;
         }
 
         /* Status Bar */
         .status-bar {
-            background: linear-gradient(135deg, #072635, #3366FF);
+            background: linear-gradient(135deg, #1a1a1a, #333333);
             color: white;
             padding: 16px 40px;
             display: flex;
@@ -163,15 +178,15 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #00CC99;
+            background: #28a745;
         }
 
         .status-indicator.warning {
-            background: #FE8B1E;
+            background: #fd7e14;
         }
 
         .status-indicator.critical {
-            background: #ff5252;
+            background: #dc3545;
         }
 
         /* Main Container */
@@ -192,18 +207,29 @@
         /* Project Details */
         .project-details {
             background: white;
-            border: 1px solid #edebe9;
-            border-radius: 4px;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
         .section-header {
-            background: #072635;
+            background: #1a1a1a;
             color: white;
             padding: 16px 20px;
             font-size: 16px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-icon {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
         }
 
         .project-info {
@@ -215,7 +241,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid #f3f2f1;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         .info-row:last-child {
@@ -224,13 +250,13 @@
 
         .info-label {
             font-size: 14px;
-            color: #605e5c;
+            color: #4a4a4a;
             font-weight: 500;
         }
 
         .info-value {
             font-size: 14px;
-            color: #072635;
+            color: #1a1a1a;
             font-weight: 600;
         }
 
@@ -244,26 +270,26 @@
 
         .status-execution {
             background: #fff3e0;
-            color: #ef6c00;
+            color: #fd7e14;
         }
 
         .risk-high {
             background: #ffebee;
-            color: #c62828;
+            color: #dc3545;
         }
 
         /* Key Metrics */
         .key-metrics {
             background: white;
-            border: 1px solid #edebe9;
-            border-radius: 4px;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
         .metric-item {
             padding: 20px;
-            border-bottom: 1px solid #f3f2f1;
+            border-bottom: 1px solid #f1f5f9;
             text-align: center;
         }
 
@@ -274,21 +300,21 @@
         .metric-number {
             font-size: 32px;
             font-weight: 700;
-            color: #3366FF;
+            color: #1a1a1a;
             margin-bottom: 6px;
         }
 
         .metric-number.warning {
-            color: #FE8B1E;
+            color: #fd7e14;
         }
 
         .metric-number.critical {
-            color: #ff5252;
+            color: #dc3545;
         }
 
         .metric-label {
             font-size: 12px;
-            color: #605e5c;
+            color: #666666;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-weight: 500;
@@ -301,11 +327,11 @@
         }
 
         .trend-down {
-            color: #c62828;
+            color: #dc3545;
         }
 
         .trend-up {
-            color: #2e7d32;
+            color: #28a745;
         }
 
         /* OCM Phases Grid */
@@ -318,22 +344,23 @@
 
         .phase-card {
             background: white;
-            border: 1px solid #edebe9;
-            border-radius: 4px;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .phase-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #1a1a1a;
         }
 
         .phase-header {
             padding: 16px 20px;
-            border-bottom: 1px solid #edebe9;
+            border-bottom: 1px solid #e8ecef;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -342,34 +369,33 @@
         .phase-icon {
             width: 32px;
             height: 32px;
-            border-radius: 4px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
             color: white;
         }
 
         .phase-stakeholder .phase-icon {
-            background: #3366FF;
+            background: #1a1a1a;
         }
 
         .phase-communication .phase-icon {
-            background: #00CC99;
+            background: #4a4a4a;
         }
 
         .phase-training .phase-icon {
-            background: #FE8B1E;
+            background: #666666;
         }
 
         .phase-readiness .phase-icon {
-            background: #6C4FAD;
+            background: #333333;
         }
 
         .phase-title {
             font-size: 16px;
             font-weight: 600;
-            color: #072635;
+            color: #1a1a1a;
         }
 
         .phase-content {
@@ -385,59 +411,59 @@
 
         .progress-bar {
             width: 120px;
-            height: 8px;
-            background: #edebe9;
-            border-radius: 4px;
+            height: 6px;
+            background: #e8ecef;
+            border-radius: 3px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: width 0.3s ease;
         }
 
         .progress-high {
-            background: linear-gradient(90deg, #00CC99, #3366FF);
+            background: linear-gradient(90deg, #1a1a1a, #333333);
         }
 
         .progress-medium {
-            background: linear-gradient(90deg, #FE8B1E, #00CC99);
+            background: linear-gradient(90deg, #4a4a4a, #666666);
         }
 
         .progress-low {
-            background: linear-gradient(90deg, #ff5252, #FE8B1E);
+            background: linear-gradient(90deg, #dc3545, #fd7e14);
         }
 
         .phase-details {
             font-size: 13px;
-            color: #605e5c;
+            color: #4a4a4a;
             line-height: 1.5;
         }
 
         .phase-owner {
             margin-top: 12px;
             font-size: 12px;
-            color: #797775;
+            color: #666666;
         }
 
         .owner-name {
             font-weight: 600;
-            color: #072635;
+            color: #1a1a1a;
         }
 
         /* Recent Activity */
         .activity-section {
             background: white;
-            border: 1px solid #edebe9;
-            border-radius: 4px;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
         .activity-item {
             padding: 16px 20px;
-            border-bottom: 1px solid #f3f2f1;
+            border-bottom: 1px solid #f1f5f9;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -460,15 +486,15 @@
         }
 
         .activity-update {
-            background: #3366FF;
+            background: #1a1a1a;
         }
 
         .activity-alert {
-            background: #FE8B1E;
+            background: #fd7e14;
         }
 
         .activity-complete {
-            background: #00CC99;
+            background: #28a745;
         }
 
         .activity-content {
@@ -478,18 +504,18 @@
         .activity-title {
             font-size: 14px;
             font-weight: 600;
-            color: #072635;
+            color: #1a1a1a;
             margin-bottom: 2px;
         }
 
         .activity-description {
             font-size: 12px;
-            color: #605e5c;
+            color: #4a4a4a;
         }
 
         .activity-time {
             font-size: 11px;
-            color: #797775;
+            color: #666666;
         }
 
         /* Responsive */
@@ -517,8 +543,19 @@
 <body>
     <!-- SharePoint Header -->
     <div class="sp-header">
-        <div class="sp-waffle"></div>
+        <svg class="sp-waffle" viewBox="0 0 20 20" fill="currentColor">
+            <rect x="1" y="1" width="4" height="4"/>
+            <rect x="7" y="1" width="4" height="4"/>
+            <rect x="13" y="1" width="4" height="4"/>
+            <rect x="1" y="7" width="4" height="4"/>
+            <rect x="7" y="7" width="4" height="4"/>
+            <rect x="13" y="7" width="4" height="4"/>
+            <rect x="1" y="13" width="4" height="4"/>
+            <rect x="7" y="13" width="4" height="4"/>
+            <rect x="13" y="13" width="4" height="4"/>
+        </svg>
         <div class="sp-title">SharePoint</div>
+        <input type="text" class="sp-search" placeholder="Search this site">
     </div>
 
     <!-- Breadcrumb -->
@@ -529,14 +566,32 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="header-top">
-            <div class="page-icon">📁</div>
+            <div class="page-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                </svg>
+            </div>
             <div class="header-content">
                 <h1>Coupa Implementation - OCM Project</h1>
                 <p>Procurement platform transformation with comprehensive change management</p>
             </div>
             <div class="header-actions">
-                <button class="header-btn secondary">📊 Project Report</button>
-                <button class="header-btn">📋 Update Status</button>
+                <button class="header-btn secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Project Report
+                </button>
+                <button class="header-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23,4 23,10 17,10"/>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                    </svg>
+                    Update Status
+                </button>
             </div>
         </div>
     </div>
@@ -579,7 +634,14 @@
         <div class="overview-grid">
             <!-- Project Details -->
             <div class="project-details">
-                <div class="section-header">📋 Project Information</div>
+                <div class="section-header">
+                    <svg class="section-icon" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <rect x="7" y="7" width="3" height="9"/>
+                        <rect x="14" y="7" width="3" height="5"/>
+                    </svg>
+                    Project Information
+                </div>
                 <div class="project-info">
                     <div class="info-row">
                         <span class="info-label">Project Manager</span>
@@ -607,7 +669,7 @@
                     </div>
                     <div class="info-row">
                         <span class="info-label">Budget Status</span>
-                        <span class="info-value" style="color: #00CC99;">$2.3M (On Budget)</span>
+                        <span class="info-value" style="color: #28a745;">$2.3M (On Budget)</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Next Milestone</span>
@@ -618,7 +680,14 @@
 
             <!-- Key Metrics -->
             <div class="key-metrics">
-                <div class="section-header">📊 Key OCM Metrics</div>
+                <div class="section-header">
+                    <svg class="section-icon" viewBox="0 0 24 24">
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                    Key OCM Metrics
+                </div>
                 <div class="metric-item">
                     <div class="metric-number warning">67%</div>
                     <div class="metric-label">Stakeholder Engagement</div>
@@ -646,12 +715,17 @@
         <div class="phases-grid">
             <div class="phase-card phase-stakeholder" onclick="openPhase('stakeholder')">
                 <div class="phase-header">
-                    <div class="phase-icon">👥</div>
+                    <div class="phase-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
                     <div class="phase-title">Stakeholder Management</div>
                 </div>
                 <div class="phase-content">
                     <div class="phase-progress">
-                        <span style="font-size: 14px; font-weight: 600; color: #072635;">85% Complete</span>
+                        <span style="font-size: 14px; font-weight: 600; color: #1a1a1a;">85% Complete</span>
                         <div class="progress-bar">
                             <div class="progress-fill progress-high" style="width: 85%"></div>
                         </div>
@@ -668,12 +742,16 @@
 
             <div class="phase-card phase-communication" onclick="openPhase('communication')">
                 <div class="phase-header">
-                    <div class="phase-icon">📢</div>
+                    <div class="phase-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
                     <div class="phase-title">Communications</div>
                 </div>
                 <div class="phase-content">
                     <div class="phase-progress">
-                        <span style="font-size: 14px; font-weight: 600; color: #072635;">78% Complete</span>
+                        <span style="font-size: 14px; font-weight: 600; color: #1a1a1a;">78% Complete</span>
                         <div class="progress-bar">
                             <div class="progress-fill progress-high" style="width: 78%"></div>
                         </div>
@@ -690,12 +768,17 @@
 
             <div class="phase-card phase-training" onclick="openPhase('training')">
                 <div class="phase-header">
-                    <div class="phase-icon">🎓</div>
+                    <div class="phase-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
                     <div class="phase-title">Training & Development</div>
                 </div>
                 <div class="phase-content">
                     <div class="phase-progress">
-                        <span style="font-size: 14px; font-weight: 600; color: #FE8B1E;">52% Complete</span>
+                        <span style="font-size: 14px; font-weight: 600; color: #fd7e14;">52% Complete</span>
                         <div class="progress-bar">
                             <div class="progress-fill progress-medium" style="width: 52%"></div>
                         </div>
@@ -712,12 +795,16 @@
 
             <div class="phase-card phase-readiness" onclick="openPhase('readiness')">
                 <div class="phase-header">
-                    <div class="phase-icon">📈</div>
+                    <div class="phase-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                    </div>
                     <div class="phase-title">Readiness Assessment</div>
                 </div>
                 <div class="phase-content">
                     <div class="phase-progress">
-                        <span style="font-size: 14px; font-weight: 600; color: #072635;">72% Complete</span>
+                        <span style="font-size: 14px; font-weight: 600; color: #1a1a1a;">72% Complete</span>
                         <div class="progress-bar">
                             <div class="progress-fill progress-high" style="width: 72%"></div>
                         </div>
@@ -735,7 +822,13 @@
 
         <!-- Recent Activity -->
         <div class="activity-section">
-            <div class="section-header">⏰ Recent Activity & Updates</div>
+            <div class="section-header">
+                <svg class="section-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                Recent Activity & Updates
+            </div>
             <div class="activity-item">
                 <div class="activity-icon activity-alert">!</div>
                 <div class="activity-content">
@@ -761,18 +854,18 @@
                 <div class="activity-time">1 day ago</div>
             </div>
             <div class="activity-item">
-                <div class="activity-icon activity-update">📧</div>
+                <div class="activity-icon activity-update">📋</div>
                 <div class="activity-content">
-                    <div class="activity-title">Communication Campaign #3 Launched</div>
-                    <div class="activity-description">"Benefits Realization" messages sent to 1,247 users with 82% open rate</div>
+                    <div class="activity-title">Risk Assessment Updated</div>
+                    <div class="activity-description">New mitigation strategies identified for AP team resistance</div>
                 </div>
                 <div class="activity-time">2 days ago</div>
             </div>
             <div class="activity-item">
-                <div class="activity-icon activity-alert">⚠</div>
+                <div class="activity-icon activity-complete">✓</div>
                 <div class="activity-content">
-                    <div class="activity-title">Risk Escalation</div>
-                    <div class="activity-description">AP team resistance upgraded to High risk - intervention plan activated</div>
+                    <div class="activity-title">Communication Campaign Launch</div>
+                    <div class="activity-description">Phase 2 awareness campaign deployed to all regions</div>
                 </div>
                 <div class="activity-time">3 days ago</div>
             </div>
@@ -780,34 +873,59 @@
     </div>
 
     <script>
+        // Navigation Functions
         function goToPortfolio() {
-            alert('🔗 Navigating back to OCM Portfolio Dashboard\n\nReturning to enterprise-wide view with all project metrics and portfolio-level insights.');
+            alert('🔗 Navigating back to OCM Portfolio Dashboard\n\nThis would return you to the main portfolio view with all active projects.');
         }
 
         function openPhase(phaseType) {
             const phases = {
-                'stakeholder': 'Stakeholder Management Phase Page',
-                'communication': 'Communications Phase Page', 
-                'training': 'Training & Development Phase Page',
-                'readiness': 'Readiness Assessment Phase Page'
+                'stakeholder': {
+                    title: 'Stakeholder Management Details',
+                    content: 'Deep dive into stakeholder engagement metrics:\n\n• Leadership alignment status\n• Resistance mapping and mitigation\n• Influence network analysis\n• Communication preferences\n• Escalation procedures'
+                },
+                'communication': {
+                    title: 'Communications Strategy',
+                    content: 'Comprehensive communication plan overview:\n\n• Multi-channel campaign status\n• Message effectiveness tracking\n• Audience segmentation results\n• Feedback loop analysis\n• Content calendar and delivery'
+                },
+                'training': {
+                    title: 'Training & Development Program',
+                    content: 'Training program metrics and insights:\n\n• Role-based curriculum status\n• Competency assessment results\n• Learning pathway completion\n• Knowledge retention analysis\n• Support resource utilization'
+                },
+                'readiness': {
+                    title: 'Organizational Readiness Assessment',
+                    content: 'Readiness evaluation and planning:\n\n• Change impact assessment\n• Capability gap analysis\n• Cultural readiness indicators\n• Resource adequacy review\n• Go-live readiness scoring'
+                }
             };
 
-            alert(`🔗 Opening: ${phases[phaseType]}\n\nThis would show:\n• Detailed phase activities and tasks\n• Owner assignments and responsibilities\n• Progress tracking and milestones\n• Documents and deliverables\n• Metrics and success criteria`);
+            const phase = phases[phaseType];
+            alert(`📊 ${phase.title}\n\n${phase.content}`);
         }
 
-        // Header button functionality
+        // Header Button Actions
         document.querySelectorAll('.header-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const action = this.textContent.trim();
                 if (action.includes('Project Report')) {
-                    alert('📊 Generating Coupa OCM Project Report\n\nIncludes:\n• Executive summary\n• Phase progress details\n• Risk assessment and mitigation plans\n• Stakeholder engagement analysis\n• Training effectiveness metrics\n• Next steps and recommendations');
+                    alert('📊 Generating Coupa OCM Project Report\n\nCompiling:\n• Executive summary with key insights\n• Phase completion analysis\n• Risk assessment and mitigation plans\n• Stakeholder engagement metrics\n• Training effectiveness data\n• Budget and timeline status\n• Recommendations for success');
                 } else if (action.includes('Update Status')) {
-                    alert('📋 Opening Status Update Form\n\nUpdate:\n• Phase progress percentages\n• Risk assessment levels\n• Milestone completion\n• Resource allocation\n• Issue escalations');
+                    alert('🔄 Project Status Update Interface\n\nUpdate options:\n• Phase progress and milestones\n• Risk level adjustments\n• Stakeholder feedback integration\n• Training completion updates\n• Communication effectiveness\n• Resource allocation changes\n• Timeline modifications');
                 }
             });
         });
 
-        // Animate progress bars on load
+        // Phase Card Hover Effects
+        document.querySelectorAll('.phase-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animate Progress Bars on Load
         window.addEventListener('load', function() {
             document.querySelectorAll('.progress-fill').forEach((bar, index) => {
                 const width = bar.style.width;
@@ -816,6 +934,64 @@
                     bar.style.width = width;
                 }, index * 200 + 500);
             });
+        });
+
+        // Activity Item Interactions
+        document.querySelectorAll('.activity-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('.activity-title').textContent;
+                const description = this.querySelector('.activity-description').textContent;
+                
+                let details = '';
+                if (title.includes('Training Attendance')) {
+                    details = '\n\nDetailed Analysis:\n• Manufacturing sites: 65% attendance vs 85% target\n• Office locations: 92% attendance\n• Identified barriers: shift scheduling conflicts\n• Mitigation: Flexible training sessions planned\n• Manager engagement sessions scheduled';
+                } else if (title.includes('Stakeholder Survey')) {
+                    details = '\n\nSurvey Insights:\n• 73% response rate (target: 70%)\n• Overall satisfaction: 3.2/5\n• Key concerns: timeline pressure, resource availability\n• Positive feedback: leadership support, communication clarity\n• Action items: address resource concerns';
+                } else if (title.includes('Executive Briefing')) {
+                    details = '\n\nBriefing Outcomes:\n• Executive support confirmed\n• Additional budget approved for training\n• Risk escalation procedures established\n• Monthly steering committee meetings scheduled\n• Success metrics alignment confirmed';
+                }
+                
+                alert(`📋 ${title}\n\n${description}${details}`);
+            });
+            
+            item.style.cursor = 'pointer';
+        });
+
+        // Metric Card Interactions
+        document.querySelectorAll('.metric-item').forEach(metric => {
+            metric.addEventListener('click', function() {
+                const label = this.querySelector('.metric-label').textContent;
+                const number = this.querySelector('.metric-number').textContent;
+                
+                let analysis = '';
+                switch(label) {
+                    case 'STAKEHOLDER ENGAGEMENT':
+                        analysis = '\n\nEngagement Breakdown:\n• Executive level: 95% engaged\n• Middle management: 72% engaged\n• Front-line users: 58% engaged\n• Key influencers: 84% engaged\n• Recent trend: -8% decline in AP team';
+                        break;
+                    case 'TRAINING COMPLETION':
+                        analysis = '\n\nTraining Status:\n• 647 of 1,247 users completed\n• Manufacturing: 45% complete\n• Office workers: 68% complete\n• Managers: 82% complete\n• At-risk: 600 users need immediate attention';
+                        break;
+                    case 'COMMUNICATION REACH':
+                        analysis = '\n\nCommunication Metrics:\n• Email campaigns: 82% open rate\n• Town halls: 456 attendees\n• Intranet views: 2,340 unique\n• Feedback responses: 234 received\n• Sentiment: 67% positive';
+                        break;
+                    case 'OPEN RISKS':
+                        analysis = '\n\nRisk Portfolio:\n• High: 2 risks (training delays, AP resistance)\n• Medium: 3 risks (timeline pressure)\n• Low: 1 risk (budget variance)\n• Recently resolved: 2 technical risks';
+                        break;
+                }
+                
+                alert(`📊 ${label}: ${number}${analysis}`);
+            });
+            
+            metric.style.cursor = 'pointer';
+        });
+
+        // Search Functionality
+        document.querySelector('.sp-search').addEventListener('focus', function() {
+            this.placeholder = 'Search project documents, metrics, and updates...';
+        });
+
+        document.querySelector('.sp-search').addEventListener('blur', function() {
+            this.placeholder = 'Search this site';
         });
     </script>
 </body>
