@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupa Implementation - OCM Project Landing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f3f2f1;
+            line-height: 1.4;
+        }
+
+        /* SharePoint Header */
+        .sp-header {
+            background: #072635;
+            color: white;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+        }
+
+        .sp-waffle {
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="1" y="1" width="4" height="4" fill="white"/><rect x="7" y="1" width="4" height="4" fill="white"/><rect x="13" y="1" width="4" height="4" fill="white"/><rect x="1" y="7" width="4" height="4" fill="white"/><rect x="7" y="7" width="4" height="4" fill="white"/><rect x="13" y="7" width="4" height="4" fill="white"/><rect x="1" y="13" width="4" height="4" fill="white"/><rect x="7" y="13" width="4" height="4" fill="white"/><rect x="13" y="13" width="4" height="4" fill="white"/></svg>') no-repeat center;
+            cursor: pointer;
+        }
+
+        .sp-title {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 8px 40px;
+            border-bottom: 1px solid #edebe9;
+            font-size: 13px;
+            color: #605e5c;
+        }
+
+        .breadcrumb a {
+            color: #072635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 24px 40px;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .page-icon {
+            width: 48px;
+            height: 48px;
+            background: #3366FF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .header-content h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 4px;
+        }
+
+        .header-content p {
+            color: #605e5c;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: #072635;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: #0a3242;
+        }
+
+        .header-btn.secondary {
+            background: transparent;
+            color: #072635;
+            border: 1px solid #d2d0ce;
+        }
+
+        .header-btn.secondary:hover {
+            background: #f3f2f1;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: linear-gradient(135deg, #072635, #3366FF);
+            color: white;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00CC99;
+        }
+
+        .status-indicator.warning {
+            background: #FE8B1E;
+        }
+
+        .status-indicator.critical {
+            background: #ff5252;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+
+        /* Project Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        /* Project Details */
+        .project-details {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            background: #072635;
+            color: white;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .project-info {
+            padding: 24px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f2f1;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #605e5c;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #072635;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-execution {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .risk-high {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Key Metrics */
+        .key-metrics {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .metric-item {
+            padding: 20px;
+            border-bottom: 1px solid #f3f2f1;
+            text-align: center;
+        }
+
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+
+        .metric-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #3366FF;
+            margin-bottom: 6px;
+        }
+
+        .metric-number.warning {
+            color: #FE8B1E;
+        }
+
+        .metric-number.critical {
+            color: #ff5252;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #605e5c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .metric-trend {
+            font-size: 11px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .trend-down {
+            color: #c62828;
+        }
+
+        .trend-up {
+            color: #2e7d32;
+        }
+
+        /* OCM Phases Grid */
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .phase-card {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .phase-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #edebe9;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phase-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+        }
+
+        .phase-stakeholder .phase-icon {
+            background: #3366FF;
+        }
+
+        .phase-communication .phase-icon {
+            background: #00CC99;
+        }
+
+        .phase-training .phase-icon {
+            background: #FE8B1E;
+        }
+
+        .phase-readiness .phase-icon {
+            background: #6C4FAD;
+        }
+
+        .phase-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .phase-content {
+            padding: 20px;
+        }
+
+        .phase-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 8px;
+            background: #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-high {
+            background: linear-gradient(90deg, #00CC99, #3366FF);
+        }
+
+        .progress-medium {
+            background: linear-gradient(90deg, #FE8B1E, #00CC99);
+        }
+
+        .progress-low {
+            background: linear-gradient(90deg, #ff5252, #FE8B1E);
+        }
+
+        .phase-details {
+            font-size: 13px;
+            color: #605e5c;
+            line-height: 1.5;
+        }
+
+        .phase-owner {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #797775;
+        }
+
+        .owner-name {
+            font-weight: 600;
+            color: #072635;
+        }
+
+        /* Recent Activity */
+        .activity-section {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .activity-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f3f2f1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .activity-update {
+            background: #3366FF;
+        }
+
+        .activity-alert {
+            background: #FE8B1E;
+        }
+
+        .activity-complete {
+            background: #00CC99;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 2px;
+        }
+
+        .activity-description {
+            font-size: 12px;
+            color: #605e5c;
+        }
+
+        .activity-time {
+            font-size: 11px;
+            color: #797775;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SharePoint Header -->
+    <div class="sp-header">
+        <div class="sp-waffle"></div>
+        <div class="sp-title">SharePoint</div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#" onclick="goToPortfolio()">OCM Portfolio Dashboard</a> > <a href="#">Active Projects</a> > Coupa Implementation
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-top">
+            <div class="page-icon">📁</div>
+            <div class="header-content">
+                <h1>Coupa Implementation - OCM Project</h1>
+                <p>Procurement platform transformation with comprehensive change management</p>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn secondary">📊 Project Report</button>
+                <button class="header-btn">📋 Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-indicator warning"></div>
+            <div>
+                <div class="status-label">Current Phase</div>
+                <div class="status-value">Execution</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div class="status-indicator critical"></div>
+            <div>
+                <div class="status-label">Risk Level</div>
+                <div class="status-value">High</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div class="status-indicator"></div>
+            <div>
+                <div class="status-label">Overall Progress</div>
+                <div class="status-value">72%</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div class="status-indicator warning"></div>
+            <div>
+                <div class="status-label">Go-Live Date</div>
+                <div class="status-value">Mar 15, 2025</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Overview Grid -->
+        <div class="overview-grid">
+            <!-- Project Details -->
+            <div class="project-details">
+                <div class="section-header">📋 Project Information</div>
+                <div class="project-info">
+                    <div class="info-row">
+                        <span class="info-label">Project Manager</span>
+                        <span class="info-value">Sarah Chen</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">OCM Lead</span>
+                        <span class="info-value">Mike Rodriguez (Kandha)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Business Sponsor</span>
+                        <span class="info-value">Jennifer Walsh, CPO</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Affected Users</span>
+                        <span class="info-value">1,247 across 15 sites</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Project Status</span>
+                        <span class="status-badge status-execution">Execution Phase</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Risk Assessment</span>
+                        <span class="status-badge risk-high">High Risk</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Budget Status</span>
+                        <span class="info-value" style="color: #00CC99;">$2.3M (On Budget)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Next Milestone</span>
+                        <span class="info-value">UAT Completion - Feb 28</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="key-metrics">
+                <div class="section-header">📊 Key OCM Metrics</div>
+                <div class="metric-item">
+                    <div class="metric-number warning">67%</div>
+                    <div class="metric-label">Stakeholder Engagement</div>
+                    <div class="metric-trend trend-down">↘ -8% this week</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number critical">52%</div>
+                    <div class="metric-label">Training Completion</div>
+                    <div class="metric-trend trend-down">↘ 15% behind target</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number">78%</div>
+                    <div class="metric-label">Communication Reach</div>
+                    <div class="metric-trend trend-up">↗ +5% this week</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number warning">6</div>
+                    <div class="metric-label">Open Risks</div>
+                    <div class="metric-trend trend-down">↘ -2 resolved</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OCM Phases -->
+        <div class="phases-grid">
+            <div class="phase-card phase-stakeholder" onclick="openPhase('stakeholder')">
+                <div class="phase-header">
+                    <div class="phase-icon">👥</div>
+                    <div class="phase-title">Stakeholder Management</div>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-progress">
+                        <span style="font-size: 14px; font-weight: 600; color: #072635;">85% Complete</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-high" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-details">
+                        <strong>Status:</strong> Procurement leadership engaged, resistance from AP team identified<br>
+                        <strong>Next:</strong> Regional manager workshops scheduled
+                    </div>
+                    <div class="phase-owner">
+                        Owner: <span class="owner-name">Lisa Park</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-card phase-communication" onclick="openPhase('communication')">
+                <div class="phase-header">
+                    <div class="phase-icon">📢</div>
+                    <div class="phase-title">Communications</div>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-progress">
+                        <span style="font-size: 14px; font-weight: 600; color: #072635;">78% Complete</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-high" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-details">
+                        <strong>Status:</strong> 12 of 15 campaigns delivered, strong open rates<br>
+                        <strong>Next:</strong> Go-live announcement series preparation
+                    </div>
+                    <div class="phase-owner">
+                        Owner: <span class="owner-name">Anna Thompson</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-card phase-training" onclick="openPhase('training')">
+                <div class="phase-header">
+                    <div class="phase-icon">🎓</div>
+                    <div class="phase-title">Training & Development</div>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-progress">
+                        <span style="font-size: 14px; font-weight: 600; color: #FE8B1E;">52% Complete</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-medium" style="width: 52%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-details">
+                        <strong>Status:</strong> Behind schedule - 647 of 1,247 users trained<br>
+                        <strong>Risk:</strong> Manufacturing sites showing low attendance
+                    </div>
+                    <div class="phase-owner">
+                        Owner: <span class="owner-name">David Kumar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-card phase-readiness" onclick="openPhase('readiness')">
+                <div class="phase-header">
+                    <div class="phase-icon">📈</div>
+                    <div class="phase-title">Readiness Assessment</div>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-progress">
+                        <span style="font-size: 14px; font-weight: 600; color: #072635;">72% Complete</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-high" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-details">
+                        <strong>Status:</strong> Assessment surveys deployed, initial results concerning<br>
+                        <strong>Next:</strong> Readiness improvement plans for at-risk groups
+                    </div>
+                    <div class="phase-owner">
+                        Owner: <span class="owner-name">James Wilson</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-section">
+            <div class="section-header">⏰ Recent Activity & Updates</div>
+            <div class="activity-item">
+                <div class="activity-icon activity-alert">!</div>
+                <div class="activity-content">
+                    <div class="activity-title">Training Attendance Concern</div>
+                    <div class="activity-description">Manufacturing sites showing 35% lower attendance than target</div>
+                </div>
+                <div class="activity-time">2 hours ago</div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon activity-update">📊</div>
+                <div class="activity-content">
+                    <div class="activity-title">Stakeholder Survey Results</div>
+                    <div class="activity-description">Q1 engagement survey completed - 73% response rate achieved</div>
+                </div>
+                <div class="activity-time">6 hours ago</div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon activity-complete">✓</div>
+                <div class="activity-content">
+                    <div class="activity-title">Executive Briefing Completed</div>
+                    <div class="activity-description">CPO and CFO briefed on implementation progress and risk mitigation</div>
+                </div>
+                <div class="activity-time">1 day ago</div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon activity-update">📧</div>
+                <div class="activity-content">
+                    <div class="activity-title">Communication Campaign #3 Launched</div>
+                    <div class="activity-description">"Benefits Realization" messages sent to 1,247 users with 82% open rate</div>
+                </div>
+                <div class="activity-time">2 days ago</div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon activity-alert">⚠</div>
+                <div class="activity-content">
+                    <div class="activity-title">Risk Escalation</div>
+                    <div class="activity-description">AP team resistance upgraded to High risk - intervention plan activated</div>
+                </div>
+                <div class="activity-time">3 days ago</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToPortfolio() {
+            alert('🔗 Navigating back to OCM Portfolio Dashboard\n\nReturning to enterprise-wide view with all project metrics and portfolio-level insights.');
+        }
+
+        function openPhase(phaseType) {
+            const phases = {
+                'stakeholder': 'Stakeholder Management Phase Page',
+                'communication': 'Communications Phase Page', 
+                'training': 'Training & Development Phase Page',
+                'readiness': 'Readiness Assessment Phase Page'
+            };
+
+            alert(`🔗 Opening: ${phases[phaseType]}\n\nThis would show:\n• Detailed phase activities and tasks\n• Owner assignments and responsibilities\n• Progress tracking and milestones\n• Documents and deliverables\n• Metrics and success criteria`);
+        }
+
+        // Header button functionality
+        document.querySelectorAll('.header-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                if (action.includes('Project Report')) {
+                    alert('📊 Generating Coupa OCM Project Report\n\nIncludes:\n• Executive summary\n• Phase progress details\n• Risk assessment and mitigation plans\n• Stakeholder engagement analysis\n• Training effectiveness metrics\n• Next steps and recommendations');
+                } else if (action.includes('Update Status')) {
+                    alert('📋 Opening Status Update Form\n\nUpdate:\n• Phase progress percentages\n• Risk assessment levels\n• Milestone completion\n• Resource allocation\n• Issue escalations');
+                }
+            });
+        });
+
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, index * 200 + 500);
+            });
+        });
+    </script>
+</body>
+</html>
