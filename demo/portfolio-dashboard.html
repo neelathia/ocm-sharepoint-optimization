@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCM Portfolio Dashboard - Solenis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f3f2f1;
+            line-height: 1.4;
+        }
+
+        /* SharePoint Header */
+        .sp-header {
+            background: #072635;
+            color: white;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+        }
+
+        .sp-waffle {
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="1" y="1" width="4" height="4" fill="white"/><rect x="7" y="1" width="4" height="4" fill="white"/><rect x="13" y="1" width="4" height="4" fill="white"/><rect x="1" y="7" width="4" height="4" fill="white"/><rect x="7" y="7" width="4" height="4" fill="white"/><rect x="13" y="7" width="4" height="4" fill="white"/><rect x="1" y="13" width="4" height="4" fill="white"/><rect x="7" y="13" width="4" height="4" fill="white"/><rect x="13" y="13" width="4" height="4" fill="white"/></svg>') no-repeat center;
+            cursor: pointer;
+        }
+
+        .sp-title {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .sp-search {
+            margin-left: auto;
+            width: 440px;
+            height: 32px;
+            background: white;
+            border: none;
+            border-radius: 2px;
+            padding: 0 12px;
+            font-size: 14px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 24px 40px;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .page-icon {
+            width: 48px;
+            height: 48px;
+            background: #00CC99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .header-content h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 4px;
+        }
+
+        .header-content p {
+            color: #605e5c;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: #072635;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-btn:hover {
+            background: #0a3242;
+        }
+
+        .header-btn.secondary {
+            background: transparent;
+            color: #072635;
+            border: 1px solid #d2d0ce;
+        }
+
+        .header-btn.secondary:hover {
+            background: #f3f2f1;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00CC99, #3366FF);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .kpi-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #605e5c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-trend {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .trend-up {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .trend-down {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .trend-stable {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .kpi-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #072635;
+            margin-bottom: 8px;
+        }
+
+        .kpi-description {
+            font-size: 12px;
+            color: #797775;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        /* Project Status Table */
+        .projects-section {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            background: #072635;
+            color: white;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .projects-table th {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: #605e5c;
+            text-transform: uppercase;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .projects-table td {
+            padding: 16px;
+            border-bottom: 1px solid #f3f2f1;
+            font-size: 14px;
+        }
+
+        .projects-table tr:hover {
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .project-manager {
+            color: #605e5c;
+            font-size: 12px;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-planning {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status-execution {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .status-sustainment {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-risk {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .progress-bar {
+            width: 80px;
+            height: 8px;
+            background: #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-high {
+            background: linear-gradient(90deg, #00CC99, #3366FF);
+        }
+
+        .progress-medium {
+            background: linear-gradient(90deg, #FE8B1E, #00CC99);
+        }
+
+        .progress-low {
+            background: linear-gradient(90deg, #ff5252, #FE8B1E);
+        }
+
+        /* Alerts Section */
+        .alerts-section {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+
+        .alert-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f3f2f1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .alert-item:last-child {
+            border-bottom: none;
+        }
+
+        .alert-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .alert-high {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .alert-medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .alert-low {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 2px;
+        }
+
+        .alert-description {
+            font-size: 12px;
+            color: #605e5c;
+        }
+
+        /* Phase Matrix */
+        .phase-matrix {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .matrix-row {
+            display: flex;
+            border-bottom: 1px solid #f3f2f1;
+        }
+
+        .matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .matrix-label {
+            width: 140px;
+            padding: 16px;
+            background: #f8f9fa;
+            font-size: 14px;
+            font-weight: 600;
+            color: #072635;
+            border-right: 1px solid #edebe9;
+        }
+
+        .matrix-progress {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .matrix-bar {
+            flex: 1;
+            height: 12px;
+            background: #edebe9;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .matrix-percentage {
+            font-size: 14px;
+            font-weight: 600;
+            color: #072635;
+            min-width: 40px;
+        }
+
+        /* Bottom Grid */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px;
+            }
+
+            .dashboard-grid,
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SharePoint Header -->
+    <div class="sp-header">
+        <div class="sp-waffle"></div>
+        <div class="sp-title">SharePoint</div>
+        <input type="text" class="sp-search" placeholder="Search this site">
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-top">
+            <div class="page-icon">🔝</div>
+            <div class="header-content">
+                <h1>OCM Portfolio Dashboard</h1>
+                <p>Enterprise-wide organizational change management oversight and strategic insights</p>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn secondary">📊 Export Report</button>
+                <button class="header-btn">🔄 Refresh Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-title">Active Projects</div>
+                    <div class="kpi-trend trend-up">↗ +2</div>
+                </div>
+                <div class="kpi-number">12</div>
+                <div class="kpi-description">Across all business units</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-title">Avg OCM Readiness</div>
+                    <div class="kpi-trend trend-up">↗ 5%</div>
+                </div>
+                <div class="kpi-number">78%</div>
+                <div class="kpi-description">Portfolio-wide average</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-title">High Risk Projects</div>
+                    <div class="kpi-trend trend-down">↘ -1</div>
+                </div>
+                <div class="kpi-number" style="color: #c62828;">2</div>
+                <div class="kpi-description">Requiring immediate attention</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-title">Training Completion</div>
+                    <div class="kpi-trend trend-up">↗ 8%</div>
+                </div>
+                <div class="kpi-number">67%</div>
+                <div class="kpi-description">Across all active training</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-title">Stakeholder Engagement</div>
+                    <div class="kpi-trend trend-stable">→ 0%</div>
+                </div>
+                <div class="kpi-number">84%</div>
+                <div class="kpi-description">Average response rate</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-title">Budget Variance</div>
+                    <div class="kpi-trend trend-up">↗ 2%</div>
+                </div>
+                <div class="kpi-number" style="color: #00CC99;">+3%</div>
+                <div class="kpi-description">Under budget portfolio-wide</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Projects Section -->
+            <div class="projects-section">
+                <div class="section-header">🚀 Active OCM Projects</div>
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Phase</th>
+                            <th>Progress</th>
+                            <th>Risk</th>
+                            <th>Manager</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="openProject('coupa')">
+                            <td>
+                                <div class="project-name">Coupa Implementation</div>
+                                <div class="project-manager">Procurement Platform</div>
+                            </td>
+                            <td><span class="status-badge status-execution">Execution</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 72%"></div>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-risk">High</span></td>
+                            <td>Sarah Chen</td>
+                        </tr>
+                        <tr onclick="openProject('salesforce')">
+                            <td>
+                                <div class="project-name">Salesforce Migration</div>
+                                <div class="project-manager">CRM Modernization</div>
+                            </td>
+                            <td><span class="status-badge status-planning">Planning</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 45%"></div>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-execution">Medium</span></td>
+                            <td>Mike Rodriguez</td>
+                        </tr>
+                        <tr onclick="openProject('sap-upgrade')">
+                            <td>
+                                <div class="project-name">SAP S/4HANA Upgrade</div>
+                                <div class="project-manager">ERP Modernization</div>
+                            </td>
+                            <td><span class="status-badge status-execution">Execution</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 89%"></div>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-planning">Low</span></td>
+                            <td>Lisa Park</td>
+                        </tr>
+                        <tr onclick="openProject('workday')">
+                            <td>
+                                <div class="project-name">Workday HCM</div>
+                                <div class="project-manager">HR Digital Transformation</div>
+                            </td>
+                            <td><span class="status-badge status-sustainment">Sustainment</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 94%"></div>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-planning">Low</span></td>
+                            <td>James Wilson</td>
+                        </tr>
+                        <tr onclick="openProject('o365')">
+                            <td>
+                                <div class="project-name">Microsoft 365 Rollout</div>
+                                <div class="project-manager">Collaboration Platform</div>
+                            </td>
+                            <td><span class="status-badge status-execution">Execution</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 56%"></div>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-execution">Medium</span></td>
+                            <td>Anna Thompson</td>
+                        </tr>
+                        <tr onclick="openProject('analytics')">
+                            <td>
+                                <div class="project-name">Power BI Analytics</div>
+                                <div class="project-manager">Data & Analytics Platform</div>
+                            </td>
+                            <td><span class="status-badge status-planning">Planning</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-low" style="width: 23%"></div>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-risk">High</span></td>
+                            <td>David Kumar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Alerts Section -->
+            <div>
+                <div class="alerts-section">
+                    <div class="section-header">🚨 Priority Alerts</div>
+                    <div class="alert-item">
+                        <div class="alert-icon alert-high">!</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Coupa Training Delays</div>
+                            <div class="alert-description">15% behind schedule, stakeholder resistance in Procurement</div>
+                        </div>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon alert-high">!</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Power BI Scope Changes</div>
+                            <div class="alert-description">Requirements expansion may impact OCM timeline</div>
+                        </div>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon alert-medium">?</div>
+                        <div class="alert-content">
+                            <div class="alert-title">M365 Adoption Rates</div>
+                            <div class="alert-description">Teams usage below target in Manufacturing</div>
+                        </div>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon alert-low">i</div>
+                        <div class="alert-content">
+                            <div class="alert-title">SAP Go-Live Success</div>
+                            <div class="alert-description">94% user adoption achieved, sustainment on track</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-matrix">
+                    <div class="section-header">📊 OCM Phase Completion Matrix</div>
+                    <div class="matrix-row">
+                        <div class="matrix-label">Assessment</div>
+                        <div class="matrix-progress">
+                            <div class="matrix-bar">
+                                <div class="progress-fill progress-high" style="width: 92%"></div>
+                            </div>
+                            <div class="matrix-percentage">92%</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-label">Planning</div>
+                        <div class="matrix-progress">
+                            <div class="matrix-bar">
+                                <div class="progress-fill progress-high" style="width: 87%"></div>
+                            </div>
+                            <div class="matrix-percentage">87%</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-label">Execution</div>
+                        <div class="matrix-progress">
+                            <div class="matrix-bar">
+                                <div class="progress-fill progress-medium" style="width: 68%"></div>
+                            </div>
+                            <div class="matrix-percentage">68%</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-label">Sustainment</div>
+                        <div class="matrix-progress">
+                            <div class="matrix-bar">
+                                <div class="progress-fill progress-low" style="width: 34%"></div>
+                            </div>
+                            <div class="matrix-percentage">34%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project navigation
+        function openProject(projectId) {
+            const projects = {
+                'coupa': 'Coupa Implementation Project Landing Page',
+                'salesforce': 'Salesforce Migration Project Landing Page',
+                'sap-upgrade': 'SAP S/4HANA Upgrade Project Landing Page',
+                'workday': 'Workday HCM Project Landing Page',
+                'o365': 'Microsoft 365 Rollout Project Landing Page',
+                'analytics': 'Power BI Analytics Project Landing Page'
+            };
+            
+            alert(`🔗 Navigating to: ${projects[projectId]}\n\nThis would show:\n• Project-specific OCM status\n• Phase progress details\n• Stakeholder engagement metrics\n• Risk mitigation plans\n• Communication timelines`);
+        }
+
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, index * 100 + 500);
+            });
+        });
+
+        // KPI card interactions
+        document.querySelectorAll('.kpi-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.kpi-title').textContent;
+                alert(`📊 Drilling down into: ${title}\n\nDetailed analytics would include:\n• Trend analysis over time\n• Project-by-project breakdown\n• Contributing factors\n• Predictive insights\n• Recommended actions`);
+            });
+        });
+
+        // Header button functionality
+        document.querySelectorAll('.header-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                if (action.includes('Export')) {
+                    alert('📊 Generating Executive Portfolio Report\n\nExporting:\n• KPI summary and trends\n• Project status matrix\n• Risk assessment\n• Resource allocation\n• Strategic recommendations');
+                } else if (action.includes('Refresh')) {
+                    alert('🔄 Refreshing real-time data from all project sources...\n\nUpdating:\n• Project progress metrics\n• Stakeholder engagement rates\n• Training completion status\n• Risk assessments\n• Budget variance calculations');
+                }
+            });
+        });
+
+        // Add hover effects to table rows
+        document.querySelectorAll('.projects-table tr').forEach(row => {
+            if (row.onclick) {
+                row.style.cursor = 'pointer';
+            }
+        });
+    </script>
+</body>
+</html>
