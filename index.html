@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCM SharePoint Optimization - Strategic Initiative</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #072635 0%, #1e3a8a 50%, #3366FF 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" /></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23grad1)"/><circle cx="800" cy="300" r="150" fill="url(%23grad1)"/><circle cx="300" cy="700" r="120" fill="url(%23grad1)"/><circle cx="700" cy="800" r="80" fill="url(%23grad1)"/></svg>') no-repeat center;
+            background-size: cover;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 8px 24px;
+            display: inline-block;
+            margin-bottom: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 48px;
+            opacity: 0.8;
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tour Steps */
+        .tour-section {
+            padding: 80px 40px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .tour-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tour-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #00CC99, #3366FF);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00CC99, #3366FF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 24px;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .step-duration {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 24px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .step-button {
+            background: linear-gradient(135deg, #00CC99, #3366FF);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .step-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(51, 102, 255, 0.4);
+        }
+
+        /* Journey Flow */
+        .journey-flow {
+            padding: 80px 40px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .flow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 24px;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            opacity: 0.6;
+            margin: 0 10px;
+        }
+
+        .flow-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .flow-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Quick Start */
+        .quick-start {
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .quick-start-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quick-start-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .quick-btn.primary {
+            background: linear-gradient(135deg, #00CC99, #3366FF);
+            border: none;
+        }
+
+        .quick-btn.primary:hover {
+            box-shadow: 0 15px 30px rgba(51, 102, 255, 0.4);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 16px;
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .progress-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .progress-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .progress-step.active {
+            opacity: 1;
+            color: #00CC99;
+        }
+
+        .progress-step.completed {
+            opacity: 0.8;
+            text-decoration: line-through;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .progress-step.active .progress-dot {
+            background: #00CC99;
+        }
+
+        .progress-step.completed .progress-dot {
+            background: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .tour-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .quick-start-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .progress-tracker {
+                position: relative;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="progress-title">Tour Progress</div>
+        <div class="progress-steps">
+            <div class="progress-step active">
+                <div class="progress-dot"></div>
+                <span>Welcome</span>
+            </div>
+            <div class="progress-step">
+                <div class="progress-dot"></div>
+                <span>Audit Findings</span>
+            </div>
+            <div class="progress-step">
+                <div class="progress-dot"></div>
+                <span>Strategic Vision</span>
+            </div>
+            <div class="progress-step">
+                <div class="progress-dot"></div>
+                <span>Interactive Demo</span>
+            </div>
+            <div class="progress-step">
+                <div class="progress-dot"></div>
+                <span>Implementation</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Strategic Initiative</div>
+            <h1 class="hero-title">OCM SharePoint Optimization</h1>
+            <p class="hero-subtitle">Transforming Organizational Change Management through Strategic Information Architecture</p>
+            <p class="hero-description">
+                A comprehensive initiative to address critical gaps in our current OCM SharePoint environment 
+                and establish a world-class information management system that scales with enterprise needs.
+            </p>
+            
+            <div class="quick-start-buttons">
+                <a href="#tour" class="quick-btn primary" onclick="startTour()">
+                    🚀 Start Guided Tour
+                </a>
+                <a href="#" class="quick-btn" onclick="jumpToDemo()">
+                    👀 Jump to Demo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Journey Flow -->
+    <div class="journey-flow">
+        <div class="flow-container">
+            <h2 class="section-title">Strategic Journey Overview</h2>
+            <p class="section-description">
+                From audit findings to implementation roadmap - see the complete transformation story
+            </p>
+            
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-title">🔍 Current State</div>
+                    <div class="flow-subtitle">Audit Findings</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-title">🎯 Future Vision</div>
+                    <div class="flow-subtitle">Strategic Framework</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-title">💡 Solution Demo</div>
+                    <div class="flow-subtitle">Interactive Experience</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-title">🚀 Implementation</div>
+                    <div class="flow-subtitle">Execution Plan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tour Section -->
+    <div class="tour-section" id="tour">
+        <div class="tour-container">
+            <div class="section-header">
+                <h2 class="section-title">Guided Experience</h2>
+                <p class="section-description">
+                    Follow the complete narrative from problem identification to solution demonstration
+                </p>
+            </div>
+            
+            <div class="tour-steps">
+                <!-- Step 1: Audit Findings -->
+                <div class="step-card" onclick="openAuditFindings()">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🔍</div>
+                    <h3 class="step-title">Audit Findings & Analysis</h3>
+                    <p class="step-description">
+                        Comprehensive assessment of current SharePoint environment revealing critical tactical and strategic gaps affecting OCM effectiveness.
+                    </p>
+                    <div class="step-duration">⏱️ 10-15 minutes</div>
+                    <button class="step-button">View Findings Presentation</button>
+                </div>
+
+                <!-- Step 2: Strategic Vision -->
+                <div class="step-card" onclick="openVisionDemo()">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🎯</div>
+                    <h3 class="step-title">Strategic Vision & Framework</h3>
+                    <p class="step-description">
+                        Experience the proposed portfolio dashboard showcasing enterprise-level OCM visibility and strategic information architecture.
+                    </p>
+                    <div class="step-duration">⏱️ 5-8 minutes</div>
+                    <button class="step-button">Explore Vision Demo</button>
+                </div>
+
+                <!-- Step 3: Interactive Demo -->
+                <div class="step-card" onclick="startInteractiveDemo()">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">💡</div>
+                    <h3 class="step-title">Interactive Solution Demo</h3>
+                    <p class="step-description">
+                        Navigate through the complete 4-layer information hierarchy: Portfolio → Project → Phase → Activity with real Coupa implementation data.
+                    </p>
+                    <div class="step-duration">⏱️ 15-20 minutes</div>
+                    <button class="step-button">Launch Interactive Demo</button>
+                </div>
+
+                <!-- Step 4: Implementation Roadmap -->
+                <div class="step-card" onclick="showImplementation()">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🚀</div>
+                    <h3 class="step-title">Implementation Strategy</h3>
+                    <p class="step-description">
+                        Review the phased implementation approach, resource requirements, timeline, and success metrics for enterprise rollout.
+                    </p>
+                    <div class="step-duration">⏱️ 8-10 minutes</div>
+                    <button class="step-button">View Implementation Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start -->
+    <div class="quick-start">
+        <div class="quick-start-container">
+            <h2 class="section-title">Quick Navigation</h2>
+            <p class="section-description">
+                Already familiar with the background? Jump directly to specific sections
+            </p>
+            
+            <div class="quick-start-buttons">
+                <a href="#" class="quick-btn" onclick="openAuditFindings()">
+                    📊 Audit Presentation
+                </a>
+                <a href="#" class="quick-btn" onclick="openVisionDemo()">
+                    🎯 Vision Dashboard
+                </a>
+                <a href="#" class="quick-btn primary" onclick="startInteractiveDemo()">
+                    🔥 Full Demo Experience
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress tracking
+        let currentStep = 0;
+        const steps = ['Welcome', 'Audit Findings', 'Strategic Vision', 'Interactive Demo', 'Implementation'];
+
+        function updateProgress(stepIndex) {
+            const progressSteps = document.querySelectorAll('.progress-step');
+            progressSteps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index < stepIndex) {
+                    step.classList.add('completed');
+                } else if (index === stepIndex) {
+                    step.classList.add('active');
+                }
+            });
+            currentStep = stepIndex;
+        }
+
+        function startTour() {
+            updateProgress(1);
+            setTimeout(() => {
+                openAuditFindings();
+            }, 500);
+        }
+
+        function openAuditFindings() {
+            updateProgress(1);
+            // Open the audit findings presentation
+            window.open('https://neelathia.github.io/ocm-sharepoint-optimization/audit-findings/presentation-slides.html', '_blank');
+            
+            // Show continuation modal after delay
+            setTimeout(() => {
+                if (confirm('🎯 Ready to see the Strategic Vision?\n\nClick OK to continue to the Portfolio Dashboard demo, or Cancel to explore at your own pace.')) {
+                    openVisionDemo();
+                }
+            }, 3000);
+        }
+
+        function openVisionDemo() {
+            updateProgress(2);
+            // Open the vision dashboard
+            window.open('https://neelathia.github.io/ocm-sharepoint-optimization/demo/portfolio-dashboard.html', '_blank');
+            
+            // Show continuation modal after delay
+            setTimeout(() => {
+                if (confirm('💡 Ready for the Interactive Demo?\n\nExperience the complete 4-layer hierarchy with real project data.\n\nClick OK to launch the full demo experience.')) {
+                    startInteractiveDemo();
+                }
+            }, 3000);
+        }
+
+        function startInteractiveDemo() {
+            updateProgress(3);
+            
+            // Show demo guide modal
+            const demoGuide = `
+🚀 Interactive Demo Experience
+
+You'll navigate through:
+
+📊 Level 1: Portfolio Dashboard
+   ↳ Enterprise view of all OCM initiatives
+
+🎯 Level 2: Coupa Implementation Project  
+   ↳ Project-level overview and phases
+
+🤝 Level 3: Stakeholder Management Phase
+   ↳ Phase activities and progress
+
+📋 Level 4: Stakeholder Analysis Activity
+   ↳ Detailed task execution and tracking
+
+Navigate using breadcrumbs and interactive elements!
+            `;
+            
+            alert(demoGuide);
+            
+            // Start with portfolio dashboard - the demo pages should link to each other
+            window.open('https://neelathia.github.io/ocm-sharepoint-optimization/demo/portfolio-dashboard.html', '_blank');
+        }
+
+        function jumpToDemo() {
+            updateProgress(3);
+            startInteractiveDemo();
+        }
+
+        function showImplementation() {
+            updateProgress(4);
+            
+            const implementationPlan = `
+🚀 OCM SharePoint Optimization - Implementation Strategy
+
+📋 PHASE 1: Foundation (Weeks 1-4)
+• SharePoint site architecture setup
+• Information taxonomy development  
+• Template and component library creation
+• Pilot user group identification
+
+📋 PHASE 2: Content Migration (Weeks 5-8)
+• Current content audit and cleanup
+• Data migration and restructuring
+• Navigation and metadata implementation
+• Initial user training
+
+📋 PHASE 3: User Adoption (Weeks 9-12)
+• Comprehensive training program
+• Change management activities
+• Feedback collection and refinement
+• Success metrics establishment
+
+📋 PHASE 4: Optimization (Weeks 13-16)
+• Performance monitoring and tuning
+• Advanced feature rollout
+• Governance framework implementation
+• Continuous improvement process
+
+💰 INVESTMENT REQUIRED:
+• SharePoint development: 120 hours
+• Information architecture: 80 hours
+• Content migration: 160 hours
+• Training and adoption: 100 hours
+• Project management: 60 hours
+
+🎯 SUCCESS METRICS:
+• User adoption rate > 85%
+• Information findability improved by 60%
+• Project visibility increased by 75%
+• Administrative efficiency improved by 40%
+
+Ready to transform OCM information management?
+            `;
+            
+            alert(implementationPlan);
+        }
+
+        // Auto-advance progress on scroll
+        window.addEventListener('scroll', () => {
+            const scrollProgress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            
+            if (scrollProgress > 0.8 && currentStep < 4) {
+                updateProgress(4);
+            } else if (scrollProgress > 0.6 && currentStep < 3) {
+                updateProgress(3);
+            } else if (scrollProgress > 0.4 && currentStep < 2) {
+                updateProgress(2);
+            } else if (scrollProgress > 0.2 && currentStep < 1) {
+                updateProgress(1);
+            }
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate step cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
