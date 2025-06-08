@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Analysis & Mapping - Activity Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f3f2f1;
+            line-height: 1.4;
+        }
+
+        /* SharePoint Header */
+        .sp-header {
+            background: #072635;
+            color: white;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+        }
+
+        .sp-waffle {
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="1" y="1" width="4" height="4" fill="white"/><rect x="7" y="1" width="4" height="4" fill="white"/><rect x="13" y="1" width="4" height="4" fill="white"/><rect x="1" y="7" width="4" height="4" fill="white"/><rect x="7" y="7" width="4" height="4" fill="white"/><rect x="13" y="7" width="4" height="4" color="white"/><rect x="1" y="13" width="4" height="4" fill="white"/><rect x="7" y="13" width="4" height="4" fill="white"/><rect x="13" y="13" width="4" height="4" fill="white"/></svg>') no-repeat center;
+            cursor: pointer;
+        }
+
+        .sp-title {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 8px 40px;
+            border-bottom: 1px solid #edebe9;
+            font-size: 13px;
+            color: #605e5c;
+        }
+
+        .breadcrumb a {
+            color: #072635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 24px 40px;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .page-icon {
+            width: 48px;
+            height: 48px;
+            background: #3366FF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .header-content h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 4px;
+        }
+
+        .header-content p {
+            color: #605e5c;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: #072635;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: #0a3242;
+        }
+
+        .header-btn.secondary {
+            background: transparent;
+            color: #072635;
+            border: 1px solid #d2d0ce;
+        }
+
+        .header-btn.secondary:hover {
+            background: #f3f2f1;
+        }
+
+        /* Activity Status Bar */
+        .activity-status {
+            background: linear-gradient(135deg, #3366FF, #00CC99);
+            color: white;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 40px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .content-panel {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .panel-header {
+            background: #072635;
+            color: white;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-content {
+            padding: 24px;
+        }
+
+        /* Objectives List */
+        .objectives-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: #f8f9fa;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .objective-item:hover {
+            background: #f0f4ff;
+            border-color: #3366FF;
+        }
+
+        .objective-number {
+            width: 24px;
+            height: 24px;
+            background: #072635;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .objective-text {
+            color: #605e5c;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Tasks Grid */
+        .tasks-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .task-card {
+            background: #f8f9fa;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            padding: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .task-card:hover {
+            background: #f0f4ff;
+            border-color: #3366FF;
+            transform: translateY(-1px);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .task-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .task-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-complete {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-progress {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .status-planned {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .task-description {
+            font-size: 14px;
+            color: #605e5c;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .task-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .task-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            color: #797775;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 13px;
+            color: #072635;
+            font-weight: 600;
+        }
+
+        .task-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #edebe9;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-high {
+            background: linear-gradient(90deg, #00CC99, #3366FF);
+        }
+
+        .progress-medium {
+            background: linear-gradient(90deg, #FE8B1E, #00CC99);
+        }
+
+        .progress-percentage {
+            font-size: 11px;
+            font-weight: 600;
+            color: #072635;
+            min-width: 32px;
+        }
+
+        /* Stakeholder Matrix */
+        .matrix-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .matrix-quadrant {
+            background: #f8f9fa;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .matrix-quadrant:hover {
+            background: #f0f4ff;
+            border-color: #3366FF;
+        }
+
+        .quadrant-title {
+            font-size: 12px;
+            color: #797775;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .quadrant-count {
+            font-size: 28px;
+            font-weight: 700;
+            color: #072635;
+            margin-bottom: 4px;
+        }
+
+        .quadrant-description {
+            font-size: 11px;
+            color: #605e5c;
+        }
+
+        /* Sidebar Widgets */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .widget-header {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            border-bottom: 1px solid #edebe9;
+            font-weight: 600;
+            color: #072635;
+            font-size: 14px;
+        }
+
+        .widget-content {
+            padding: 20px;
+        }
+
+        /* Team Members */
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f2f1;
+        }
+
+        .team-member:last-child {
+            border-bottom: none;
+        }
+
+        .member-avatar {
+            width: 32px;
+            height: 32px;
+            background: #072635;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .member-role {
+            font-size: 11px;
+            color: #605e5c;
+        }
+
+        /* Deliverables */
+        .deliverable-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .deliverable-checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #d2d0ce;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #2e7d32;
+        }
+
+        .deliverable-checkbox.complete {
+            background: #e8f5e8;
+            border-color: #2e7d32;
+        }
+
+        .deliverable-checkbox.partial {
+            background: #fff3e0;
+            border-color: #ef6c00;
+            color: #ef6c00;
+        }
+
+        .deliverable-text {
+            color: #605e5c;
+        }
+
+        .deliverable-text.complete {
+            text-decoration: line-through;
+            color: #797775;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-date {
+            min-width: 60px;
+            font-size: 11px;
+            color: #797775;
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            flex: 1;
+            font-size: 12px;
+            color: #605e5c;
+            line-height: 1.4;
+        }
+
+        .timeline-title {
+            color: #072635;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .activity-status {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .matrix-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SharePoint Header -->
+    <div class="sp-header">
+        <div class="sp-waffle"></div>
+        <div class="sp-title">SharePoint</div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#" onclick="goToPortfolio()">OCM Portfolio Dashboard</a> > 
+        <a href="#" onclick="goToProject()">Coupa Implementation</a> > 
+        <a href="#" onclick="goToPhase()">Stakeholder Management</a> > 
+        Stakeholder Analysis & Mapping
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-top">
+            <div class="page-icon">📊</div>
+            <div class="header-content">
+                <h1>Stakeholder Analysis & Mapping</h1>
+                <p>Comprehensive identification and analysis of all stakeholders affected by Coupa implementation</p>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn secondary">📄 Export Register</button>
+                <button class="header-btn secondary">📋 Task List</button>
+                <button class="header-btn">📝 Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Status -->
+    <div class="activity-status">
+        <div class="status-item">
+            <div>
+                <div class="status-label">Activity Progress</div>
+                <div class="status-value">100% Complete</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Tasks Completed</div>
+                <div class="status-value">5 of 5</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Stakeholders Identified</div>
+                <div class="status-value">47 Total</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">High Influence</div>
+                <div class="status-value">12 Stakeholders</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Activity Owner</div>
+                <div class="status-value">Lisa Park</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Duration</div>
+                <div class="status-value">2 Weeks</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Activity Objectives -->
+            <div class="content-panel">
+                <div class="panel-header">
+                    <span>🎯</span> Activity Objectives
+                </div>
+                <div class="panel-content">
+                    <ul class="objectives-list">
+                        <li class="objective-item">
+                            <div class="objective-number">1</div>
+                            <div class="objective-text">Identify all internal and external stakeholders who will be impacted by or can influence the Coupa implementation project across all business units and geographic locations</div>
+                        </li>
+                        <li class="objective-item">
+                            <div class="objective-number">2</div>
+                            <div class="objective-text">Analyze stakeholder interests, influence levels, and potential impact on project success through structured interviews and assessment frameworks</div>
+                        </li>
+                        <li class="objective-item">
+                            <div class="objective-number">3</div>
+                            <div class="objective-text">Create comprehensive stakeholder register with detailed contact information, roles, departments, and engagement preferences</div>
+                        </li>
+                        <li class="objective-item">
+                            <div class="objective-number">4</div>
+                            <div class="objective-text">Develop influence-interest matrix to categorize stakeholders and prioritize engagement efforts based on their power and interest levels</div>
+                        </li>
+                        <li class="objective-item">
+                            <div class="objective-number">5</div>
+                            <div class="objective-text">Document stakeholder expectations, concerns, and success criteria to inform communication and engagement strategies</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task Breakdown -->
+            <div class="content-panel">
+                <div class="panel-header">
+                    <span>📋</span> Task Breakdown & Progress
+                </div>
+                <div class="panel-content">
+                    <div class="tasks-grid">
+                        <div class="task-card">
+                            <div class="task-header">
+                                <div class="task-title">Stakeholder Identification Workshop</div>
+                                <div class="task-status status-complete">Complete</div>
+                            </div>
+                            <div class="task-description">
+                                Conducted comprehensive brainstorming sessions with project team and key business users to identify all potential stakeholders across departments, organizational levels, and external parties.
+                            </div>
+                            <div class="task-details">
+                                <div class="task-detail">
+                                    <div class="detail-label">Owner</div>
+                                    <div class="detail-value">Lisa Park</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">2 Days</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Completed</div>
+                                    <div class="detail-value">Jan 15, 2025</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Participants</div>
+                                    <div class="detail-value">8 Team Members</div>
+                                </div>
+                            </div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 100%"></div>
+                                </div>
+                                <span class="progress-percentage">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="task-card">
+                            <div class="task-header">
+                                <div class="task-title">Stakeholder Interview Campaign</div>
+                                <div class="task-status status-complete">Complete</div>
+                            </div>
+                            <div class="task-description">
+                                Conducted one-on-one interviews with 47 identified stakeholders to understand their roles, interests, concerns, and expectations regarding the Coupa implementation.
+                            </div>
+                            <div class="task-details">
+                                <div class="task-detail">
+                                    <div class="detail-label">Owner</div>
+                                    <div class="detail-value">Mike Rodriguez</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">5 Days</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Completed</div>
+                                    <div class="detail-value">Jan 22, 2025</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Interviews</div>
+                                    <div class="detail-value">47 Completed</div>
+                                </div>
+                            </div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 100%"></div>
+                                </div>
+                                <span class="progress-percentage">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="task-card">
+                            <div class="task-header">
+                                <div class="task-title">Influence-Interest Matrix Development</div>
+                                <div class="task-status status-complete">Complete</div>
+                            </div>
+                            <div class="task-description">
+                                Analyzed collected interview data to plot stakeholders on influence-interest matrix, categorizing them into appropriate quadrants for targeted engagement strategies.
+                            </div>
+                            <div class="task-details">
+                                <div class="task-detail">
+                                    <div class="detail-label">Owner</div>
+                                    <div class="detail-value">Sarah Chen</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">3 Days</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Completed</div>
+                                    <div class="detail-value">Jan 25, 2025</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Quadrants</div>
+                                    <div class="detail-value">4 Categories</div>
+                                </div>
+                            </div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 100%"></div>
+                                </div>
+                                <span class="progress-percentage">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="task-card">
+                            <div class="task-header">
+                                <div class="task-title">Stakeholder Register Creation</div>
+                                <div class="task-status status-complete">Complete</div>
+                            </div>
+                            <div class="task-description">
+                                Compiled comprehensive stakeholder register database with detailed contact information, organizational roles, departments, influence levels, and communication preferences.
+                            </div>
+                            <div class="task-details">
+                                <div class="task-detail">
+                                    <div class="detail-label">Owner</div>
+                                    <div class="detail-value">Anna Thompson</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">2 Days</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Completed</div>
+                                    <div class="detail-value">Jan 27, 2025</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Records</div>
+                                    <div class="detail-value">47 Profiles</div>
+                                </div>
+                            </div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 100%"></div>
+                                </div>
+                                <span class="progress-percentage">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="task-card">
+                            <div class="task-header">
+                                <div class="task-title">Analysis Report & Recommendations</div>
+                                <div class="task-status status-complete">Complete</div>
+                            </div>
+                            <div class="task-description">
+                                Prepared comprehensive analysis report summarizing findings, stakeholder categorization, engagement strategy recommendations, and risk mitigation approaches.
+                            </div>
+                            <div class="task-details">
+                                <div class="task-detail">
+                                    <div class="detail-label">Owner</div>
+                                    <div class="detail-value">Lisa Park</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">3 Days</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Completed</div>
+                                    <div class="detail-value">Jan 30, 2025</div>
+                                </div>
+                                <div class="task-detail">
+                                    <div class="detail-label">Pages</div>
+                                    <div class="detail-value">24 Page Report</div>
+                                </div>
+                            </div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 100%"></div>
+                                </div>
+                                <span class="progress-percentage">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stakeholder Matrix Results -->
+            <div class="content-panel">
+                <div class="panel-header">
+                    <span>📊</span> Stakeholder Influence-Interest Matrix Results
+                </div>
+                <div class="panel-content">
+                    <div class="matrix-container">
+                        <div class="matrix-quadrant">
+                            <div class="quadrant-title">High Interest / High Influence</div>
+                            <div class="quadrant-count">12</div>
+                            <div class="quadrant-description">Manage Closely - Key Decision Makers</div>
+                        </div>
+                        <div class="matrix-quadrant">
+                            <div class="quadrant-title">High Interest / Low Influence</div>
+                            <div class="quadrant-count">18</div>
+                            <div class="quadrant-description">Keep Informed - Active Supporters</div>
+                        </div>
+                        <div class="matrix-quadrant">
+                            <div class="quadrant-title">Low Interest / High Influence</div>
+                            <div class="quadrant-count">8</div>
+                            <div class="quadrant-description">Keep Satisfied - Potential Blockers</div>
+                        </div>
+                        <div class="matrix-quadrant">
+                            <div class="quadrant-title">Low Interest / Low Influence</div>
+                            <div class="quadrant-count">9</div>
+                            <div class="quadrant-description">Monitor - Minimal Engagement</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Activity Team -->
+            <div class="sidebar-widget">
+                <div class="widget-header">👥 Activity Team</div>
+                <div class="widget-content">
+                    <div class="team-member">
+                        <div class="member-avatar">LP</div>
+                        <div class="member-info">
+                            <div class="member-name">Lisa Park</div>
+                            <div class="member-role">Activity Lead</div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">MR</div>
+                        <div class="member-info">
+                            <div class="member-name">Mike Rodriguez</div>
+                            <div class="member-role">Business Analyst</div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">SC</div>
+                        <div class="member-info">
+                            <div class="member-name">Sarah Chen</div>
+                            <div class="member-role">Change Manager</div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">AT</div>
+                        <div class="member-info">
+                            <div class="member-name">Anna Thompson</div>
+                            <div class="member-role">Project Coordinator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Deliverables -->
+            <div class="sidebar-widget">
+                <div class="widget-header">📋 Key Deliverables</div>
+                <div class="widget-content">
+                    <div class="deliverable-item">
+                        <div class="deliverable-checkbox complete">✓</div>
+                        <div class="deliverable-text complete">Stakeholder Identification List</div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-checkbox complete">✓</div>
+                        <div class="deliverable-text complete">Interview Notes & Findings</div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-checkbox complete">✓</div>
+                        <div class="deliverable-text complete">Influence-Interest Matrix</div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-checkbox complete">✓</div>
+                        <div class="deliverable-text complete">Stakeholder Register Database</div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-checkbox complete">✓</div>
+                        <div class="deliverable-text complete">Analysis Report & Recommendations</div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-checkbox complete">✓</div>
+                        <div class="deliverable-text complete">Engagement Strategy Framework</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Timeline -->
+            <div class="sidebar-widget">
+                <div class="widget-header">⏰ Activity Timeline</div>
+                <div class="widget-content">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 15</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Workshop Kickoff</div>
+                            Stakeholder identification workshop completed
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 17</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Interview Launch</div>
+                            Began stakeholder interview campaign
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 22</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Interviews Complete</div>
+                            All 47 stakeholder interviews finished
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 25</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Matrix Development</div>
+                            Influence-interest matrix completed
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 27</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Register Complete</div>
+                            Stakeholder register database finalized
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 30</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Report Delivered</div>
+                            Final analysis report submitted
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Metrics -->
+            <div class="sidebar-widget">
+                <div class="widget-header">📊 Activity Metrics</div>
+                <div class="widget-content">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="font-size: 13px; color: #605e5c;">Total Budget:</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #072635;">$28K</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="font-size: 13px; color: #605e5c;">Actual Spend:</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #072635;">$26.5K</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="font-size: 13px; color: #605e5c;">Hours Logged:</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #072635;">186 hrs</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="font-size: 13px; color: #605e5c;">Interview Rate:</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #072635;">100%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="font-size: 13px; color: #605e5c;">Quality Score:</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #2e7d32;">Excellent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents & Links -->
+            <div class="sidebar-widget">
+                <div class="widget-header">📄 Documents & Links</div>
+                <div class="widget-content">
+                    <div style="margin-bottom: 12px;">
+                        <a href="#" onclick="openDocument('register')" style="color: #072635; text-decoration: none; font-size: 13px; display: block; padding: 4px 0;">📊 Stakeholder Register.xlsx</a>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <a href="#" onclick="openDocument('matrix')" style="color: #072635; text-decoration: none; font-size: 13px; display: block; padding: 4px 0;">📈 Influence-Interest Matrix.pptx</a>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <a href="#" onclick="openDocument('report')" style="color: #072635; text-decoration: none; font-size: 13px; display: block; padding: 4px 0;">📋 Analysis Report.docx</a>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <a href="#" onclick="openDocument('interviews')" style="color: #072635; text-decoration: none; font-size: 13px; display: block; padding: 4px 0;">🎤 Interview Notes Folder</a>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <a href="#" onclick="openDocument('templates')" style="color: #072635; text-decoration: none; font-size: 13px; display: block; padding: 4px 0;">📝 Interview Templates</a>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <a href="#" onclick="openDocument('photos')" style="color: #072635; text-decoration: none; font-size: 13px; display: block; padding: 4px 0;">📷 Workshop Photos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToPortfolio() {
+            alert('🔗 Navigating to OCM Portfolio Dashboard\n\nReturning to enterprise-wide project overview.');
+        }
+
+        function goToProject() {
+            alert('🔗 Navigating to Coupa Implementation Project Page\n\nReturning to project-level overview with all OCM phases.');
+        }
+
+        function goToPhase() {
+            alert('🔗 Navigating to Stakeholder Management Phase\n\nReturning to phase-level overview with all activities.');
+        }
+
+        function openDocument(docType) {
+            const documents = {
+                'register': 'Opening Stakeholder Register (Excel)\n\nComplete database of 47 stakeholders with:\n• Contact information\n• Organizational details\n• Influence/Interest ratings\n• Communication preferences\n• Engagement history',
+                'matrix': 'Opening Influence-Interest Matrix (PowerPoint)\n\nVisual mapping showing:\n• Stakeholder positioning\n• Quadrant classifications\n• Engagement strategies\n• Priority rankings',
+                'report': 'Opening Analysis Report (Word)\n\n24-page comprehensive report including:\n• Executive summary\n• Methodology\n• Findings and insights\n• Risk assessment\n• Recommendations',
+                'interviews': 'Opening Interview Notes Folder\n\nContains:\n• Individual interview transcripts\n• Summary findings\n• Key quotes and insights\n• Action items identified',
+                'templates': 'Opening Interview Templates\n\nStandardized templates for:\n• Interview questions\n• Assessment criteria\n• Rating scales\n• Documentation formats',
+                'photos': 'Opening Workshop Photos\n\nVisual documentation of:\n• Stakeholder mapping session\n• Team collaboration\n• Whiteboard outcomes\n• Participant engagement'
+            };
+
+            alert(`📄 ${documents[docType]}`);
+        }
+
+        // Header button functionality
+        document.querySelectorAll('.header-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                if (action.includes('Export Register')) {
+                    alert('📊 Exporting Stakeholder Register\n\nDownloading comprehensive stakeholder database in Excel format with:\n• All 47 stakeholder profiles\n• Contact information\n• Influence/Interest ratings\n• Department mappings\n• Communication preferences');
+                } else if (action.includes('Task List')) {
+                    alert('📋 Opening Task List View\n\nDetailed task breakdown showing:\n• All 5 completed tasks\n• Task dependencies\n• Resource assignments\n• Completion dates\n• Quality metrics\n• Lessons learned');
+                } else if (action.includes('Update Status')) {
+                    alert('📝 Opening Status Update Form\n\nUpdate options:\n• Task completion status\n• Resource utilization\n• Budget actuals\n• Issue escalations\n• Next steps planning\n• Stakeholder feedback');
+                }
+            });
+        });
+
+        // Matrix quadrant click handlers
+        document.querySelectorAll('.matrix-quadrant').forEach(quadrant => {
+            quadrant.addEventListener('click', function() {
+                const title = this.querySelector('.quadrant-title').textContent;
+                const count = this.querySelector('.quadrant-count').textContent;
+                
+                let stakeholderList = '';
+                if (title.includes('High Interest / High Influence')) {
+                    stakeholderList = '\n\nKey Stakeholders:\n• Jennifer Walsh (CPO)\n• Robert Taylor (AP Manager)\n• Maria Kowalski (Regional Lead)\n• David Johnson (Manufacturing Dir)\n• 8 others...';
+                } else if (title.includes('High Interest / Low Influence')) {
+                    stakeholderList = '\n\nEngaged Users:\n• Department coordinators\n• Power users\n• Site representatives\n• Process owners\n• Subject matter experts';
+                } else if (title.includes('Low Interest / High Influence')) {
+                    stakeholderList = '\n\nInfluential but Distant:\n• Executive committee members\n• Department heads\n• Regional directors\n• IT leadership';
+                } else {
+                    stakeholderList = '\n\nMinimal Engagement:\n• End users\n• Administrative staff\n• Support functions\n• External consultants';
+                }
+
+                alert(`📊 ${title}\n\n${count} Stakeholders identified${stakeholderList}\n\nClick to view detailed stakeholder list and engagement strategies.`);
+            });
+        });
+
+        // Task card click handlers
+        document.querySelectorAll('.task-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.task-title').textContent;
+                alert(`📋 Opening Task Details: ${title}\n\nView detailed information including:\n• Task specifications\n• Work breakdown\n• Resource assignments\n• Dependencies\n• Deliverables\n• Quality criteria\n• Lessons learned`);
+            });
+        });
+
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, index * 150 + 500);
+            });
+        });
+    </script>
+</body>
+</html>
