@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OCM SharePoint Optimization - Strategic Initiative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,11 +13,16 @@
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #072635 0%, #1e3a8a 50%, #3366FF 100%);
-            min-height: 100vh;
-            color: white;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
+            line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
 
         /* Hero Section */
@@ -26,7 +32,8 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 40px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3561 100%);
+            overflow: hidden;
         }
 
         .hero::before {
@@ -34,77 +41,232 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" /></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23grad1)"/><circle cx="800" cy="300" r="150" fill="url(%23grad1)"/><circle cx="300" cy="700" r="120" fill="url(%23grad1)"/><circle cx="700" cy="800" r="80" fill="url(%23grad1)"/></svg>') no-repeat center;
-            background-size: cover;
-            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 48, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
         }
 
         .hero-content {
             text-align: center;
             max-width: 1200px;
+            padding: 0 24px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-badge {
-            background: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(255, 119, 48, 0.2), rgba(120, 119, 198, 0.2));
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            padding: 8px 24px;
+            padding: 12px 32px;
             display: inline-block;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            color: #ffffff;
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f2ff 50%, #e1e7ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 500;
             margin-bottom: 32px;
-            opacity: 0.9;
-            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.85);
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 400;
             margin-bottom: 48px;
-            opacity: 0.8;
-            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
         }
 
-        /* Tour Steps */
-        .tour-section {
-            padding: 80px 40px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 48px;
+        }
+
+        .btn {
+            padding: 18px 36px;
+            border: none;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff7730 0%, #ff5722 100%);
+            color: white;
+            box-shadow: 0 8px 32px rgba(255, 119, 48, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(255, 119, 48, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Journey Flow */
+        .journey-flow {
+            padding: 120px 24px;
+            background: linear-gradient(180deg, #0a0e27 0%, #151b3d 100%);
+            position: relative;
+        }
+
+        .flow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .section-description {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .flow-diagram {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .flow-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .flow-step:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .flow-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .flow-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .flow-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+        }
+
+        /* Tour Section */
+        .tour-section {
+            padding: 120px 24px;
+            background: linear-gradient(180deg, #151b3d 0%, #1a2049 100%);
         }
 
         .tour-container {
@@ -112,42 +274,31 @@
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .section-description {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
         .tour-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 40px;
-            margin-top: 60px;
+            margin-top: 80px;
         }
 
         .step-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 48px 40px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .step-card::before {
@@ -157,15 +308,16 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(135deg, #00CC99, #3366FF);
+            background: linear-gradient(135deg, #ff7730, #7877c6);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .step-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .step-card:hover::before {
@@ -173,120 +325,77 @@
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #00CC99, #3366FF);
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #ff7730, #7877c6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
-            margin: 0 auto 24px;
+            margin: 0 auto 32px;
+            box-shadow: 0 8px 32px rgba(120, 119, 198, 0.4);
         }
 
         .step-icon {
-            font-size: 3rem;
-            margin-bottom: 24px;
+            font-size: 3.5rem;
+            margin-bottom: 32px;
+            display: block;
         }
 
         .step-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 16px;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+            letter-spacing: -0.01em;
         }
 
         .step-description {
-            font-size: 1rem;
-            opacity: 0.8;
-            line-height: 1.6;
-            margin-bottom: 24px;
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 32px;
         }
 
         .step-duration {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 24px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            font-size: 0.925rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 32px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
             display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .step-button {
-            background: linear-gradient(135deg, #00CC99, #3366FF);
+            background: linear-gradient(135deg, #7877c6, #5b5aa0);
             color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 30px;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(120, 119, 198, 0.3);
         }
 
         .step-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(51, 102, 255, 0.4);
-        }
-
-        /* Journey Flow */
-        .journey-flow {
-            padding: 80px 40px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .flow-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .flow-diagram {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin: 60px 0;
-            flex-wrap: wrap;
-        }
-
-        .flow-step {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 24px;
-            min-width: 200px;
-            transition: all 0.3s ease;
-        }
-
-        .flow-step:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        .flow-arrow {
-            font-size: 2rem;
-            opacity: 0.6;
-            margin: 0 10px;
-        }
-
-        .flow-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .flow-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            box-shadow: 0 12px 40px rgba(120, 119, 198, 0.5);
+            background: linear-gradient(135deg, #8988d1, #6766ab);
         }
 
         /* Quick Start */
         .quick-start {
-            padding: 80px 40px;
+            padding: 120px 24px;
+            background: linear-gradient(180deg, #1a2049 0%, #0a0e27 100%);
             text-align: center;
         }
 
@@ -299,21 +408,22 @@
             display: flex;
             gap: 24px;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 48px;
             flex-wrap: wrap;
         }
 
         .quick-btn {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 16px 32px;
-            border-radius: 30px;
-            font-size: 1.1rem;
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.125rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -321,91 +431,101 @@
         }
 
         .quick-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
         .quick-btn.primary {
-            background: linear-gradient(135deg, #00CC99, #3366FF);
+            background: linear-gradient(135deg, #ff7730, #ff5722);
             border: none;
+            box-shadow: 0 8px 32px rgba(255, 119, 48, 0.35);
         }
 
         .quick-btn.primary:hover {
-            box-shadow: 0 15px 30px rgba(51, 102, 255, 0.4);
+            box-shadow: 0 16px 48px rgba(255, 119, 48, 0.5);
         }
 
         /* Progress Tracker */
         .progress-tracker {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 16px;
+            top: 32px;
+            right: 32px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 24px;
             z-index: 1000;
-            min-width: 200px;
+            min-width: 240px;
+            opacity: 0;
+            transform: translateX(100px);
+            animation: slideInRight 0.8s ease-out 1s forwards;
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .progress-title {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             text-align: center;
+            color: #ffffff;
         }
 
         .progress-steps {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
         }
 
         .progress-step {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            opacity: 0.6;
+            gap: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
         }
 
         .progress-step.active {
-            opacity: 1;
-            color: #00CC99;
+            color: #ff7730;
         }
 
         .progress-step.completed {
-            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: line-through;
         }
 
         .progress-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
 
         .progress-step.active .progress-dot {
-            background: #00CC99;
-            box-shadow: 0 0 10px #00CC99;
+            background: #ff7730;
+            box-shadow: 0 0 20px rgba(255, 119, 48, 0.6);
         }
 
         .progress-step.completed .progress-dot {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
             .tour-steps {
@@ -413,11 +533,7 @@
             }
 
             .flow-diagram {
-                flex-direction: column;
-            }
-
-            .flow-arrow {
-                transform: rotate(90deg);
+                grid-template-columns: 1fr;
             }
 
             .quick-start-buttons {
@@ -427,9 +543,32 @@
 
             .progress-tracker {
                 position: relative;
-                margin: 20px;
+                margin: 24px;
+                width: auto;
+                min-width: auto;
+            }
+
+            .step-card {
+                padding: 32px 24px;
             }
         }
+
+        /* Intersection Observer Animation Classes */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -471,11 +610,11 @@
                 and establish a world-class information management system that scales with enterprise needs.
             </p>
             
-            <div class="quick-start-buttons">
-                <button class="quick-btn primary" onclick="startGuidedTour()">
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="startGuidedTour()">
                     🚀 Start Guided Tour
                 </button>
-                <button class="quick-btn" onclick="jumpToDemo()">
+                <button class="btn btn-secondary" onclick="jumpToDemo()">
                     👀 Jump to Demo
                 </button>
             </div>
@@ -485,29 +624,32 @@
     <!-- Journey Flow -->
     <div class="journey-flow">
         <div class="flow-container">
-            <h2 class="section-title">Strategic Journey Overview</h2>
-            <p class="section-description">
-                From audit findings to implementation roadmap - see the complete transformation story
-            </p>
+            <div class="section-header animate-in">
+                <h2 class="section-title">Strategic Journey Overview</h2>
+                <p class="section-description">
+                    From audit findings to implementation roadmap - see the complete transformation story
+                </p>
+            </div>
             
             <div class="flow-diagram">
-                <div class="flow-step">
-                    <div class="flow-title">🔍 Current State</div>
+                <div class="flow-step animate-in stagger-1">
+                    <div class="flow-icon">🔍</div>
+                    <div class="flow-title">Current State</div>
                     <div class="flow-subtitle">Audit Findings</div>
                 </div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">
-                    <div class="flow-title">🎯 Future Vision</div>
+                <div class="flow-step animate-in stagger-2">
+                    <div class="flow-icon">🎯</div>
+                    <div class="flow-title">Future Vision</div>
                     <div class="flow-subtitle">Strategic Framework</div>
                 </div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">
-                    <div class="flow-title">💡 Solution Demo</div>
+                <div class="flow-step animate-in stagger-3">
+                    <div class="flow-icon">💡</div>
+                    <div class="flow-title">Solution Demo</div>
                     <div class="flow-subtitle">Interactive Experience</div>
                 </div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">
-                    <div class="flow-title">🚀 Implementation</div>
+                <div class="flow-step animate-in stagger-4">
+                    <div class="flow-icon">🚀</div>
+                    <div class="flow-title">Implementation</div>
                     <div class="flow-subtitle">Execution Plan</div>
                 </div>
             </div>
@@ -517,7 +659,7 @@
     <!-- Tour Section -->
     <div class="tour-section" id="tour">
         <div class="tour-container">
-            <div class="section-header">
+            <div class="section-header animate-in">
                 <h2 class="section-title">Guided Experience</h2>
                 <p class="section-description">
                     Follow the complete narrative from problem identification to solution demonstration
@@ -526,7 +668,7 @@
             
             <div class="tour-steps">
                 <!-- Step 1: Audit Findings -->
-                <div class="step-card" onclick="openAuditFindings()">
+                <div class="step-card animate-in stagger-1" onclick="openAuditFindings()">
                     <div class="step-number">1</div>
                     <div class="step-icon">🔍</div>
                     <h3 class="step-title">Audit Findings & Analysis</h3>
@@ -538,7 +680,7 @@
                 </div>
 
                 <!-- Step 2: Strategic Vision -->
-                <div class="step-card" onclick="openVisionDemo()">
+                <div class="step-card animate-in stagger-2" onclick="openVisionDemo()">
                     <div class="step-number">2</div>
                     <div class="step-icon">🎯</div>
                     <h3 class="step-title">Strategic Vision & Framework</h3>
@@ -550,7 +692,7 @@
                 </div>
 
                 <!-- Step 3: Interactive Demo -->
-                <div class="step-card" onclick="startInteractiveDemo()">
+                <div class="step-card animate-in stagger-3" onclick="startInteractiveDemo()">
                     <div class="step-number">3</div>
                     <div class="step-icon">💡</div>
                     <h3 class="step-title">Interactive Solution Demo</h3>
@@ -562,7 +704,7 @@
                 </div>
 
                 <!-- Step 4: Implementation Roadmap -->
-                <div class="step-card" onclick="showImplementation()">
+                <div class="step-card animate-in stagger-4" onclick="showImplementation()">
                     <div class="step-number">4</div>
                     <div class="step-icon">🚀</div>
                     <h3 class="step-title">Implementation Strategy</h3>
@@ -579,10 +721,12 @@
     <!-- Quick Start -->
     <div class="quick-start">
         <div class="quick-start-container">
-            <h2 class="section-title">Quick Navigation</h2>
-            <p class="section-description">
-                Already familiar with the background? Jump directly to specific sections
-            </p>
+            <div class="section-header animate-in">
+                <h2 class="section-title">Quick Navigation</h2>
+                <p class="section-description">
+                    Already familiar with the background? Jump directly to specific sections
+                </p>
+            </div>
             
             <div class="quick-start-buttons">
                 <button class="quick-btn" onclick="openAuditFindings()">
@@ -780,6 +924,20 @@ Ready to transform OCM information management?`;
             alert(implementationPlan);
         }
 
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
         // ===== AUTO-SCROLL PROGRESS TRACKING =====
         window.addEventListener('scroll', () => {
             const scrollProgress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
@@ -810,41 +968,73 @@ Ready to transform OCM information management?`;
             });
         });
 
-        // ===== ANIMATION ON LOAD =====
+        // ===== INITIALIZATION ON LOAD =====
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate step cards on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.step-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'all 0.6s ease';
-                observer.observe(card);
+            // Set up intersection observer for all animate-in elements
+            document.querySelectorAll('.animate-in').forEach(el => {
+                observer.observe(el);
             });
 
             // Enhanced hover effects for interactive elements
             document.querySelectorAll('.step-card, .flow-step').forEach(element => {
                 element.addEventListener('mouseenter', function() {
-                    this.style.transform = this.classList.contains('step-card') ? 
-                        'translateY(-12px) scale(1.02)' : 'scale(1.08)';
+                    if (this.classList.contains('step-card')) {
+                        this.style.transform = 'translateY(-16px) scale(1.02)';
+                    } else {
+                        this.style.transform = 'translateY(-8px) scale(1.05)';
+                    }
                 });
                 
                 element.addEventListener('mouseleave', function() {
-                    this.style.transform = this.classList.contains('step-card') ? 
-                        'translateY(0) scale(1)' : 'scale(1)';
+                    this.style.transform = 'translateY(0) scale(1)';
                 });
+            });
+
+            // Add subtle parallax effect to hero background
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroBackground = document.querySelector('.hero::before');
+                if (heroBackground && scrolled < window.innerHeight) {
+                    document.querySelector('.hero').style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+
+            // Add smooth loading animation
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // ===== ENHANCED BUTTON INTERACTIONS =====
+        document.querySelectorAll('.btn, .step-button, .quick-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+            
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'translateY(0) scale(0.98)';
+            });
+            
+            button.addEventListener('mouseup', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+        });
+
+        // ===== PROGRESS TRACKER INTERACTIONS =====
+        document.querySelectorAll('.progress-step').forEach((step, index) => {
+            step.addEventListener('click', function() {
+                updateProgress(index);
+                
+                // Scroll to appropriate section
+                const sections = ['hero', 'journey-flow', 'tour', 'quick-start'];
+                const targetSection = document.querySelector(`.${sections[Math.min(index, sections.length - 1)]}`);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
     </script>
