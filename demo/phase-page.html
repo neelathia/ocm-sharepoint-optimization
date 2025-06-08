@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Management - Coupa Implementation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f3f2f1;
+            line-height: 1.4;
+        }
+
+        /* SharePoint Header */
+        .sp-header {
+            background: #072635;
+            color: white;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+        }
+
+        .sp-waffle {
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="1" y="1" width="4" height="4" fill="white"/><rect x="7" y="1" width="4" height="4" fill="white"/><rect x="13" y="1" width="4" height="4" fill="white"/><rect x="1" y="7" width="4" height="4" fill="white"/><rect x="7" y="7" width="4" height="4" fill="white"/><rect x="13" y="7" width="4" height="4" color="white"/><rect x="1" y="13" width="4" height="4" fill="white"/><rect x="7" y="13" width="4" height="4" fill="white"/><rect x="13" y="13" width="4" height="4" fill="white"/></svg>') no-repeat center;
+            cursor: pointer;
+        }
+
+        .sp-title {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 8px 40px;
+            border-bottom: 1px solid #edebe9;
+            font-size: 13px;
+            color: #605e5c;
+        }
+
+        .breadcrumb a {
+            color: #072635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 24px 40px;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .page-icon {
+            width: 48px;
+            height: 48px;
+            background: #3366FF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .header-content h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 4px;
+        }
+
+        .header-content p {
+            color: #605e5c;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: #072635;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: #0a3242;
+        }
+
+        .header-btn.secondary {
+            background: transparent;
+            color: #072635;
+            border: 1px solid #d2d0ce;
+        }
+
+        .header-btn.secondary:hover {
+            background: #f3f2f1;
+        }
+
+        /* Phase Status Bar */
+        .phase-status {
+            background: linear-gradient(135deg, #3366FF, #00CC99);
+            color: white;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 40px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+        }
+
+        /* Content Area */
+        .content-area {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            background: #072635;
+            color: white;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content-section {
+            padding: 24px;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        /* Activity Cards */
+        .activities-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .activity-card {
+            background: #f8f9fa;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .activity-card:hover {
+            background: #f0f4ff;
+            border-color: #3366FF;
+            transform: translateY(-1px);
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .activity-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .activity-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-complete {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-progress {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .status-planned {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .activity-details {
+            font-size: 14px;
+            color: #605e5c;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .activity-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .activity-owner {
+            color: #072635;
+            font-weight: 600;
+        }
+
+        .activity-date {
+            color: #797775;
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 6px;
+            background: #edebe9;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-high {
+            background: linear-gradient(90deg, #00CC99, #3366FF);
+        }
+
+        .progress-medium {
+            background: linear-gradient(90deg, #FE8B1E, #00CC99);
+        }
+
+        .progress-percentage {
+            font-size: 11px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        /* Sidebar Widgets */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .widget-header {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            border-bottom: 1px solid #edebe9;
+            font-weight: 600;
+            color: #072635;
+            font-size: 14px;
+        }
+
+        .widget-content {
+            padding: 20px;
+        }
+
+        /* Phase Overview */
+        .overview-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .overview-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .overview-label {
+            color: #605e5c;
+        }
+
+        .overview-value {
+            font-weight: 600;
+            color: #072635;
+        }
+
+        /* Stakeholder List */
+        .stakeholder-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f2f1;
+        }
+
+        .stakeholder-item:last-child {
+            border-bottom: none;
+        }
+
+        .stakeholder-avatar {
+            width: 32px;
+            height: 32px;
+            background: #072635;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .stakeholder-info {
+            flex: 1;
+        }
+
+        .stakeholder-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .stakeholder-role {
+            font-size: 11px;
+            color: #605e5c;
+        }
+
+        .stakeholder-status {
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .status-engaged {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-resistant {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .status-neutral {
+            background: #f3f2f1;
+            color: #605e5c;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-date {
+            min-width: 60px;
+            font-size: 11px;
+            color: #797775;
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            flex: 1;
+            font-size: 12px;
+            color: #605e5c;
+            line-height: 1.4;
+        }
+
+        .timeline-title {
+            color: #072635;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .phase-status {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SharePoint Header -->
+    <div class="sp-header">
+        <div class="sp-waffle"></div>
+        <div class="sp-title">SharePoint</div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#" onclick="goToPortfolio()">OCM Portfolio Dashboard</a> > 
+        <a href="#" onclick="goToProject()">Coupa Implementation</a> > 
+        Stakeholder Management
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-top">
+            <div class="page-icon">🔄</div>
+            <div class="header-content">
+                <h1>Stakeholder Management Phase</h1>
+                <p>Comprehensive stakeholder engagement and influence management for Coupa implementation</p>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn secondary">📊 Phase Report</button>
+                <button class="header-btn">📝 Update Progress</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase Status -->
+    <div class="phase-status">
+        <div class="status-item">
+            <div>
+                <div class="status-label">Phase Progress</div>
+                <div class="status-value">85% Complete</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Activities</div>
+                <div class="status-value">7 of 9 Complete</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Stakeholders Mapped</div>
+                <div class="status-value">47 Identified</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Engagement Rate</div>
+                <div class="status-value">67% Active</div>
+            </div>
+        </div>
+        <div class="status-item">
+            <div>
+                <div class="status-label">Phase Owner</div>
+                <div class="status-value">Lisa Park</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Activities Section -->
+            <div class="section-header">
+                <span>🎯</span> Phase Activities & Tasks
+            </div>
+            <div class="content-section">
+                <div class="activities-grid">
+                    <div class="activity-card" onclick="openActivity('stakeholder-analysis')">
+                        <div class="activity-header">
+                            <div class="activity-title">Stakeholder Analysis & Mapping</div>
+                            <div class="activity-status status-complete">Complete</div>
+                        </div>
+                        <div class="activity-details">
+                            Comprehensive identification and analysis of all stakeholders affected by Coupa implementation across 15 sites and 5 business units.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">Lisa Park</span>
+                            <span class="activity-date">Completed Jan 15</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-high" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-percentage">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" onclick="openActivity('influence-mapping')">
+                        <div class="activity-header">
+                            <div class="activity-title">Influence & Impact Assessment</div>
+                            <div class="activity-status status-complete">Complete</div>
+                        </div>
+                        <div class="activity-details">
+                            Power-influence grid analysis and impact assessment for all identified stakeholders. Risk areas identified in AP and Manufacturing teams.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">Mike Rodriguez</span>
+                            <span class="activity-date">Completed Jan 22</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-high" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-percentage">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" onclick="openActivity('engagement-strategy')">
+                        <div class="activity-header">
+                            <div class="activity-title">Engagement Strategy Development</div>
+                            <div class="activity-status status-complete">Complete</div>
+                        </div>
+                        <div class="activity-details">
+                            Tailored engagement strategies for each stakeholder group based on influence/impact analysis. Special focus on resistance management.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">Sarah Chen</span>
+                            <span class="activity-date">Completed Feb 05</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-high" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-percentage">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" onclick="openActivity('executive-alignment')">
+                        <div class="activity-header">
+                            <div class="activity-title">Executive Alignment & Sponsorship</div>
+                            <div class="activity-status status-progress">In Progress</div>
+                        </div>
+                        <div class="activity-details">
+                            Securing active sponsorship from C-level executives and regional leaders. CPO Jennifer Walsh fully engaged, working on CFO buy-in.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">Jennifer Walsh</span>
+                            <span class="activity-date">Due Feb 28</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-high" style="width: 90%"></div>
+                            </div>
+                            <span class="progress-percentage">90%</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" onclick="openActivity('resistance-management')">
+                        <div class="activity-header">
+                            <div class="activity-title">Resistance Management Plan</div>
+                            <div class="activity-status status-progress">In Progress</div>
+                        </div>
+                        <div class="activity-details">
+                            Specific interventions for AP team resistance and Manufacturing site concerns. One-on-one sessions scheduled with key resistors.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">David Kumar</span>
+                            <span class="activity-date">Due Mar 05</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-medium" style="width: 65%"></div>
+                            </div>
+                            <span class="progress-percentage">65%</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" onclick="openActivity('champion-network')">
+                        <div class="activity-header">
+                            <div class="activity-title">Change Champion Network</div>
+                            <div class="activity-status status-progress">In Progress</div>
+                        </div>
+                        <div class="activity-details">
+                            Establishing network of change champions across all business units and sites. 12 of 15 champions identified and trained.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">Anna Thompson</span>
+                            <span class="activity-date">Due Feb 20</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-high" style="width: 80%"></div>
+                            </div>
+                            <span class="progress-percentage">80%</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" onclick="openActivity('feedback-collection')">
+                        <div class="activity-header">
+                            <div class="activity-title">Stakeholder Feedback Collection</div>
+                            <div class="activity-status status-planned">Planned</div>
+                        </div>
+                        <div class="activity-details">
+                            Regular pulse surveys and feedback sessions to monitor stakeholder sentiment and adjust engagement strategies accordingly.
+                        </div>
+                        <div class="activity-meta">
+                            <span class="activity-owner">James Wilson</span>
+                            <span class="activity-date">Starts Mar 01</span>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-medium" style="width: 25%"></div>
+                            </div>
+                            <span class="progress-percentage">25%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Phase Overview -->
+            <div class="sidebar-widget">
+                <div class="widget-header">📊 Phase Overview</div>
+                <div class="widget-content">
+                    <div class="overview-item">
+                        <span class="overview-label">Total Activities</span>
+                        <span class="overview-value">9</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">Completed</span>
+                        <span class="overview-value">4</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">In Progress</span>
+                        <span class="overview-value">3</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">Planned</span>
+                        <span class="overview-value">2</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">Phase Budget</span>
+                        <span class="overview-value">$185K</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">Spent to Date</span>
+                        <span class="overview-value">$142K</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Stakeholders -->
+            <div class="sidebar-widget">
+                <div class="widget-header">👥 Key Stakeholders</div>
+                <div class="widget-content">
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-avatar">JW</div>
+                        <div class="stakeholder-info">
+                            <div class="stakeholder-name">Jennifer Walsh</div>
+                            <div class="stakeholder-role">CPO - Executive Sponsor</div>
+                        </div>
+                        <div class="stakeholder-status status-engaged">Engaged</div>
+                    </div>
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-avatar">RT</div>
+                        <div class="stakeholder-info">
+                            <div class="stakeholder-name">Robert Taylor</div>
+                            <div class="stakeholder-role">AP Manager</div>
+                        </div>
+                        <div class="stakeholder-status status-resistant">Resistant</div>
+                    </div>
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-avatar">MK</div>
+                        <div class="stakeholder-info">
+                            <div class="stakeholder-name">Maria Kowalski</div>
+                            <div class="stakeholder-role">Regional Procurement Lead</div>
+                        </div>
+                        <div class="stakeholder-status status-engaged">Engaged</div>
+                    </div>
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-avatar">DJ</div>
+                        <div class="stakeholder-info">
+                            <div class="stakeholder-name">David Johnson</div>
+                            <div class="stakeholder-role">Manufacturing Director</div>
+                        </div>
+                        <div class="stakeholder-status status-neutral">Neutral</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Timeline -->
+            <div class="sidebar-widget">
+                <div class="widget-header">⏰ Recent Updates</div>
+                <div class="widget-content">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Feb 12</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Champion Training</div>
+                            Completed champion training for 8 regional leads
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Feb 08</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Resistance Escalation</div>
+                            AP team resistance upgraded to high priority
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Feb 05</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Strategy Approved</div>
+                            Executive team approved engagement strategies
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 30</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Stakeholder Survey</div>
+                            Completed baseline stakeholder assessment
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToPortfolio() {
+            alert('🔗 Navigating to OCM Portfolio Dashboard\n\nReturning to enterprise-wide project overview.');
+        }
+
+        function goToProject() {
+            alert('🔗 Navigating to Coupa Implementation Project Page\n\nReturning to project-level overview with all OCM phases.');
+        }
+
+        function openActivity(activityId) {
+            const activities = {
+                'stakeholder-analysis': 'Stakeholder Analysis & Mapping Activity Page',
+                'influence-mapping': 'Influence & Impact Assessment Activity Page',
+                'engagement-strategy': 'Engagement Strategy Development Activity Page',
+                'executive-alignment': 'Executive Alignment & Sponsorship Activity Page',
+                'resistance-management': 'Resistance Management Plan Activity Page',
+                'champion-network': 'Change Champion Network Activity Page',
+                'feedback-collection': 'Stakeholder Feedback Collection Activity Page'
+            };
+
+            alert(`🔗 Opening: ${activities[activityId]}\n\nActivity page includes:\n• Detailed task breakdown\n• Document repository\n• Progress tracking forms\n• Owner assignments\n• Deliverable status\n• Success metrics`);
+        }
+
+        // Header button functionality
+        document.querySelectorAll('.header-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                if (action.includes('Phase Report')) {
+                    alert('📊 Generating Stakeholder Management Phase Report\n\nIncludes:\n• Activity completion status\n• Stakeholder engagement metrics\n• Risk assessment and mitigation\n• Budget and resource utilization\n• Next phase recommendations');
+                } else if (action.includes('Update Progress')) {
+                    alert('📝 Opening Phase Progress Update\n\nUpdate:\n• Activity completion percentages\n• Stakeholder status changes\n• Risk escalations\n• Resource allocation\n• Timeline adjustments');
+                }
+            });
+        });
+
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, index * 150 + 500);
+            });
+        });
+    </script>
+</body>
+</html>
