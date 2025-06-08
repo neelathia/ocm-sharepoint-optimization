@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCM 4-Layer Intelligence Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f9fa;
+            padding: 20px;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #072635, #00CC99);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .layer-container {
+            padding: 32px;
+        }
+
+        .layer {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 6px solid #3366FF;
+        }
+
+        .layer:nth-child(2) { border-left-color: #00CC99; }
+        .layer:nth-child(3) { border-left-color: #FE8B1E; }
+        .layer:nth-child(4) { border-left-color: #6C4FAD; }
+
+        .layer-header {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .layer-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #072635;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .layer-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .layer-1 .layer-icon { background: #3366FF; }
+        .layer-2 .layer-icon { background: #00CC99; }
+        .layer-3 .layer-icon { background: #FE8B1E; }
+        .layer-4 .layer-icon { background: #6C4FAD; }
+
+        .layer-description {
+            color: #605e5c;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .layer-content {
+            padding: 24px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .layer-1 .layer-content { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .layer-2 .layer-content { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .layer-3 .layer-content { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .layer-4 .layer-content { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+        .mockup-card {
+            background: white;
+            border: 1px solid #edebe9;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .mockup-header {
+            background: #072635;
+            color: white;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .mockup-content {
+            padding: 16px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .metric-label {
+            color: #605e5c;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .progress-bar {
+            width: 60px;
+            height: 6px;
+            background: #edebe9;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-high { background: #00CC99; }
+        .progress-medium { background: #FE8B1E; }
+        .progress-low { background: #ff5252; }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-complete { background: #e8f5e8; color: #2e7d32; }
+        .status-progress { background: #fff3e0; color: #ef6c00; }
+        .status-planning { background: #e3f2fd; color: #1976d2; }
+        .status-not-started { background: #ffebee; color: #c62828; }
+
+        .click-indicator {
+            text-align: center;
+            margin: 16px 0;
+            color: #3366FF;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            margin: 20px 0;
+            color: #00CC99;
+            font-size: 24px;
+        }
+
+        .aggregation-flow {
+            background: #f0f4ff;
+            border: 1px solid #3366FF;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 32px 0;
+        }
+
+        .aggregation-title {
+            color: #072635;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .flow-diagram {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            align-items: center;
+        }
+
+        .flow-box {
+            background: white;
+            border: 2px solid #3366FF;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #072635;
+        }
+
+        .flow-arrow-right {
+            justify-self: center;
+            color: #3366FF;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .layer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-diagram {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .flow-arrow-right {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>OCM 4-Layer Intelligence Platform</h1>
+            <p>From Activity-Level Tracking to Executive Portfolio Visibility</p>
+        </div>
+
+        <div class="layer-container">
+            <!-- Layer 1: Portfolio Dashboard -->
+            <div class="layer layer-1">
+                <div class="layer-header">
+                    <div class="layer-title">
+                        <div class="layer-icon">1</div>
+                        🔝 OCM Portfolio Dashboard (Enterprise-wide)
+                    </div>
+                    <div class="layer-description">
+                        Executive-level view showing high-level metrics across all OCM projects with drill-down capabilities to project details
+                    </div>
+                </div>
+                <div class="layer-content">
+                    <div class="mockup-card">
+                        <div class="mockup-header">Executive OCM Portfolio</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Active Projects</span>
+                                <span class="metric-value">12</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Avg Readiness</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Training Coverage</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Comm Effectiveness</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📊 Click → Project Details</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Risk & Alerts Dashboard</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">High Risk Projects</span>
+                                <span class="metric-value" style="color: #ff5252;">2</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Overdue Activities</span>
+                                <span class="metric-value" style="color: #ff5252;">7</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Low Engagement</span>
+                                <span class="metric-value" style="color: #FE8B1E;">3</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Budget Variance</span>
+                                <span class="metric-value" style="color: #00CC99;">+2%</span>
+                            </div>
+                        </div>
+                        <div class="click-indicator">🚨 Click → Risk Details</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Phase Completion Matrix</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Assessment</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Planning</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Execution</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 68%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Sustainment</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-low" style="width: 34%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📈 Click → Phase Analysis</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">⬇️ Drill Down</div>
+
+            <!-- Layer 2: Project Landing Pages -->
+            <div class="layer layer-2">
+                <div class="layer-header">
+                    <div class="layer-title">
+                        <div class="layer-icon">2</div>
+                        📁 OCM Project Landing Page (Per Initiative)
+                    </div>
+                    <div class="layer-description">
+                        Project-specific status summary showing current phase, risks, stakeholder engagement, and phase-wise progress for individual initiatives
+                    </div>
+                </div>
+                <div class="layer-content">
+                    <div class="mockup-card">
+                        <div class="mockup-header">Coupa Implementation OCM</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Current Phase</span>
+                                <span class="status-badge status-progress">Execution</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Stakeholder Engagement</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Open Risks</span>
+                                <span class="metric-value" style="color: #FE8B1E;">3 Medium</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Training Completion</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 67%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">🔄 Click → Phase Pages</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Salesforce Migration OCM</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Current Phase</span>
+                                <span class="status-badge status-planning">Planning</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Stakeholder Engagement</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 71%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Open Risks</span>
+                                <span class="metric-value" style="color: #ff5252;">1 High, 2 Med</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Readiness Assessment</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 89%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">🔄 Click → Phase Pages</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">ERP Upgrade OCM</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Current Phase</span>
+                                <span class="status-badge status-complete">Sustainment</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Adoption Rate</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 94%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Support Tickets</span>
+                                <span class="metric-value" style="color: #00CC99;">↓ 45%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">User Satisfaction</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 87%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📊 Click → Metrics Detail</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">⬇️ Drill Down</div>
+
+            <!-- Layer 3: Phase Pages -->
+            <div class="layer layer-3">
+                <div class="layer-header">
+                    <div class="layer-title">
+                        <div class="layer-icon">3</div>
+                        🔄 OCM Phase Pages (Methodology-Based)
+                    </div>
+                    <div class="layer-description">
+                        Structured by actual OCM methodology phases, each showing activities, owners, artifacts, and automated metrics
+                    </div>
+                </div>
+                <div class="layer-content">
+                    <div class="mockup-card">
+                        <div class="mockup-header">Stakeholder Management Phase</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Status</span>
+                                <span class="status-badge status-progress">75% Complete</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Owner</span>
+                                <span class="metric-value">Sarah Johnson</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Key Activities</span>
+                                <span class="metric-value">5 of 7</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Engagement Rate</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 83%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">👥 Click → Stakeholder Activities</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Communications Phase</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Status</span>
+                                <span class="status-badge status-progress">60% Complete</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Owner</span>
+                                <span class="metric-value">Mike Chen</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Messages Sent</span>
+                                <span class="metric-value">12 of 18</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Open Rate</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 72%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📢 Click → Comm Activities</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Training & Development</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Status</span>
+                                <span class="status-badge status-planning">Planning</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Owner</span>
+                                <span class="metric-value">Lisa Park</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Modules Ready</span>
+                                <span class="metric-value">3 of 8</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Needs Assessment</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 91%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">🎓 Click → Training Activities</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Sustainment Planning</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Status</span>
+                                <span class="status-badge status-not-started">Not Started</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Owner</span>
+                                <span class="metric-value">TBD</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Dependencies</span>
+                                <span class="metric-value">Training 80%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Framework Ready</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-low" style="width: 15%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="click-indicator">🔄 Click → Sustainment Plan</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">⬇️ Drill Down</div>
+
+            <!-- Layer 4: Activity Pages -->
+            <div class="layer layer-4">
+                <div class="layer-header">
+                    <div class="layer-title">
+                        <div class="layer-icon">4</div>
+                        🔧 OCM Activity Pages (Atomic Level)
+                    </div>
+                    <div class="layer-description">
+                        Individual activity pages with detailed tracking, document management, and progress indicators
+                    </div>
+                </div>
+                <div class="layer-content">
+                    <div class="mockup-card">
+                        <div class="mockup-header">Stakeholder Analysis & Mapping</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Stakeholders Identified</span>
+                                <span class="metric-value">47</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Analysis Complete</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 89%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">High Influence</span>
+                                <span class="metric-value">12 mapped</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Engagement Plans</span>
+                                <span class="metric-value">8 of 12</span>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📋 Edit → Stakeholder Details</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Communication Tracker</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Campaign Active</span>
+                                <span class="status-badge status-progress">Phase 2</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Messages Delivered</span>
+                                <span class="metric-value">847 sent</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Engagement Rate</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-high" style="width: 76%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Feedback Collected</span>
+                                <span class="metric-value">234 responses</span>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📨 Edit → Message Schedule</div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="mockup-header">Training Program Tracker</div>
+                        <div class="mockup-content">
+                            <div class="metric-row">
+                                <span class="metric-label">Modules Developed</span>
+                                <span class="metric-value">6 of 8</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Learners Enrolled</span>
+                                <span class="metric-value">312</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Completion Rate</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-medium" style="width: 68%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Assessment Scores</span>
+                                <span class="metric-value">Avg 87%</span>
+                            </div>
+                        </div>
+                        <div class="click-indicator">📚 Edit → Training Content</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aggregation Flow -->
+            <div class="aggregation-flow">
+                <div class="aggregation-title">🔄 How Data Aggregation Works</div>
+                <div class="flow-diagram">
+                    <div class="flow-box">Activity Level<br>Manual entries<br>Document status</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">Phase Summary<br>Auto-calculated<br>Progress bars</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">Project Dashboard<br>Phase rollups<br>Risk indicators</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">Portfolio View<br>Executive metrics<br>Strategic insights</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive hover effects
+        document.querySelectorAll('.mockup-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px) scale(1.02)';
+                this.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-2px) scale(1)';
+                this.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)';
+            });
+
+            card.addEventListener('click', function() {
+                const header = this.querySelector('.mockup-header').textContent;
+                alert(`🔗 Navigation: Opening ${header} detailed view\n\nThis would show:\n• Detailed metrics and analytics\n• Edit capabilities for content\n• Document upload/management\n• Activity timeline and history`);
+            });
+        });
+
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, index * 100 + 500);
+            });
+        });
+    </script>
+</body>
+</html>
