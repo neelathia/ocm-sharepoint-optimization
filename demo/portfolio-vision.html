@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://tilda.cc/tilda-font/tilda-sans/tilda-sans.css" rel="stylesheet">
     <style>
-        /* Force clean monochromatic design */
         * {
             margin: 0;
             padding: 0;
@@ -16,9 +15,9 @@
 
         body {
             font-family: 'TildaSans', 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: #000000;
             color: #ffffff;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .container {
@@ -28,161 +27,182 @@
             min-height: 100vh;
         }
 
+        /* Hero Section */
         .hero-header {
-            background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
+            background: linear-gradient(135deg, #000000, #1a1a1a, #2a2a2a);
             color: white;
-            padding: 64px 40px;
+            padding: 80px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
         .hero-header h1 {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-header p {
-            font-size: 22px;
+            font-size: 24px;
             opacity: 0.9;
             font-weight: 400;
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        .transformation-intro {
+        /* Intro Section */
+        .intro-section {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            padding: 48px 40px;
+            padding: 60px 40px;
             text-align: center;
-            border-bottom: 3px solid #ffffff;
+            border-bottom: 1px solid #444444;
         }
 
-        .transformation-intro h2 {
-            font-size: 32px;
+        .intro-section h2 {
+            font-size: 36px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        .transformation-intro p {
+        .intro-section p {
             font-size: 20px;
             color: #cccccc;
             max-width: 1000px;
             margin: 0 auto;
         }
 
+        /* Comparison Headers */
         .comparison-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
             background: #1a1a1a;
-            border-bottom: 2px solid #333333;
+            border-bottom: 1px solid #444444;
         }
 
-        .before-header, .after-header {
+        .current-header, .future-header {
             padding: 40px;
             text-align: center;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            color: #ffffff;
         }
 
-        .before-header {
-            background: linear-gradient(135deg, #2d1b1b, #4a1f1f);
-            color: #ff6b6b;
-            border-right: 2px solid #333333;
+        .current-header {
+            border-right: 1px solid #444444;
+            border-bottom: 3px solid #888888;
         }
 
-        .after-header {
-            background: linear-gradient(135deg, #1b2d1b, #1f4a1f);
-            color: #51cf66;
+        .future-header {
+            border-bottom: 3px solid #ffffff;
         }
 
+        /* Layer Comparison */
         .layer-comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            border-bottom: 2px solid #333333;
+            border-bottom: 1px solid #444444;
             position: relative;
             align-items: start;
         }
 
-        .before-section, .after-section {
-            padding: 40px;
+        .current-section, .future-section {
+            padding: 50px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 30px;
         }
 
-        .before-section {
+        .current-section {
             background: #1a1a1a;
-            border-right: 2px solid #333333;
+            border-right: 1px solid #444444;
         }
 
-        .after-section {
-            background: #1e1e1e;
+        .future-section {
+            background: #222222;
         }
 
         .layer-title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
 
         .layer-number {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ffffff, #cccccc);
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
             color: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
+            font-weight: 800;
+            font-size: 20px;
         }
 
+        /* Screenshot Containers */
         .screenshot-container {
             background: #000000;
-            border: 3px solid #ff6b6b;
+            border: 2px solid #888888;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             position: relative;
             width: 100%;
         }
 
         .screenshot-container::before {
-            content: "PowerPoint Slide";
+            content: "Current Process";
             position: absolute;
-            top: -12px;
+            top: -15px;
             left: 20px;
-            background: #ff6b6b;
+            background: #888888;
             color: white;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             z-index: 5;
-        }
-
-        .screenshot-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
         }
 
         .dashboard-container {
             background: #000000;
-            border: 3px solid #51cf66;
+            border: 2px solid #ffffff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(81, 207, 102, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
             position: relative;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -190,26 +210,27 @@
         }
 
         .dashboard-container::before {
-            content: "Live Dashboard";
+            content: "Future Platform";
             position: absolute;
-            top: -12px;
+            top: -15px;
             right: 20px;
-            background: #51cf66;
+            background: #ffffff;
             color: #000000;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             z-index: 5;
         }
 
         .dashboard-container:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 16px 48px rgba(81, 207, 102, 0.4);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
         }
 
+        .screenshot-container img,
         .dashboard-container img {
             width: 100%;
             height: auto;
@@ -217,9 +238,10 @@
             border-radius: 8px;
         }
 
+        /* Placeholder Styling */
         .screenshot-placeholder {
             width: 100%;
-            height: 300px;
+            height: 350px;
             background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
             border: 2px dashed #666666;
             display: flex;
@@ -228,107 +250,75 @@
             justify-content: center;
             text-align: center;
             color: #cccccc;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             border-radius: 8px;
         }
 
-        .screenshot-placeholder.powerpoint {
-            background: linear-gradient(135deg, #4a2a2a, #5a3a3a);
-            border-color: #ff6b6b;
-        }
-
-        .screenshot-placeholder.dashboard {
-            background: linear-gradient(135deg, #2a4a2a, #3a5a3a);
-            border-color: #51cf66;
-        }
-
         .placeholder-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-            opacity: 0.7;
+            margin-bottom: 16px;
+            opacity: 0.8;
         }
 
         .placeholder-text {
             font-size: 14px;
-            opacity: 0.8;
-            margin-top: 8px;
+            opacity: 0.7;
+            margin-top: 12px;
         }
 
-        .pain-points {
-            background: linear-gradient(135deg, #2d1b1b, #3d1f1f);
-            border-left: 4px solid #ff6b6b;
-            padding: 20px;
-            margin-top: 20px;
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border-left: 4px solid #888888;
+            padding: 24px;
+            margin-top: 24px;
             border-radius: 8px;
         }
 
-        .pain-points h4 {
-            color: #ff6b6b;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
+        .future-section .info-box {
+            border-left-color: #ffffff;
+            background: linear-gradient(135deg, #3a3a3a, #4a4a4a);
         }
 
-        .pain-points ul {
+        .info-box h4 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .info-box ul {
             list-style: none;
             padding: 0;
         }
 
-        .pain-points li {
+        .info-box li {
             color: #cccccc;
-            font-size: 14px;
-            margin-bottom: 6px;
-            padding-left: 20px;
+            font-size: 15px;
+            margin-bottom: 8px;
+            padding-left: 24px;
             position: relative;
         }
 
-        .pain-points li::before {
-            content: "×";
-            color: #ff6b6b;
+        .current-section .info-box li::before {
+            content: "—";
+            color: #888888;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             position: absolute;
             left: 0;
         }
 
-        .benefits {
-            background: linear-gradient(135deg, #1b2d1b, #1f3d1f);
-            border-left: 4px solid #51cf66;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-        }
-
-        .benefits h4 {
-            color: #51cf66;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .benefits ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .benefits li {
-            color: #cccccc;
-            font-size: 14px;
-            margin-bottom: 6px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .benefits li::before {
+        .future-section .info-box li::before {
             content: "✓";
-            color: #51cf66;
+            color: #ffffff;
             font-weight: bold;
             font-size: 16px;
             position: absolute;
             left: 0;
         }
 
+        /* Transformation Arrow */
         .transformation-arrow {
             position: absolute;
             left: 50%;
@@ -347,6 +337,7 @@
             box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
             z-index: 10;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .transformation-arrow:hover {
@@ -354,29 +345,30 @@
             box-shadow: 0 12px 32px rgba(255, 255, 255, 0.4);
         }
 
+        /* Summary Section */
         .summary-section {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            padding: 64px 40px;
+            padding: 80px 40px;
             text-align: center;
         }
 
         .summary-section h2 {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
 
         .summary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .summary-card {
             background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
-            border: 2px solid #444444;
+            border: 1px solid #444444;
             border-radius: 16px;
             padding: 40px;
             text-align: center;
@@ -384,23 +376,21 @@
         }
 
         .summary-card:hover {
-            border-color: #51cf66;
+            border-color: #ffffff;
             transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(81, 207, 102, 0.2);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
         }
 
         .summary-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #51cf66, #40c057);
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000000;
-            font-size: 32px;
-            font-weight: bold;
         }
 
         .summary-title {
@@ -416,23 +406,24 @@
             line-height: 1.6;
         }
 
+        /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, #000000, #1a1a1a);
             color: white;
-            padding: 64px 40px;
+            padding: 80px 40px;
             text-align: center;
         }
 
         .cta-section h2 {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .cta-section p {
             font-size: 20px;
             opacity: 0.9;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
 
         .cta-buttons {
@@ -443,12 +434,12 @@
         }
 
         .btn {
-            padding: 18px 36px;
+            padding: 20px 40px;
             border: none;
             border-radius: 12px;
             font-family: 'TildaSans', 'Inter', sans-serif;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -458,15 +449,15 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #51cf66, #40c057);
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
             color: #000000;
-            box-shadow: 0 8px 24px rgba(81, 207, 102, 0.3);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #40c057, #37b24d);
+            background: linear-gradient(135deg, #e0e0e0, #cccccc);
             transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(81, 207, 102, 0.4);
+            box-shadow: 0 12px 32px rgba(255, 255, 255, 0.4);
         }
 
         .btn-secondary {
@@ -481,23 +472,24 @@
             transform: translateY(-3px);
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .comparison-header,
             .layer-comparison {
                 grid-template-columns: 1fr;
             }
 
-            .before-section,
-            .after-section {
-                padding: 24px;
+            .current-section,
+            .future-section {
+                padding: 30px;
             }
 
             .hero-header {
-                padding: 40px 24px;
+                padding: 50px 24px;
             }
 
             .hero-header h1 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .transformation-arrow {
@@ -515,26 +507,26 @@
     <div class="container">
         <!-- Hero Header -->
         <div class="hero-header">
-            <h1>OCM Platform Transformation Vision</h1>
-            <p>From Static PowerPoint Reports to Dynamic 4-Layer Intelligence Platform</p>
+            <h1>OCM Platform Transformation</h1>
+            <p>From Manual Processes to Intelligent Integration</p>
         </div>
 
-        <!-- Transformation Intro -->
-        <div class="transformation-intro">
+        <!-- Intro Section -->
+        <div class="intro-section">
             <h2>The Transformation Journey</h2>
-            <p>See how we're evolving from disconnected, manual OCM reporting to an integrated, real-time intelligence platform that scales from activity-level tracking to executive portfolio visibility.</p>
+            <p>Evolving from disconnected, manual OCM reporting to an integrated, real-time intelligence platform that scales from activity-level tracking to executive portfolio visibility.</p>
         </div>
 
         <!-- Comparison Headers -->
         <div class="comparison-header">
-            <div class="before-header">
+            <div class="current-header">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 12px;">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14,2 14,8 20,8"/>
                 </svg>
                 CURRENT STATE - Manual Process
             </div>
-            <div class="after-header">
+            <div class="future-header">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 12px;">
                     <rect x="4" y="4" width="16" height="16" rx="2"/>
                     <rect x="9" y="9" width="6" height="6"/>
@@ -546,14 +538,14 @@
         <!-- Layer 1 Comparison -->
         <div class="layer-comparison">
             <div class="transformation-arrow">→</div>
-            <div class="before-section">
+            <div class="current-section">
                 <div class="layer-title">
                     <div class="layer-number">1</div>
                     Portfolio Level - Current Process
                 </div>
                 <div class="screenshot-container">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-powerpoint.png" alt="PowerPoint Portfolio Summary" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-powerpoint.png" alt="Current Portfolio Process" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -561,11 +553,11 @@
                                 <rect x="14" y="7" width="3" height="5"/>
                             </svg>
                         </div>
-                        <div>PowerPoint Screenshot Needed</div>
-                        <div class="placeholder-text">OCM Project Summary Table<br>(Image 6 from your uploads)</div>
+                        <div>Current Process Screenshot</div>
+                        <div class="placeholder-text">Portfolio Summary Process<br>(Image 6 from uploads)</div>
                     </div>
                 </div>
-                <div class="pain-points">
+                <div class="info-box">
                     <h4>Current Challenges</h4>
                     <ul>
                         <li>Manual process updates every week</li>
@@ -577,14 +569,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="after-section">
+            <div class="future-section">
                 <div class="layer-title">
                     <div class="layer-number">1</div>
                     Portfolio Level - Integrated Platform
                 </div>
                 <div class="dashboard-container" onclick="showPortfolioDemo()">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-dashboard.png" alt="Live Portfolio Dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-dashboard.png" alt="Integrated Portfolio Platform" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -592,11 +584,11 @@
                                 <line x1="12" y1="17" x2="12" y2="21"/>
                             </svg>
                         </div>
-                        <div>Dashboard Screenshot Needed</div>
-                        <div class="placeholder-text">Live Portfolio Dashboard<br>(Image 5 from your uploads)</div>
+                        <div>Platform Screenshot</div>
+                        <div class="placeholder-text">Portfolio Dashboard<br>(Image 5 from uploads)</div>
                     </div>
                 </div>
-                <div class="benefits">
+                <div class="info-box">
                     <h4>Future Benefits</h4>
                     <ul>
                         <li>Real-time portfolio visibility</li>
@@ -613,14 +605,14 @@
         <!-- Layer 2 Comparison -->
         <div class="layer-comparison">
             <div class="transformation-arrow">→</div>
-            <div class="before-section">
+            <div class="current-section">
                 <div class="layer-title">
                     <div class="layer-number">2</div>
                     Project Level - Current Process
                 </div>
                 <div class="screenshot-container">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-gantt.png" alt="PowerPoint Project Gantt" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-gantt.png" alt="Current Project Process" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
@@ -628,11 +620,11 @@
                                 <line x1="12" y1="22.08" x2="12" y2="12"/>
                             </svg>
                         </div>
-                        <div>PowerPoint Screenshot Needed</div>
-                        <div class="placeholder-text">Project Gantt Chart<br>(Image 7 from your uploads)</div>
+                        <div>Current Process Screenshot</div>
+                        <div class="placeholder-text">Project Timeline Process<br>(Image 7 from uploads)</div>
                     </div>
                 </div>
-                <div class="pain-points">
+                <div class="info-box">
                     <h4>Current Challenges</h4>
                     <ul>
                         <li>Disconnected from actual progress</li>
@@ -644,14 +636,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="after-section">
+            <div class="future-section">
                 <div class="layer-title">
                     <div class="layer-number">2</div>
                     Project Level - Integrated Hub
                 </div>
                 <div class="dashboard-container" onclick="showProjectDemo()">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-hub.png" alt="Coupa Implementation OCM Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-hub.png" alt="Integrated Project Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -661,11 +653,11 @@
                                 <line x1="10" y1="9" x2="8" y2="9"/>
                             </svg>
                         </div>
-                        <div>Dashboard Screenshot Needed</div>
-                        <div class="placeholder-text">Coupa Implementation OCM Hub<br>(Image 8 from your uploads)</div>
+                        <div>Platform Screenshot</div>
+                        <div class="placeholder-text">Project Hub<br>(Image 8 from uploads)</div>
                     </div>
                 </div>
-                <div class="benefits">
+                <div class="info-box">
                     <h4>Future Benefits</h4>
                     <ul>
                         <li>Live project status tracking</li>
@@ -682,25 +674,25 @@
         <!-- Layer 3 Comparison -->
         <div class="layer-comparison">
             <div class="transformation-arrow">→</div>
-            <div class="before-section">
+            <div class="current-section">
                 <div class="layer-title">
                     <div class="layer-number">3</div>
                     Phase Level - Current Process
                 </div>
                 <div class="screenshot-container">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-checklist.png" alt="PowerPoint Phase Activities" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-checklist.png" alt="Current Phase Process" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                                 <circle cx="12" cy="7" r="4"/>
                             </svg>
                         </div>
-                        <div>PowerPoint Screenshot Needed</div>
-                        <div class="placeholder-text">Stakeholder Management Activities<br>(Image 3 from your uploads)</div>
+                        <div>Current Process Screenshot</div>
+                        <div class="placeholder-text">Phase Activities Process<br>(Image 3 from uploads)</div>
                     </div>
                 </div>
-                <div class="pain-points">
+                <div class="info-box">
                     <h4>Current Challenges</h4>
                     <ul>
                         <li>Manual progress tracking</li>
@@ -712,25 +704,25 @@
                     </ul>
                 </div>
             </div>
-            <div class="after-section">
+            <div class="future-section">
                 <div class="layer-title">
                     <div class="layer-number">3</div>
                     Phase Level - Management Hub
                 </div>
                 <div class="dashboard-container" onclick="showPhaseDemo()">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-management.png" alt="Stakeholder Management Phase Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-management.png" alt="Integrated Phase Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="3"/>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                             </svg>
                         </div>
-                        <div>Dashboard Screenshot Needed</div>
-                        <div class="placeholder-text">Stakeholder Management Phase Hub<br>(Image 4 from your uploads)</div>
+                        <div>Platform Screenshot</div>
+                        <div class="placeholder-text">Phase Management Hub<br>(Image 4 from uploads)</div>
                     </div>
                 </div>
-                <div class="benefits">
+                <div class="info-box">
                     <h4>Future Benefits</h4>
                     <ul>
                         <li>Automated progress tracking</li>
@@ -747,14 +739,14 @@
         <!-- Layer 4 Comparison -->
         <div class="layer-comparison">
             <div class="transformation-arrow">→</div>
-            <div class="before-section">
+            <div class="current-section">
                 <div class="layer-title">
                     <div class="layer-number">4</div>
                     Activity Level - Current Process
                 </div>
                 <div class="screenshot-container">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-tracking.png" alt="Manual Activity Tracking" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-tracking.png" alt="Current Activity Process" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M9 12l2 2 4-4"/>
@@ -762,11 +754,11 @@
                                 <circle cx="12" cy="12" r="3"/>
                             </svg>
                         </div>
-                        <div>PowerPoint Screenshot Needed</div>
-                        <div class="placeholder-text">Individual Activity Tracking<br>(Email/Spreadsheet example)</div>
+                        <div>Current Process Screenshot</div>
+                        <div class="placeholder-text">Activity Tracking Process<br>(Email/Spreadsheet example)</div>
                     </div>
                 </div>
-                <div class="pain-points">
+                <div class="info-box">
                     <h4>Current Challenges</h4>
                     <ul>
                         <li>Disconnected activity tracking</li>
@@ -778,24 +770,24 @@
                     </ul>
                 </div>
             </div>
-            <div class="after-section">
+            <div class="future-section">
                 <div class="layer-title">
                     <div class="layer-number">4</div>
                     Activity Level - Intelligent Tracking
                 </div>
                 <div class="dashboard-container" onclick="showActivityDemo()">
-                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-detail.png" alt="Stakeholder Analysis & Mapping Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-detail.png" alt="Intelligent Activity Platform" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display: none;">
                         <div class="placeholder-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
                             </svg>
                         </div>
-                        <div>Dashboard Screenshot Needed</div>
-                        <div class="placeholder-text">Stakeholder Analysis & Mapping Hub<br>(Image 1 from your uploads)</div>
+                        <div>Platform Screenshot</div>
+                        <div class="placeholder-text">Activity Intelligence Hub<br>(Image 1 from uploads)</div>
                     </div>
                 </div>
-                <div class="benefits">
+                <div class="info-box">
                     <h4>Future Benefits</h4>
                     <ul>
                         <li>Automated progress tracking</li>
@@ -812,8 +804,8 @@
         <!-- Summary Section -->
         <div class="summary-section">
             <h2>Transformation Impact Summary</h2>
-            <p style="font-size: 18px; color: #cccccc; margin-bottom: 16px;">
-                Moving from static, manual OCM management to an intelligent, integrated platform
+            <p style="font-size: 20px; color: #cccccc; margin-bottom: 24px;">
+                Moving from manual, disconnected OCM management to an intelligent, integrated platform
             </p>
             
             <div class="summary-grid">
@@ -826,7 +818,7 @@
                     </div>
                     <div class="summary-title">90% Time Reduction</div>
                     <div class="summary-description">
-                        Automated data collection and reporting eliminates manual PowerPoint updates and status compilation
+                        Automated data collection and reporting eliminates manual updates and status compilation
                     </div>
                 </div>
                 
@@ -901,39 +893,39 @@
     <script>
         // Interactive demo functions
         function showPortfolioDemo() {
-            alert('🚀 Portfolio Dashboard Demo\n\nThis would launch the executive portfolio dashboard showing:\n\n• Real-time project health scores\n• Automated risk alerts\n• Cross-project analytics\n• Predictive insights\n• Drill-down capabilities to any project');
+            alert('Portfolio Dashboard Demo\n\nThis would launch the executive portfolio dashboard showing:\n\n• Real-time project health scores\n• Automated risk alerts\n• Cross-project analytics\n• Predictive insights\n• Drill-down capabilities to any project');
         }
 
         function showProjectDemo() {
-            alert('🎯 Project Hub Demo\n\nThis would open the Coupa implementation project hub featuring:\n\n• Live stakeholder engagement metrics\n• Phase progression tracking\n• Automated risk monitoring\n• Training completion analytics\n• Phase-level drill-down access');
+            alert('Project Hub Demo\n\nThis would open the project hub featuring:\n\n• Live stakeholder engagement metrics\n• Phase progression tracking\n• Automated risk monitoring\n• Training completion analytics\n• Phase-level drill-down access');
         }
 
         function showPhaseDemo() {
-            alert('🤝 Phase Management Demo\n\nThis would display the stakeholder management phase with:\n\n• Activity progress automation\n• Team collaboration tools\n• Engagement rate tracking\n• Artifact management\n• Activity-level visibility');
+            alert('Phase Management Demo\n\nThis would display the phase management with:\n\n• Activity progress automation\n• Team collaboration tools\n• Engagement rate tracking\n• Artifact management\n• Activity-level visibility');
         }
 
         function showActivityDemo() {
-            alert('📋 Activity Tracking Demo\n\nThis would show individual activity management including:\n\n• Automated progress tracking\n• Quality score monitoring\n• System integrations\n• Deliverable management\n• Real-time status updates');
+            alert('Activity Tracking Demo\n\nThis would show individual activity management including:\n\n• Automated progress tracking\n• Quality score monitoring\n• System integrations\n• Deliverable management\n• Real-time status updates');
         }
 
         function launchDemo() {
-            alert('🚀 Launching Full Platform Demo\n\nThis would start an interactive walkthrough of the complete 4-layer OCM platform, showing the seamless navigation from executive portfolio down to individual activities.');
+            alert('Launching Full Platform Demo\n\nThis would start an interactive walkthrough of the complete 4-layer OCM platform, showing the seamless navigation from executive portfolio down to individual activities.');
         }
 
         function viewImplementation() {
-            alert('📋 Implementation Roadmap\n\nThis would open the detailed implementation plan showing:\n\n• Phase-by-phase rollout strategy\n• Technical requirements\n• Change management approach\n• Timeline and milestones\n• Resource requirements');
+            alert('Implementation Roadmap\n\nThis would open the detailed implementation plan showing:\n\n• Phase-by-phase rollout strategy\n• Technical requirements\n• Change management approach\n• Timeline and milestones\n• Resource requirements');
         }
 
         // Enhanced hover effects
         document.querySelectorAll('.dashboard-container').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-6px) scale(1.02)';
-                this.style.boxShadow = '0 12px 32px rgba(255, 255, 255, 0.4)';
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 20px 60px rgba(255, 255, 255, 0.2)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 8px 32px rgba(255, 255, 255, 0.2)';
+                this.style.boxShadow = '0 8px 32px rgba(255, 255, 255, 0.1)';
             });
         });
 
