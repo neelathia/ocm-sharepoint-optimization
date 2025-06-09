@@ -853,7 +853,7 @@
                 </div>
                 <div class="activity-time">1 day ago</div>
             </div>
-            <div class="activity-item">
+                            <div class="activity-item">
                 <div class="activity-icon activity-update">📋</div>
                 <div class="activity-content">
                     <div class="activity-title">Risk Assessment Updated</div>
@@ -879,27 +879,28 @@
         }
 
         function openPhase(phaseType) {
-            const phases = {
-                'stakeholder': {
-                    title: 'Stakeholder Management Details',
-                    content: 'Deep dive into stakeholder engagement metrics:\n\n• Leadership alignment status\n• Resistance mapping and mitigation\n• Influence network analysis\n• Communication preferences\n• Escalation procedures'
-                },
-                'communication': {
-                    title: 'Communications Strategy',
-                    content: 'Comprehensive communication plan overview:\n\n• Multi-channel campaign status\n• Message effectiveness tracking\n• Audience segmentation results\n• Feedback loop analysis\n• Content calendar and delivery'
-                },
-                'training': {
-                    title: 'Training & Development Program',
-                    content: 'Training program metrics and insights:\n\n• Role-based curriculum status\n• Competency assessment results\n• Learning pathway completion\n• Knowledge retention analysis\n• Support resource utilization'
-                },
-                'readiness': {
-                    title: 'Organizational Readiness Assessment',
-                    content: 'Readiness evaluation and planning:\n\n• Change impact assessment\n• Capability gap analysis\n• Cultural readiness indicators\n• Resource adequacy review\n• Go-live readiness scoring'
-                }
-            };
+            if (phaseType === 'stakeholder') {
+                window.open('https://neelathia.github.io/ocm-sharepoint-optimization/demo/phase-page.html', '_blank');
+            } else {
+                // For other phases, show alert for now (you can add URLs later)
+                const phases = {
+                    'communication': {
+                        title: 'Communications Strategy',
+                        content: 'Comprehensive communication plan overview:\n\n• Multi-channel campaign status\n• Message effectiveness tracking\n• Audience segmentation results\n• Feedback loop analysis\n• Content calendar and delivery'
+                    },
+                    'training': {
+                        title: 'Training & Development Program',
+                        content: 'Training program metrics and insights:\n\n• Role-based curriculum status\n• Competency assessment results\n• Learning pathway completion\n• Knowledge retention analysis\n• Support resource utilization'
+                    },
+                    'readiness': {
+                        title: 'Organizational Readiness Assessment',
+                        content: 'Readiness evaluation and planning:\n\n• Change impact assessment\n• Capability gap analysis\n• Cultural readiness indicators\n• Resource adequacy review\n• Go-live readiness scoring'
+                    }
+                };
 
-            const phase = phases[phaseType];
-            alert(`📊 ${phase.title}\n\n${phase.content}`);
+                const phase = phases[phaseType];
+                alert(`📊 ${phase.title}\n\n${phase.content}`);
+            }
         }
 
         // Header Button Actions
