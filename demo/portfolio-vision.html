@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCM 4-Layer Intelligence Platform</title>
+    <title>OCM Transformation Vision - Before & After</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://tilda.cc/tilda-font/tilda-sans/tilda-sans.css" rel="stylesheet">
     <style>
@@ -15,1033 +15,867 @@
 
         body {
             font-family: 'TildaSans', 'Inter', sans-serif;
-            background: #fafbfc;
-            padding: 20px;
+            background: #0a0a0a;
+            color: #ffffff;
             line-height: 1.4;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #111111;
+            min-height: 100vh;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
+            color: white;
+            padding: 64px 40px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .header {
-            background: linear-gradient(135deg, #1a1a1a, #333333);
-            color: white;
-            padding: 32px;
-            text-align: center;
+        .hero-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
         }
 
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .header p {
-            font-size: 18px;
+        .hero-header p {
+            font-size: 22px;
             opacity: 0.9;
             font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .layer-container {
-            padding: 40px;
+        .transformation-intro {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 48px 40px;
+            text-align: center;
+            border-bottom: 3px solid #ffffff;
         }
 
-        .layer {
-            margin-bottom: 48px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            overflow: hidden;
-            border-left: 6px solid #1a1a1a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .layer:nth-child(2) { border-left-color: #333333; }
-        .layer:nth-child(3) { border-left-color: #4a4a4a; }
-        .layer:nth-child(4) { border-left-color: #666666; }
-
-        .layer-header {
-            background: white;
-            padding: 24px;
-            border-bottom: 1px solid #e8ecef;
-        }
-
-        .layer-title {
-            font-size: 22px;
+        .transformation-intro h2 {
+            font-size: 32px;
             font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            color: #ffffff;
+            margin-bottom: 20px;
         }
 
-        .layer-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
+        .transformation-intro p {
+            font-size: 20px;
+            color: #cccccc;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .layer-1 .layer-icon { background: linear-gradient(135deg, #1a1a1a, #333333); }
-        .layer-2 .layer-icon { background: linear-gradient(135deg, #333333, #4a4a4a); }
-        .layer-3 .layer-icon { background: linear-gradient(135deg, #4a4a4a, #666666); }
-        .layer-4 .layer-icon { background: linear-gradient(135deg, #666666, #888888); }
-
-        .layer-description {
-            color: #4a4a4a;
-            font-size: 16px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .layer-content {
-            padding: 32px;
+        .comparison-header {
             display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #1a1a1a;
+            border-bottom: 2px solid #333333;
+        }
+
+        .before-header, .after-header {
+            padding: 40px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .before-header {
+            background: linear-gradient(135deg, #2d1b1b, #4a1f1f);
+            color: #ff6b6b;
+            border-right: 2px solid #333333;
+        }
+
+        .after-header {
+            background: linear-gradient(135deg, #1b2d1b, #1f4a1f);
+            color: #51cf66;
+        }
+
+        .layer-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid #333333;
+            position: relative;
+            align-items: start;
+        }
+
+        .before-section, .after-section {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
             gap: 24px;
         }
 
-        .layer-1 .layer-content { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .layer-2 .layer-content { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-        .layer-3 .layer-content { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .layer-4 .layer-content { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-
-        .mockup-card {
-            background: white;
-            border: 1px solid #e8ecef;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mockup-card:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            border-color: #1a1a1a;
-        }
-
-        .mockup-header {
+        .before-section {
             background: #1a1a1a;
-            color: white;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-weight: 600;
+            border-right: 2px solid #333333;
         }
 
-        .mockup-content {
-            padding: 20px;
+        .after-section {
+            background: #1e1e1e;
         }
 
-        .metric-row {
+        .layer-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            font-size: 14px;
+            gap: 16px;
         }
 
-        .metric-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .metric-label {
-            color: #4a4a4a;
-            font-weight: 500;
-        }
-
-        .metric-value {
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .progress-bar {
-            width: 80px;
-            height: 8px;
-            background: #e8ecef;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-
-        .progress-high { 
-            background: linear-gradient(90deg, #1a1a1a, #333333); 
-        }
-        .progress-medium { 
-            background: linear-gradient(90deg, #4a4a4a, #666666); 
-        }
-        .progress-low { 
-            background: linear-gradient(90deg, #dc3545, #fd7e14); 
-        }
-
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .status-complete { 
-            background: #e8f5e8; 
-            color: #28a745; 
-        }
-        .status-progress { 
-            background: #fff3e0; 
-            color: #fd7e14; 
-        }
-        .status-planning { 
-            background: #f8f9fa; 
-            color: #1a1a1a; 
-            border: 1px solid #e8ecef;
-        }
-        .status-not-started { 
-            background: #ffebee; 
-            color: #dc3545; 
-        }
-
-        .click-indicator {
-            text-align: center;
-            margin: 16px 0 0 0;
-            color: #1a1a1a;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 8px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            opacity: 0.8;
-        }
-
-        .flow-arrow {
-            text-align: center;
-            margin: 32px 0;
-            color: #1a1a1a;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
+        .layer-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            color: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 16px;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border: 2px solid #e8ecef;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .screenshot-container {
+            background: #000000;
+            border: 3px solid #ff6b6b;
             border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+            position: relative;
+            width: 100%;
+        }
+
+        .screenshot-container::before {
+            content: "PowerPoint Slide";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 5;
+        }
+
+        .screenshot-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .dashboard-container {
+            background: #000000;
+            border: 3px solid #51cf66;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(81, 207, 102, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .dashboard-container::before {
+            content: "Live Dashboard";
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #51cf66;
+            color: #000000;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 5;
+        }
+
+        .dashboard-container:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(81, 207, 102, 0.4);
+        }
+
+        .dashboard-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border: 2px dashed #666666;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #cccccc;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .screenshot-placeholder.powerpoint {
+            background: linear-gradient(135deg, #4a2a2a, #5a3a3a);
+            border-color: #ff6b6b;
+        }
+
+        .screenshot-placeholder.dashboard {
+            background: linear-gradient(135deg, #2a4a2a, #3a5a3a);
+            border-color: #51cf66;
+        }
+
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .placeholder-text {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+
+        .pain-points {
+            background: linear-gradient(135deg, #2d1b1b, #3d1f1f);
+            border-left: 4px solid #ff6b6b;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .pain-points h4 {
+            color: #ff6b6b;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .pain-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pain-points li {
+            color: #cccccc;
+            font-size: 14px;
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .pain-points li::before {
+            content: "×";
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 16px;
+            position: absolute;
+            left: 0;
+        }
+
+        .benefits {
+            background: linear-gradient(135deg, #1b2d1b, #1f3d1f);
+            border-left: 4px solid #51cf66;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .benefits h4 {
+            color: #51cf66;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits li {
+            color: #cccccc;
+            font-size: 14px;
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .benefits li::before {
+            content: "✓";
+            color: #51cf66;
+            font-weight: bold;
+            font-size: 16px;
+            position: absolute;
+            left: 0;
+        }
+
+        .transformation-arrow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            color: #000000;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+            z-index: 10;
             transition: all 0.3s ease;
         }
 
-        .flow-arrow:hover {
-            background: linear-gradient(135deg, #1a1a1a, #333333);
-            color: white;
-            border-color: #1a1a1a;
-            transform: translateY(-2px);
+        .transformation-arrow:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 12px 32px rgba(255, 255, 255, 0.4);
         }
 
-        .flow-arrow svg {
-            transition: transform 0.3s ease;
+        .summary-section {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 64px 40px;
+            text-align: center;
         }
 
-        .flow-arrow:hover svg {
-            transform: translateY(2px);
-        }
-
-        .aggregation-flow {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border: 2px solid #1a1a1a;
-            border-radius: 12px;
-            padding: 32px;
-            margin: 48px 0;
-        }
-
-        .aggregation-title {
-            color: #1a1a1a;
-            font-size: 24px;
+        .summary-section h2 {
+            font-size: 36px;
             font-weight: 700;
+            color: #ffffff;
             margin-bottom: 24px;
-            text-align: center;
         }
 
-        .flow-diagram {
+        .summary-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 16px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
         }
 
-        .flow-box {
-            background: white;
-            border: 2px solid #1a1a1a;
-            border-radius: 8px;
-            padding: 16px;
+        .summary-card {
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border: 2px solid #444444;
+            border-radius: 16px;
+            padding: 40px;
             text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a1a;
-            line-height: 1.3;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        .flow-box:hover {
-            background: #1a1a1a;
-            color: white;
-            transform: scale(1.05);
+        .summary-card:hover {
+            border-color: #51cf66;
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(81, 207, 102, 0.2);
         }
 
-        .flow-arrow-right {
-            justify-self: center;
-            color: #1a1a1a;
+        .summary-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #51cf66, #40c057);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .summary-title {
             font-size: 24px;
             font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
         }
 
-        /* Layer-specific styling */
-        .layer-1 .mockup-card {
-            border-left: 3px solid #1a1a1a;
+        .summary-description {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
-        .layer-2 .mockup-card {
-            border-left: 3px solid #333333;
+        .cta-section {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            padding: 64px 40px;
+            text-align: center;
         }
 
-        .layer-3 .mockup-card {
-            border-left: 3px solid #4a4a4a;
+        .cta-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
-        .layer-4 .mockup-card {
-            border-left: 3px solid #666666;
+        .cta-section p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
         }
 
-        /* Special metrics styling */
-        .metric-value.success {
-            color: #28a745;
+        .cta-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .metric-value.warning {
-            color: #fd7e14;
+        .btn {
+            padding: 18px 36px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'TildaSans', 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .metric-value.danger {
-            color: #dc3545;
+        .btn-primary {
+            background: linear-gradient(135deg, #51cf66, #40c057);
+            color: #000000;
+            box-shadow: 0 8px 24px rgba(81, 207, 102, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #40c057, #37b24d);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(81, 207, 102, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-3px);
         }
 
         @media (max-width: 768px) {
-            .layer-content {
+            .comparison-header,
+            .layer-comparison {
                 grid-template-columns: 1fr;
-                padding: 20px;
-            }
-            
-            .flow-diagram {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .flow-arrow-right {
-                transform: rotate(90deg);
-                margin: 8px 0;
             }
 
-            .aggregation-flow {
-                padding: 20px;
-            }
-
-            .header {
+            .before-section,
+            .after-section {
                 padding: 24px;
             }
 
-            .header h1 {
-                font-size: 28px;
+            .hero-header {
+                padding: 40px 24px;
             }
 
-            .layer-container {
-                padding: 24px;
+            .hero-header h1 {
+                font-size: 32px;
+            }
+
+            .transformation-arrow {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>OCM 4-Layer Intelligence Platform</h1>
-            <p>From Activity-Level Tracking to Executive Portfolio Visibility</p>
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <h1>OCM Platform Transformation Vision</h1>
+            <p>From Static PowerPoint Reports to Dynamic 4-Layer Intelligence Platform</p>
         </div>
 
-        <div class="layer-container">
-            <!-- Layer 1: Portfolio Dashboard -->
-            <div class="layer layer-1">
-                <div class="layer-header">
-                    <div class="layer-title">
-                        <div class="layer-icon">1</div>
-                        OCM Portfolio Dashboard (Enterprise-wide)
-                    </div>
-                    <div class="layer-description">
-                        Executive-level view showing high-level metrics across all OCM projects with drill-down capabilities to project details
-                    </div>
-                </div>
-                <div class="layer-content">
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <rect x="7" y="7" width="3" height="9"/>
-                                <rect x="14" y="7" width="3" height="5"/>
-                            </svg>
-                            Executive OCM Portfolio
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Active Projects</span>
-                                <span class="metric-value">12</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Avg Readiness</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 78%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Training Coverage</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-medium" style="width: 65%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Comm Effectiveness</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <line x1="18" y1="20" x2="18" y2="10"/>
-                                <line x1="12" y1="20" x2="12" y2="4"/>
-                                <line x1="6" y1="20" x2="6" y2="14"/>
-                            </svg>
-                            Click → Project Details
-                        </div>
-                    </div>
+        <!-- Transformation Intro -->
+        <div class="transformation-intro">
+            <h2>The Transformation Journey</h2>
+            <p>See how we're evolving from disconnected, manual OCM reporting to an integrated, real-time intelligence platform that scales from activity-level tracking to executive portfolio visibility.</p>
+        </div>
 
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                <line x1="12" y1="9" x2="12" y2="13"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                            Risk & Alerts Dashboard
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">High Risk Projects</span>
-                                <span class="metric-value danger">2</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Overdue Activities</span>
-                                <span class="metric-value danger">7</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Low Engagement</span>
-                                <span class="metric-value warning">3</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Budget Variance</span>
-                                <span class="metric-value success">+2%</span>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                <line x1="12" y1="9" x2="12" y2="13"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                            Click → Risk Details
-                        </div>
-                    </div>
-
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="3" y1="10" x2="21" y2="10"/>
-                            </svg>
-                            Phase Completion Matrix
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Assessment</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 92%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Planning</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 87%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Execution</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-medium" style="width: 68%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Sustainment</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-low" style="width: 34%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <line x1="18" y1="20" x2="18" y2="4"/>
-                                <line x1="12" y1="20" x2="12" y2="4"/>
-                                <line x1="6" y1="20" x2="6" y2="9"/>
-                            </svg>
-                            Click → Phase Analysis
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M7 10l5 5 5-5"/>
+        <!-- Comparison Headers -->
+        <div class="comparison-header">
+            <div class="before-header">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 12px;">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
                 </svg>
-                <span>Drill Down to Project Level</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                    <polyline points="10,17 15,12 10,7"/>
-                    <line x1="15" y1="12" x2="3" y2="12"/>
+                CURRENT STATE - Manual PowerPoint
+            </div>
+            <div class="after-header">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 12px;">
+                    <rect x="4" y="4" width="16" height="16" rx="2"/>
+                    <rect x="9" y="9" width="6" height="6"/>
                 </svg>
+                FUTURE STATE - Live Dashboards
             </div>
+        </div>
 
-            <!-- Layer 2: Project Landing Pages -->
-            <div class="layer layer-2">
-                <div class="layer-header">
-                    <div class="layer-title">
-                        <div class="layer-icon">2</div>
-                        OCM Project Landing Page (Per Initiative)
-                    </div>
-                    <div class="layer-description">
-                        Project-specific status summary showing current phase, risks, stakeholder engagement, and phase-wise progress for individual initiatives
+        <!-- Layer 1 Comparison -->
+        <div class="layer-comparison">
+            <div class="transformation-arrow">→</div>
+            <div class="before-section">
+                <div class="layer-title">
+                    <div class="layer-number">1</div>
+                    Portfolio Level - PowerPoint Summary
+                </div>
+                <div class="screenshot-container">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-powerpoint.png" alt="PowerPoint Portfolio Summary" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                        <div class="placeholder-icon">📊</div>
+                        <div>PowerPoint Screenshot Needed</div>
+                        <div class="placeholder-text">OCM Project Summary Table<br>(Image 6 from your uploads)</div>
                     </div>
                 </div>
-                <div class="layer-content">
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14,2 14,8 20,8"/>
-                            </svg>
-                            Coupa Implementation OCM
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Current Phase</span>
-                                <span class="status-badge status-progress">Execution</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Stakeholder Engagement</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 82%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Open Risks</span>
-                                <span class="metric-value warning">3 Medium</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Training Completion</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-medium" style="width: 67%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                            </svg>
-                            Click → Phase Pages
-                        </div>
-                    </div>
-
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Salesforce Migration OCM
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Current Phase</span>
-                                <span class="status-badge status-planning">Planning</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Stakeholder Engagement</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-medium" style="width: 71%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Open Risks</span>
-                                <span class="metric-value danger">1 High, 2 Med</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Readiness Assessment</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 89%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                            </svg>
-                            Click → Phase Pages
-                        </div>
-                    </div>
-
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2z"/>
-                                <path d="M19 4H15a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
-                            </svg>
-                            ERP Upgrade OCM
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Current Phase</span>
-                                <span class="status-badge status-complete">Sustainment</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Adoption Rate</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 94%"></div>
-                                </div>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Support Tickets</span>
-                                <span class="metric-value success">↓ 45%</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">User Satisfaction</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 87%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <line x1="18" y1="20" x2="18" y2="10"/>
-                                <line x1="12" y1="20" x2="12" y2="4"/>
-                                <line x1="6" y1="20" x2="6" y2="14"/>
-                            </svg>
-                            Click → Metrics Detail
-                        </div>
-                    </div>
+                <div class="pain-points">
+                    <h4>Current Challenges</h4>
+                    <ul>
+                        <li>Manual PowerPoint updates every week</li>
+                        <li>Static data with no real-time insights</li>
+                        <li>No drill-down capabilities</li>
+                        <li>Time-intensive status compilation</li>
+                        <li>Limited executive visibility</li>
+                        <li>Disconnected project information</li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M7 10l5 5 5-5"/>
-                </svg>
-                <span>Drill Down to Phase Level</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                    <path d="m9 12 2 2 4-4"/>
-                </svg>
-            </div>
-
-            <!-- Layer 3: Phase Pages -->
-            <div class="layer layer-3">
-                <div class="layer-header">
-                    <div class="layer-title">
-                        <div class="layer-icon">3</div>
-                        OCM Phase Pages (Methodology-Based)
-                    </div>
-                    <div class="layer-description">
-                        Structured by actual OCM methodology phases, each showing activities, owners, artifacts, and automated metrics
+            <div class="after-section">
+                <div class="layer-title">
+                    <div class="layer-number">1</div>
+                    Portfolio Level - Live Dashboard
+                </div>
+                <div class="dashboard-container" onclick="showPortfolioDemo()">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-dashboard.png" alt="Live Portfolio Dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                        <div class="placeholder-icon">🖥️</div>
+                        <div>Dashboard Screenshot Needed</div>
+                        <div class="placeholder-text">Live Portfolio Dashboard<br>(Image 5 from your uploads)</div>
                     </div>
                 </div>
-                <div class="layer-content">
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Stakeholder Management Phase
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-progress">75% Complete</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Owner</span>
-                                <span class="metric-value">Sarah Johnson</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Key Activities</span>
-                                <span class="metric-value">5 of 7</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Engagement Rate</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 83%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Click → Stakeholder Activities
-                        </div>
-                    </div>
-
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                            </svg>
-                            Training & Development Phase
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-progress">62% Complete</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Owner</span>
-                                <span class="metric-value">Mike Chen</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Modules Created</span>
-                                <span class="metric-value">8 of 12</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Completion Rate</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-medium" style="width: 67%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                            </svg>
-                            Click → Training Activities
-                        </div>
-                    </div>
-
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                            </svg>
-                            Communications Phase
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-complete">Complete</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Owner</span>
-                                <span class="metric-value">Lisa Wong</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Messages Sent</span>
-                                <span class="metric-value">24 of 24</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Open Rate</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 91%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                            </svg>
-                            Click → Communication Activities
-                        </div>
-                    </div>
+                <div class="benefits">
+                    <h4>Future Benefits</h4>
+                    <ul>
+                        <li>Real-time portfolio visibility</li>
+                        <li>Automated data aggregation</li>
+                        <li>Executive-level insights</li>
+                        <li>Drill-down capabilities</li>
+                        <li>Predictive analytics</li>
+                        <li>Integrated project intelligence</li>
+                    </ul>
                 </div>
             </div>
+        </div>
 
-            <div class="flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M7 10l5 5 5-5"/>
-                </svg>
-                <span>Drill Down to Activity Level</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c-1-3-4-6-9-6s-8 3-9 6c1 3 4 6 9 6s8-3 9-6z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-            </div>
-
-            <!-- Layer 4: Activity Pages -->
-            <div class="layer layer-4">
-                <div class="layer-header">
-                    <div class="layer-title">
-                        <div class="layer-icon">4</div>
-                        OCM Activity Pages (Task-Level)
-                    </div>
-                    <div class="layer-description">
-                        Individual activity tracking with specific deliverables, timelines, and automated data collection from various systems
+        <!-- Layer 2 Comparison -->
+        <div class="layer-comparison">
+            <div class="transformation-arrow">→</div>
+            <div class="before-section">
+                <div class="layer-title">
+                    <div class="layer-number">2</div>
+                    Project Level - PowerPoint Gantt
+                </div>
+                <div class="screenshot-container">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-gantt.png" alt="PowerPoint Project Gantt" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                        <div class="placeholder-icon">📈</div>
+                        <div>PowerPoint Screenshot Needed</div>
+                        <div class="placeholder-text">Project Gantt Chart<br>(Image 7 from your uploads)</div>
                     </div>
                 </div>
-                <div class="layer-content">
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                            Stakeholder Interview Sessions
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-progress">In Progress</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Completed</span>
-                                <span class="metric-value">15 of 23</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Due Date</span>
-                                <span class="metric-value">Nov 15, 2024</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Avg Session Rating</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 86%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <rect x="7" y="7" width="3" height="9"/>
-                                <rect x="14" y="7" width="3" height="5"/>
-                            </svg>
-                            View Details & Schedule
-                        </div>
+                <div class="pain-points">
+                    <h4>Current Challenges</h4>
+                    <ul>
+                        <li>Disconnected from actual progress</li>
+                        <li>No stakeholder engagement data</li>
+                        <li>Manual risk assessment</li>
+                        <li>Limited phase visibility</li>
+                        <li>No automated alerts</li>
+                        <li>Static timeline views</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="after-section">
+                <div class="layer-title">
+                    <div class="layer-number">2</div>
+                    Project Level - Integrated Hub
+                </div>
+                <div class="dashboard-container" onclick="showProjectDemo()">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-hub.png" alt="Coupa Implementation OCM Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                        <div class="placeholder-icon">🎯</div>
+                        <div>Dashboard Screenshot Needed</div>
+                        <div class="placeholder-text">Coupa Implementation OCM Hub<br>(Image 8 from your uploads)</div>
                     </div>
+                </div>
+                <div class="benefits">
+                    <h4>Future Benefits</h4>
+                    <ul>
+                        <li>Live project status tracking</li>
+                        <li>Integrated stakeholder data</li>
+                        <li>Automated risk monitoring</li>
+                        <li>Phase-level drill-down</li>
+                        <li>Real-time alerts</li>
+                        <li>Dynamic progress visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                            </svg>
-                            Training Material Development
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-progress">65% Complete</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Modules Ready</span>
-                                <span class="metric-value">8 of 12</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">SME Review</span>
-                                <span class="metric-value warning">3 Pending</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Quality Score</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 92%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                            </svg>
-                            View Content & Reviews
-                        </div>
+        <!-- Layer 3 Comparison -->
+        <div class="layer-comparison">
+            <div class="transformation-arrow">→</div>
+            <div class="before-section">
+                <div class="layer-title">
+                    <div class="layer-number">3</div>
+                    Phase Level - Static Documentation
+                </div>
+                <div class="screenshot-container">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-checklist.png" alt="PowerPoint Phase Activities" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                        <div class="placeholder-icon">📋</div>
+                        <div>PowerPoint Screenshot Needed</div>
+                        <div class="placeholder-text">Stakeholder Management Activities<br>(Image 3 from your uploads)</div>
                     </div>
-
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
-                                <line x1="4" y1="22" x2="4" y2="15"/>
-                            </svg>
-                            Change Champion Network Setup
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-complete">Complete</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Champions Recruited</span>
-                                <span class="metric-value success">45 of 40</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Training Complete</span>
-                                <span class="metric-value">43 of 45</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Engagement Score</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 89%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            View Champion Network
-                        </div>
+                </div>
+                <div class="pain-points">
+                    <h4>Current Challenges</h4>
+                    <ul>
+                        <li>Manual progress tracking</li>
+                        <li>No automated metrics</li>
+                        <li>Limited team collaboration</li>
+                        <li>Disconnected artifacts</li>
+                        <li>No activity-level visibility</li>
+                        <li>Static deliverable management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="after-section">
+                <div class="layer-title">
+                    <div class="layer-number">3</div>
+                    Phase Level - Management Hub
+                </div>
+                <div class="dashboard-container" onclick="showPhaseDemo()">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-management.png" alt="Stakeholder Management Phase Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                        <div class="placeholder-icon">🤝</div>
+                        <div>Dashboard Screenshot Needed</div>
+                        <div class="placeholder-text">Stakeholder Management Phase Hub<br>(Image 4 from your uploads)</div>
                     </div>
+                </div>
+                <div class="benefits">
+                    <h4>Future Benefits</h4>
+                    <ul>
+                        <li>Automated progress tracking</li>
+                        <li>Live engagement metrics</li>
+                        <li>Team collaboration tools</li>
+                        <li>Activity-level drill-down</li>
+                        <li>Integrated artifacts</li>
+                        <li>Dynamic deliverable management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                    <div class="mockup-card">
-                        <div class="mockup-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px;">
-                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                            </svg>
-                            Readiness Assessment Survey
-                        </div>
-                        <div class="mockup-content">
-                            <div class="metric-row">
-                                <span class="metric-label">Status</span>
-                                <span class="status-badge status-complete">Complete</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Response Rate</span>
-                                <span class="metric-value success">78%</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Avg Readiness</span>
-                                <span class="metric-value">7.2/10</span>
-                            </div>
-                            <div class="metric-row">
-                                <span class="metric-label">Report Status</span>
-                                <div class="progress-bar">
-                                    <div class="progress-fill progress-high" style="width: 100%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="click-indicator">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 4px;">
-                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                            </svg>
-                            View Survey Results
-                        </div>
+        <!-- Layer 4 Comparison -->
+        <div class="layer-comparison">
+            <div class="transformation-arrow">→</div>
+            <div class="before-section">
+                <div class="layer-title">
+                    <div class="layer-number">4</div>
+                    Activity Level - Manual Tracking
+                </div>
+                <div class="screenshot-container">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-tracking.png" alt="Manual Activity Tracking" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder powerpoint" style="display: none;">
+                        <div class="placeholder-icon">📝</div>
+                        <div>PowerPoint Screenshot Needed</div>
+                        <div class="placeholder-text">Individual Activity Tracking<br>(Email/Spreadsheet example)</div>
+                    </div>
+                </div>
+                <div class="pain-points">
+                    <h4>Current Challenges</h4>
+                    <ul>
+                        <li>Disconnected activity tracking</li>
+                        <li>No automated data collection</li>
+                        <li>Limited deliverable management</li>
+                        <li>Manual progress reporting</li>
+                        <li>No system integration</li>
+                        <li>Time-intensive updates</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="after-section">
+                <div class="layer-title">
+                    <div class="layer-number">4</div>
+                    Activity Level - Intelligent Tracking
+                </div>
+                <div class="dashboard-container" onclick="showActivityDemo()">
+                    <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-detail.png" alt="Stakeholder Analysis & Mapping Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder dashboard" style="display: none;">
+                        <div class="placeholder-icon">⚡</div>
+                        <div>Dashboard Screenshot Needed</div>
+                        <div class="placeholder-text">Stakeholder Analysis & Mapping Hub<br>(Image 1 from your uploads)</div>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <h4>Future Benefits</h4>
+                    <ul>
+                        <li>Automated progress tracking</li>
+                        <li>System data integration</li>
+                        <li>Digital deliverable management</li>
+                        <li>Real-time quality metrics</li>
+                        <li>Seamless team collaboration</li>
+                        <li>Intelligent status updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2>Transformation Impact Summary</h2>
+            <p style="font-size: 18px; color: #cccccc; margin-bottom: 16px;">
+                Moving from static, manual OCM management to an intelligent, integrated platform
+            </p>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-icon">⚡</div>
+                    <div class="summary-title">90% Time Reduction</div>
+                    <div class="summary-description">
+                        Automated data collection and reporting eliminates manual PowerPoint updates and status compilation
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">👁️</div>
+                    <div class="summary-title">Real-Time Visibility</div>
+                    <div class="summary-description">
+                        Executive dashboard provides instant portfolio insights with drill-down to activity level
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">🔗</div>
+                    <div class="summary-title">Seamless Integration</div>
+                    <div class="summary-description">
+                        Connected 4-layer architecture ensures data flows automatically from activities to executive view
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">📊</div>
+                    <div class="summary-title">Predictive Analytics</div>
+                    <div class="summary-description">
+                        AI-driven insights predict risks and recommend interventions before issues become critical
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Data Aggregation Flow -->
-            <div class="aggregation-flow">
-                <div class="aggregation-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 12px;">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        <polyline points="7.5,4.21 12,6.81 16.5,4.21"/>
-                        <polyline points="7.5,19.79 7.5,14.6 3,12"/>
-                        <polyline points="21,12 16.5,14.6 16.5,19.79"/>
-                        <polyline points="12,22.81 12,17"/>
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2>Ready to Transform OCM Management?</h2>
+            <p>Experience the future of organizational change management with our integrated 4-layer platform</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" onclick="launchDemo()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                        <rect x="9" y="9" width="6" height="6"/>
                     </svg>
-                    Automated Data Aggregation Flow
-                </div>
-                <div class="flow-diagram">
-                    <div class="flow-box">Activity Level Data<br>• Task Status<br>• Metrics<br>• Dates</div>
-                    <div class="flow-arrow-right">→</div>
-                    <div class="flow-box">Phase Level<br>Rollup<br>• Progress %<br>• Risk Status</div>
-                    <div class="flow-arrow-right">→</div>
-                    <div class="flow-box">Project Level<br>Summary<br>• Health Score<br>• Alerts</div>
-                    <div class="flow-arrow-right">→</div>
-                    <div class="flow-box">Portfolio Level<br>Dashboard<br>• KPIs<br>• Trends</div>
-                </div>
+                    Launch Interactive Demo
+                </a>
+                <a href="#" class="btn btn-secondary" onclick="viewImplementation()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                    View Implementation Plan
+                </a>
             </div>
-
         </div>
     </div>
 
     <script>
-        // Add interactive hover effects
-        document.querySelectorAll('.mockup-card').forEach(card => {
+        // Interactive demo functions
+        function showPortfolioDemo() {
+            alert('🚀 Portfolio Dashboard Demo\n\nThis would launch the executive portfolio dashboard showing:\n\n• Real-time project health scores\n• Automated risk alerts\n• Cross-project analytics\n• Predictive insights\n• Drill-down capabilities to any project');
+        }
+
+        function showProjectDemo() {
+            alert('🎯 Project Hub Demo\n\nThis would open the Coupa implementation project hub featuring:\n\n• Live stakeholder engagement metrics\n• Phase progression tracking\n• Automated risk monitoring\n• Training completion analytics\n• Phase-level drill-down access');
+        }
+
+        function showPhaseDemo() {
+            alert('🤝 Phase Management Demo\n\nThis would display the stakeholder management phase with:\n\n• Activity progress automation\n• Team collaboration tools\n• Engagement rate tracking\n• Artifact management\n• Activity-level visibility');
+        }
+
+        function showActivityDemo() {
+            alert('📋 Activity Tracking Demo\n\nThis would show individual activity management including:\n\n• Automated progress tracking\n• Quality score monitoring\n• System integrations\n• Deliverable management\n• Real-time status updates');
+        }
+
+        function launchDemo() {
+            alert('🚀 Launching Full Platform Demo\n\nThis would start an interactive walkthrough of the complete 4-layer OCM platform, showing the seamless navigation from executive portfolio down to individual activities.');
+        }
+
+        function viewImplementation() {
+            alert('📋 Implementation Roadmap\n\nThis would open the detailed implementation plan showing:\n\n• Phase-by-phase rollout strategy\n• Technical requirements\n• Change management approach\n• Timeline and milestones\n• Resource requirements');
+        }
+
+        // Enhanced hover effects
+        document.querySelectorAll('.dashboard-container').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-4px) scale(1.02)';
-                this.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+                this.style.transform = 'translateY(-6px) scale(1.02)';
+                this.style.boxShadow = '0 12px 32px rgba(81, 207, 102, 0.4)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+                this.style.boxShadow = '0 8px 32px rgba(81, 207, 102, 0.3)';
             });
         });
 
-        // Add click effects to flow arrows
-        document.querySelectorAll('.flow-arrow').forEach(arrow => {
+        // Add click effects to transformation arrows
+        document.querySelectorAll('.transformation-arrow').forEach(arrow => {
             arrow.addEventListener('click', function() {
-                this.style.transform = 'translateY(-2px)';
+                this.style.transform = 'translate(-50%, -50%) scale(1.1)';
                 setTimeout(() => {
-                    this.style.transform = 'translateY(0)';
-                }, 150);
+                    this.style.transform = 'translate(-50%, -50%) scale(1)';
+                }, 200);
             });
         });
-
-        // Add progress bar animations
-        window.addEventListener('load', function() {
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
-            });
-        });
-
-        // Simulate real-time updates
-        setInterval(() => {
-            document.querySelectorAll('.metric-value').forEach(value => {
-                if (value.textContent.includes('%') && Math.random() > 0.95) {
-                    const current = parseInt(value.textContent);
-                    const change = Math.random() > 0.5 ? 1 : -1;
-                    value.textContent = Math.max(0, Math.min(100, current + change)) + '%';
-                }
-            });
-        }, 5000);
     </script>
 </body>
 </html>
