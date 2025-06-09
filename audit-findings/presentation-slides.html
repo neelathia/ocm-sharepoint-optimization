@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCM SharePoint Audit: Findings & Solutions</title>
+    <title>OCM Repository Audit: Strategic Excellence</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://tilda.cc/tilda-font/tilda-sans/tilda-sans.css" rel="stylesheet">
     <style>
@@ -31,7 +31,7 @@
 
         /* Slide Navigation */
         .slide-nav {
-            background: #1a1a1a;
+            background: #000000;
             color: white;
             padding: 12px 24px;
             display: flex;
@@ -91,13 +91,13 @@
             text-align: center;
             margin-bottom: 40px;
             padding-bottom: 20px;
-            border-bottom: 3px solid #1a1a1a;
+            border-bottom: 3px solid #000000;
         }
 
         .slide-title {
             font-size: 36px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #000000;
             margin-bottom: 12px;
             line-height: 1.2;
         }
@@ -108,17 +108,113 @@
             font-weight: 400;
         }
 
-        /* Action titles */
-        .action-title {
+        .slide-title-short {
             font-size: 28px;
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 700;
+            color: #000000;
             margin-bottom: 24px;
+            line-height: 1.2;
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #000000;
+        }
+
+        /* Hero visual elements */
+        .hero-visual {
+            width: 100%;
+            max-width: 350px;
+            height: 280px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-visual .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .hero-visual .title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
             line-height: 1.3;
         }
 
-        .section-content {
-            margin-bottom: 32px;
+        .hero-visual .subtitle {
+            font-size: 12px;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+
+        .slide-with-visual {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin: 32px 0;
+        }
+
+        .slide-with-visual .content-section {
+            flex: 1;
+        }
+
+        .slide-with-visual .visual-section {
+            flex: 0 0 350px;
+        }
+
+        /* Key insight boxes */
+        .insight-box {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-box h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .insight-box p {
+            opacity: 0.95;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Special highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .highlight-box p {
+            opacity: 0.9;
+            font-size: 16px;
         }
 
         /* Data visualization cards */
@@ -142,13 +238,13 @@
         .metric-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            border-color: #1a1a1a;
+            border-color: #000000;
         }
 
         .metric-number {
             font-size: 36px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #000000;
             margin-bottom: 8px;
         }
 
@@ -166,287 +262,50 @@
             color: #4a4a4a;
         }
 
-        /* Challenge Table Styling */
-        .challenges-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 24px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            font-size: 13px;
-        }
-
-        .challenges-table th {
-            background: #1a1a1a;
-            color: white;
-            padding: 16px 12px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .challenges-table td {
-            padding: 16px 12px;
-            border-bottom: 1px solid #e8ecef;
-            font-size: 12px;
-            line-height: 1.4;
-            vertical-align: top;
-            color: #1a1a1a;
-        }
-
-        .challenges-table tr:hover {
-            background: #f8f9fa;
-        }
-
-        .challenge-icon {
-            font-size: 14px;
-            margin-right: 4px;
-        }
-
-        .risk-text {
-            color: #dc3545;
-            font-weight: 500;
-        }
-
-        .solution-text {
-            color: #1a1a1a;
-            font-weight: 500;
-        }
-
-        .benefit-text {
-            color: #28a745;
-            font-weight: 600;
-        }
-
-        /* Solutions grid */
-        .solutions-grid {
+        /* Evidence grid */
+        .evidence-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin: 24px 0;
         }
 
-        .solution-card {
-            background: #ffffff;
+        .evidence-card {
+            background: white;
             border: 1px solid #e8ecef;
             border-radius: 8px;
             padding: 20px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            border-left: 3px solid #000000;
         }
 
-        .solution-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #1a1a1a, #333333);
-        }
-
-        .solution-priority {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
+        .evidence-icon {
+            font-size: 24px;
             margin-bottom: 12px;
         }
 
-        .priority-high {
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .priority-medium {
-            background: #f8f9fa;
-            color: #1a1a1a;
-            border: 1px solid #e8ecef;
-        }
-
-        .priority-low {
-            background: #f8f9fa;
-            color: #666666;
-            border: 1px solid #e8ecef;
-        }
-
-        .solution-title {
+        .evidence-title {
             font-size: 16px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #000000;
             margin-bottom: 10px;
         }
 
-        .solution-description {
+        .evidence-description {
             font-size: 13px;
             color: #4a4a4a;
             line-height: 1.4;
             margin-bottom: 12px;
         }
 
-        .solution-impact {
+        .evidence-impact {
             font-size: 11px;
-            color: #1a1a1a;
+            color: #000000;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.3px;
-        }
-
-        /* Implementation priorities */
-        .priority-section {
-            background: #f8f9fa;
-            border-left: 4px solid #1a1a1a;
-            padding: 20px;
-            border-radius: 0 4px 4px 0;
-            margin: 16px 0;
-        }
-
-        .priority-title {
-            color: #1a1a1a;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .priority-items {
-            font-size: 13px;
-            color: #4a4a4a;
-            line-height: 1.5;
-        }
-
-        /* Timeline */
-        .timeline {
-            margin: 20px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            padding: 12px;
-            background: white;
-            border-radius: 4px;
-            border-left: 3px solid #1a1a1a;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .timeline-date {
-            min-width: 100px;
-            font-weight: 600;
-            color: #1a1a1a;
-            font-size: 12px;
-        }
-
-        .timeline-content {
-            flex: 1;
-            font-size: 13px;
-            color: #1a1a1a;
-            line-height: 1.4;
-        }
-
-        /* Questions section */
-        .questions-section {
-            background: #fff9e6;
-            border: 1px solid #ffd700;
-            border-radius: 4px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .questions-title {
-            color: #b8860b;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .question-item {
-            background: white;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            border-left: 3px solid #ffd700;
-        }
-
-        .question-text {
-            font-size: 13px;
-            color: #1a1a1a;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* Next steps */
-        .next-steps {
-            background: #f8f9fa;
-            border-left: 4px solid #1a1a1a;
-            padding: 20px;
-            border-radius: 0 4px 4px 0;
-            margin: 20px 0;
-        }
-
-        .next-steps h3 {
-            color: #1a1a1a;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .steps-list {
-            list-style: none;
-            counter-reset: step-counter;
-        }
-
-        .steps-list li {
-            counter-increment: step-counter;
-            margin-bottom: 8px;
-            padding-left: 30px;
-            position: relative;
-            font-size: 13px;
-            line-height: 1.4;
-            color: #1a1a1a;
-        }
-
-        .steps-list li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #1a1a1a;
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 600;
-        }
-
-        /* Special highlight boxes */
-        .highlight-box {
-            background: linear-gradient(135deg, #1a1a1a, #333333);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 24px 0;
-            text-align: center;
-        }
-
-        .highlight-box h3 {
-            font-size: 18px;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .highlight-box p {
-            opacity: 0.9;
-            font-size: 14px;
         }
 
         /* Two column layouts */
@@ -459,77 +318,199 @@
 
         .column-card {
             background: white;
-            padding: 16px;
-            border-radius: 4px;
-            border-left: 4px solid #1a1a1a;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #000000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .column-card h4 {
-            color: #1a1a1a;
-            margin-bottom: 8px;
-            font-size: 14px;
+            color: #000000;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .column-card ul {
             color: #4a4a4a;
-            font-size: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .column-card li {
+            margin-bottom: 8px;
+        }
+
+        /* Questions section */
+        .questions-section {
+            background: #fff9e6;
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .questions-title {
+            color: #b8860b;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .question-item {
+            background: white;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+            font-size: 14px;
+            color: #000000;
+            font-weight: 500;
             line-height: 1.5;
         }
 
-        /* Visual evidence boxes */
-        .evidence-grid {
+        /* Future state visualization */
+        .future-state-container {
+            background: #f8f9fa;
+            border: 2px solid #000000;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .future-state-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 24px;
+        }
+
+        .before-after {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr auto 1fr;
             gap: 20px;
+            align-items: center;
+        }
+
+        .state-box {
+            background: white;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .state-box.before {
+            border-left: 4px solid #dc3545;
+        }
+
+        .state-box.after {
+            border-left: 4px solid #28a745;
+        }
+
+        .state-arrow {
+            font-size: 24px;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .folder-structure {
+            text-align: left;
+            font-family: monospace;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+
+        /* Quick wins grid */
+        .quick-wins-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
             margin: 20px 0;
         }
 
-        .evidence-card {
+        .quick-win-card {
             background: white;
             border: 1px solid #e8ecef;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .evidence-header {
-            padding: 12px;
-            border-bottom: 1px solid #e8ecef;
-        }
-
-        .evidence-header.critical {
-            background: #ffebee;
-        }
-
-        .evidence-header.enhancement {
-            background: #fff3e0;
-        }
-
-        .evidence-header.search {
-            background: #f3e5f5;
-        }
-
-        .evidence-header.solution {
-            background: #e8f5e8;
-        }
-
-        .evidence-header h4 {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .evidence-header p {
-            font-size: 11px;
-            color: #4a4a4a;
-        }
-
-        .evidence-content {
+            border-radius: 8px;
             padding: 16px;
+            border-left: 4px solid #000000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .quick-win-title {
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .quick-win-description {
+            font-size: 12px;
+            color: #4a4a4a;
+            line-height: 1.4;
+        }
+
+        .quick-win-timeline {
+            font-size: 10px;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* Recommendations */
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .recommendation-card {
             background: #f8f9fa;
-            min-height: 150px;
-            font-size: 11px;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            border-left: 3px solid #000000;
+        }
+
+        .recommendation-priority {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            background: #000000;
+            color: white;
+        }
+
+        .recommendation-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-description {
+            font-size: 13px;
+            color: #4a4a4a;
             line-height: 1.4;
         }
 
@@ -540,27 +521,36 @@
             }
 
             .slide-title {
-                font-size: 24px;
+                font-size: 28px;
             }
 
-            .action-title {
-                font-size: 20px;
+            .slide-title-short {
+                font-size: 22px;
             }
 
             .metrics-grid,
-            .solutions-grid,
+            .evidence-grid,
+            .recommendation-grid,
             .two-column,
-            .evidence-grid {
+            .quick-wins-grid {
                 grid-template-columns: 1fr;
             }
 
-            .challenges-table {
-                font-size: 10px;
+            .slide-with-visual {
+                flex-direction: column;
             }
 
-            .challenges-table th,
-            .challenges-table td {
-                padding: 8px 6px;
+            .slide-with-visual .visual-section {
+                flex: none;
+            }
+
+            .before-after {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .state-arrow {
+                transform: rotate(90deg);
             }
         }
     </style>
@@ -570,7 +560,7 @@
         <!-- Navigation -->
         <div class="slide-nav">
             <div class="slide-counter">
-                <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+                <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
             </div>
             <div class="nav-buttons">
                 <button class="nav-btn" onclick="previousSlide()" id="prevBtn">← Previous</button>
@@ -582,574 +572,613 @@
         <!-- Slide 1: Title Slide -->
         <div class="slide active">
             <div class="slide-header">
-                <h1 class="slide-title">OCM SharePoint Repository Audit</h1>
-                <p class="slide-subtitle">Comprehensive Analysis & Strategic Solutions</p>
+                <h1 class="slide-title">OCM Repository Audit</h1>
+                <p class="slide-subtitle">A Fresh Lens: Supporting Excellence Through Structure</p>
             </div>
             
-            <div class="highlight-box">
-                <h3>Strategic Review</h3>
-                <p>Detailed Findings & Strategic Transformation Plan</p>
-            </div>
+            <div class="slide-with-visual">
+                <div class="content-section">
+                    <div class="highlight-box">
+                        <h3>Initial Scope: File Organization</h3>
+                        <p>Brought in to audit and standardize OCM folders and files for Solenis</p>
+                    </div>
 
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-number">20+</div>
-                    <div class="metric-label">Projects Analyzed</div>
-                    <div class="metric-description">Comprehensive repository audit</div>
+                    <div class="insight-box">
+                        <h3>What Fresh Eyes Revealed</h3>
+                        <p>"An opportunity to turn internal practices into external credibility—supporting the excellent work already being done"</p>
+                    </div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-number">6</div>
-                    <div class="metric-label">Critical Issues</div>
-                    <div class="metric-description">Systemic problems identified</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">8</div>
-                    <div class="metric-label">Strategic Solutions</div>
-                    <div class="metric-description">Prioritized transformation plan</div>
+                
+                <div class="visual-section">
+                    <div class="hero-visual">
+                        <div class="icon">🔍</div>
+                        <div class="title">Strategic Audit</div>
+                        <div class="subtitle">Fresh perspective on organizational excellence</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 2: Audit Methodology -->
+        <!-- Slide 2: My Role & Intent -->
         <div class="slide">
-            <h2 class="action-title">Comprehensive audit methodology reveals both tactical issues and strategic transformation opportunities</h2>
+            <h2 class="slide-title-short">Fresh Lens: My Role & Intent</h2>
             
-            <p style="font-size: 14px; color: #4a4a4a; margin-bottom: 20px;">
-                I conducted a two-phase analysis: detailed tactical assessment of current repository structure, followed by strategic benchmarking against consulting industry best practices.
-            </p>
+            <div class="slide-with-visual">
+                <div class="content-section">
+                    <div class="two-column">
+                        <div class="column-card">
+                            <h4>🔍 Supportive, Not Evaluative</h4>
+                            <ul>
+                                <li>Approached audit with no assumptions</li>
+                                <li>Fresh eyes can spot hidden opportunities</li>
+                                <li>Insights reflect patterns, not judgments</li>
+                                <li>Collaborative journey to raise quality</li>
+                            </ul>
+                        </div>
+                        <div class="column-card" style="border-left-color: #666666;">
+                            <h4>🤝 My Intent</h4>
+                            <ul>
+                                <li>Support internal excellence</li>
+                                <li>Strengthen Kandha's impact</li>
+                                <li>Help make practices scalable</li>
+                                <li>Amplify the great work already being done</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <div class="two-column">
-                <div class="column-card">
-                    <h4>Phase 1: Tactical Audit</h4>
-                    <ul>
-                        <li>Repository structure analysis</li>
-                        <li>Content organization assessment</li>
-                        <li>Documentation gaps identification</li>
-                        <li>Version control evaluation</li>
-                    </ul>
+                    <div style="background: #e8f5e8; border-left: 4px solid #000000; padding: 20px; border-radius: 0 8px 8px 0; margin-top: 24px;">
+                        <h4 style="color: #000000; margin-bottom: 8px; font-size: 16px;">Why This Perspective Matters</h4>
+                        <p style="color: #4a4a4a; font-size: 14px; line-height: 1.5;">
+                            As someone newly brought in to support standardization, I have the advantage of seeing patterns without preconceptions. This presentation isn't a critique—it's an opportunity to explore how structure and governance can amplify existing strengths.
+                        </p>
+                    </div>
                 </div>
-                <div class="column-card" style="border-left-color: #666666;">
-                    <h4>Phase 2: Strategic Analysis</h4>
-                    <ul>
-                        <li>Consulting firm best practices research</li>
-                        <li>McKinsey, BCG, Deloitte pattern analysis</li>
-                        <li>Transformation opportunity assessment</li>
-                        <li>ROI impact modeling</li>
-                    </ul>
+                
+                <div class="visual-section">
+                    <div class="hero-visual">
+                        <div class="icon">🤝</div>
+                        <div class="title">Partnership Approach</div>
+                        <div class="subtitle">Collaborative enhancement of existing excellence</div>
+                    </div>
                 </div>
-            </div>
-
-            <div style="background: #f8f9fa; border-left: 4px solid #1a1a1a; padding: 16px; border-radius: 0 4px 4px 0; margin-top: 20px;">
-                <h4 style="color: #1a1a1a; margin-bottom: 6px; font-size: 14px;">Context: Kandha Consulting Engagement</h4>
-                <p style="color: #4a4a4a; font-size: 12px;">
-                    Multiple Solenis projects are currently managed by Kandha Consulting for their change management components. This audit addresses repository optimization to support improved project delivery and outcomes.
-                </p>
             </div>
         </div>
 
-        <!-- Slide 3: Detailed Tactical Findings -->
+        <!-- Slide 3: Original Scope -->
         <div class="slide">
-            <h2 class="action-title">Six critical tactical issues create significant project inefficiencies and compliance risks</h2>
+            <h2 class="slide-title-short">Mandate: Organize & Standardize</h2>
             
-            <table class="challenges-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Challenge</th>
-                        <th style="width: 25%;">Risk/Consequence</th>
-                        <th style="width: 30%;">Tactical Solution</th>
-                        <th style="width: 20%;">Quantified Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="challenge-icon">📁</span><strong>Fragmented folder structures</strong> across projects</td>
-                        <td class="risk-text">🔁 Rework due to difficulty locating materials; ⏳ slows onboarding</td>
-                        <td class="solution-text">Create <strong>standard folder structure template</strong> across all projects</td>
-                        <td class="benefit-text">🚀 Reduce document hunt time by <strong>50%</strong></td>
-                    </tr>
-                    <tr>
-                        <td><span class="challenge-icon">📂</span><strong>Critical folders empty</strong> (Training, Sustainment)</td>
-                        <td class="risk-text">❌ Incomplete OCM lifecycle; risks low adoption</td>
-                        <td class="solution-text">Mandate <strong>minimum documentation standards</strong> per OCM phase</td>
-                        <td class="benefit-text">🛡️ Ensure <strong>100% lifecycle visibility</strong></td>
-                    </tr>
-                    <tr>
-                        <td><span class="challenge-icon">📄</span><strong>Duplicate content</strong> with no clear master version</td>
-                        <td class="risk-text">📉 Inconsistent stakeholder experience</td>
-                        <td class="solution-text">Build centralized <strong>OCM Template Library</strong></td>
-                        <td class="benefit-text">📂 Cut template creation time by <strong>40%</strong></td>
-                    </tr>
-                    <tr>
-                        <td><span class="challenge-icon">🔍</span><strong>No metadata or tagging</strong> in SharePoint</td>
-                        <td class="risk-text">🔍 Difficult to search or track ownership</td>
-                        <td class="solution-text">Introduce metadata: Phase, Owner, Version, Status</td>
-                        <td class="benefit-text">📊 Improve findability by <strong>60%</strong></td>
-                    </tr>
-                    <tr>
-                        <td><span class="challenge-icon">📊</span><strong>Weekly reports</strong> stored in multiple places</td>
-                        <td class="risk-text">📉 Version control risk; stakeholder misalignment</td>
-                        <td class="solution-text">Use <strong>centralized reporting repository</strong></td>
-                        <td class="benefit-text">✅ Improve leadership alignment</td>
-                    </tr>
-                    <tr>
-                        <td><span class="challenge-icon">📈</span><strong>No lessons learned</strong> documented</td>
-                        <td class="risk-text">📉 Missed insights; cannot demonstrate ROI</td>
-                        <td class="solution-text">Create <strong>Lessons Learned & Metrics</strong> folder</td>
-                        <td class="benefit-text">📈 Establish proof of value</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="slide-with-visual">
+                <div class="content-section">
+                    <div class="two-column">
+                        <div class="column-card">
+                            <h4>📁 Defined Objectives</h4>
+                            <ul>
+                                <li>Simplify folder structure across projects</li>
+                                <li>Reduce file duplication and conflicts</li>
+                                <li>Align naming conventions</li>
+                                <li>Create single source of truth</li>
+                            </ul>
+                        </div>
+                        <div class="column-card" style="border-left-color: #666666;">
+                            <h4>🧩 Planned Approach</h4>
+                            <ul>
+                                <li>Audit current folder hierarchy</li>
+                                <li>Document inconsistencies and gaps</li>
+                                <li>Design standardized structure</li>
+                                <li>Implement across all projects</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8f9fa; border-left: 4px solid #000000; padding: 20px; border-radius: 0 8px 8px 0; margin-top: 24px;">
+                        <h4 style="color: #000000; margin-bottom: 8px; font-size: 16px;">Context</h4>
+                        <p style="color: #4a4a4a; font-size: 14px; line-height: 1.5;">
+                            Multiple Solenis projects managed by Kandha Consulting needed better file organization to support OCM delivery efficiency and stakeholder experience.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="visual-section">
+                    <div class="hero-visual">
+                        <div class="icon">📂</div>
+                        <div class="title">File Organization</div>
+                        <div class="subtitle">Streamline structure for efficiency</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Slide 4: Visual Evidence -->
+        <!-- Slide 4: What I Found -->
         <div class="slide">
-            <h2 class="action-title">Visual evidence demonstrates the scope and impact of current repository challenges</h2>
+            <h2 class="slide-title-short">Opportunities to Better Align Structure</h2>
             
             <div class="evidence-grid">
                 <div class="evidence-card">
-                    <div class="evidence-header critical">
-                        <h4 style="color: #dc3545;">🔴 Critical Empty Folders</h4>
-                        <p>Training, Sustainment, and Readiness folders consistently empty</p>
+                    <div class="evidence-icon">📁</div>
+                    <div class="evidence-title">Structure Alignment Opportunity</div>
+                    <div class="evidence-description">
+                        File organization doesn't yet reflect the systematic approach likely present in OCM methodology—chance to better surface existing frameworks.
                     </div>
-                    <div class="evidence-content">
-                        <div style="text-align: center; color: #666666; padding: 20px;">
-                            <div style="font-size: 32px; margin-bottom: 8px;">📂</div>
-                            <div style="font-size: 12px; font-weight: 500;">Empty Folder Structure</div>
-                            <div style="font-size: 10px; margin-top: 6px;">
-                                📁 Training Materials<br>
-                                📁 Sustainment Plans<br>
-                                📁 Readiness Assessments
-                            </div>
-                            <div style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; margin-top: 8px; display: inline-block;">EMPTY</div>
-                        </div>
-                    </div>
+                    <div class="evidence-impact">Opportunity: Make methodology more visible</div>
                 </div>
 
                 <div class="evidence-card">
-                    <div class="evidence-header enhancement">
-                        <h4 style="color: #fd7e14;">🔄 Duplicate Content Chaos</h4>
-                        <p>Multiple versions with no clear master</p>
+                    <div class="evidence-icon">📝</div>
+                    <div class="evidence-title">Template Consistency Enhancement</div>
+                    <div class="evidence-description">
+                        Multiple document versions suggest strong template usage—opportunity to better organize and version-control these valuable resources.
                     </div>
-                    <div class="evidence-content">
-                        <div style="color: #4a4a4a;">
-                            📄 Stakeholder_Analysis_v1.docx<br>
-                            📄 Stakeholder_Analysis_v2.docx<br>
-                            📄 Stakeholder_Analysis_FINAL.docx<br>
-                            📄 Stakeholder_Analysis_FINAL_v2.docx<br>
-                            📄 Stakeholder_Analysis_UPDATED.docx<br>
-                            📄 Stakeholder_Analysis_Brian_Comments.docx<br>
-                            <div style="margin-top: 12px; padding: 8px; background: #ffebee; border-left: 2px solid #dc3545; border-radius: 0 2px 2px 0;">
-                                <strong style="color: #dc3545;">❌ Which is current?</strong><br>
-                                <span style="color: #666666; font-size: 9px;">No version control or clear ownership</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="evidence-impact">Opportunity: Streamline template access</div>
                 </div>
 
                 <div class="evidence-card">
-                    <div class="evidence-header search">
-                        <h4 style="color: #7b1fa2;">🔍 No Search Capability</h4>
-                        <p>Missing metadata makes content impossible to find</p>
+                    <div class="evidence-icon">🏛️</div>
+                    <div class="evidence-title">Governance Visibility</div>
+                    <div class="evidence-description">
+                        Governance practices may be present but are not yet clearly visible or consistently reflected in the file structure.
                     </div>
-                    <div class="evidence-content">
-                        <div style="text-align: center; color: #666666; padding: 20px;">
-                            <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
-                            <div style="font-size: 12px; font-weight: 500; margin-bottom: 6px;">Search: "training materials"</div>
-                            <div style="background: #ffebee; padding: 8px; border-radius: 2px; color: #dc3545; font-size: 10px;">
-                                ❌ No results found<br>
-                                <span style="color: #666666;">Files exist but have no metadata tags</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="evidence-impact">Opportunity: Surface existing standards</div>
                 </div>
 
                 <div class="evidence-card">
-                    <div class="evidence-header solution">
-                        <h4 style="color: #28a745;">✅ Recommended Solution</h4>
-                        <p>Standardized structure with metadata and version control</p>
+                    <div class="evidence-icon">⚙️</div>
+                    <div class="evidence-title">Process Integration</div>
+                    <div class="evidence-description">
+                        File organization could better reflect the systematic OCM processes that are likely already established.
                     </div>
-                    <div class="evidence-content">
-                        <div style="color: #4a4a4a;">
-                            <div style="background: #e8f5e8; padding: 6px; border-radius: 2px; margin-bottom: 6px;">
-                                📁 <strong>01_Change_Impact_Assessment/</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;📄 Stakeholder_Analysis_v3.2_CURRENT.docx<br>
-                                <span style="color: #28a745; font-size: 9px;">↳ Owner: John Doe | Phase: Analysis | Status: Approved</span>
-                            </div>
-                            <div style="background: #e8f5e8; padding: 6px; border-radius: 2px; margin-bottom: 6px;">
-                                📁 <strong>02_Training_Strategy/</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;📄 Training_Plan_v2.1_CURRENT.docx<br>
-                                <span style="color: #28a745; font-size: 9px;">↳ Owner: Jane Smith | Phase: Planning | Status: In Review</span>
-                            </div>
-                            <div style="color: #28a745; font-size: 10px; margin-top: 8px; padding: 6px; background: white; border-radius: 2px;">
-                                ✅ <strong>Searchable, trackable, governed</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 5: Implementation Prioritization -->
-        <div class="slide">
-            <h2 class="action-title">Tactical improvements should follow a three-phase prioritization for maximum impact</h2>
-            
-            <div class="priority-section">
-                <h3 class="priority-title">🚀 Phase 1: Quick Wins (Weeks 1-2)</h3>
-                <div class="priority-items">
-                    • <strong>Naming convention guide</strong> - Standardize file naming across all projects<br>
-                    • <strong>Metadata columns</strong> - Add Phase, Owner, Version, Status tracking<br>
-                    • <strong>Template cleanup</strong> - Consolidate and version-control existing templates
+                    <div class="evidence-impact">Opportunity: Align structure to process</div>
                 </div>
             </div>
 
-            <div class="priority-section" style="border-left-color: #666666;">
-                <h3 class="priority-title">🔧 Phase 2: Medium Effort (Weeks 3-6)</h3>
-                <div class="priority-items">
-                    • <strong>Folder standardization</strong> - Implement consistent structure across all projects<br>
-                    • <strong>Template library rollout</strong> - Deploy centralized, version-controlled library<br>
-                    • <strong>Content audits</strong> - Ensure minimum documentation standards compliance
-                </div>
-            </div>
-
-            <div class="priority-section" style="border-left-color: #4a4a4a;">
-                <h3 class="priority-title">📊 Phase 3: High Value (Weeks 7-12)</h3>
-                <div class="priority-items">
-                    • <strong>Lessons learned dashboard</strong> - Automated reporting and insights capture<br>
-                    • <strong>Lifecycle enforcement policies</strong> - Mandate OCM phase completion requirements<br>
-                    • <strong>Advanced search capabilities</strong> - Leverage metadata for intelligent findability
-                </div>
-            </div>
-
-            <div style="background: #e8f5e8; border-left: 4px solid #28a745; padding: 16px; border-radius: 0 4px 4px 0; margin-top: 20px;">
-                <h4 style="color: #1a1a1a; margin-bottom: 6px; font-size: 14px;">Expected Tactical Benefits</h4>
-                <p style="color: #4a4a4a; font-size: 12px;">
-                    • 50% reduction in document search time<br>
-                    • 40% faster template creation<br>
-                    • 100% OCM lifecycle visibility<br>
-                    • 60% improvement in content findability
+            <div style="background: #fff3e0; border-left: 4px solid #000000; padding: 20px; border-radius: 0 8px 8px 0; margin-top: 24px;">
+                <h4 style="color: #000000; margin-bottom: 8px; font-size: 16px;">Assessment Approach</h4>
+                <p style="color: #4a4a4a; font-size: 14px; line-height: 1.5;">
+                    These observations suggest opportunities to better surface and embed the OCM frameworks that likely exist—making excellent existing practices more visible and accessible through improved file organization.
                 </p>
             </div>
         </div>
 
-        <!-- Slide 6: Strategic Transformation -->
+        <!-- Slide 5: The Opportunity -->
         <div class="slide">
-            <h2 class="action-title">Beyond tactical fixes: Strategic transformation can deliver 70% efficiency gains through consulting-grade design patterns</h2>
+            <h2 class="slide-title-short">OCM Team Sets the Tone</h2>
             
-            <p style="font-size: 14px; color: #4a4a4a; margin-bottom: 20px;">
-                While tactical improvements address immediate pain points, I identified a strategic opportunity to transform OCM delivery using proven methodologies from top consulting firms.
-            </p>
+            <div class="slide-with-visual">
+                <div class="content-section">
+                    <div class="insight-box">
+                        <h3>The Opportunity</h3>
+                        <p>It's possible that as focus is placed on client-facing transformation, internal practices get less attention—which is understandable. But this presents an opportunity for us to model excellence from within.</p>
+                    </div>
 
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 4px; margin-bottom: 20px;">
-                <h3 style="color: #1a1a1a; margin-bottom: 12px; font-size: 16px;">Industry Research: Consulting Firm Best Practices</h3>
-                <p style="color: #4a4a4a; font-size: 12px; line-height: 1.4;">
-                    I researched visual design patterns and UX approaches from McKinsey, BCG, and Deloitte to identify specific methodologies that drive measurable improvements in project outcomes and stakeholder engagement.
-                </p>
-            </div>
-
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-number">McKinsey</div>
-                    <div class="metric-label">Action Title Methodology</div>
-                    <div class="metric-description">Clear headlines stating key insights</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">BCG</div>
-                    <div class="metric-label">Visual Data Storytelling</div>
-                    <div class="metric-description">Strategic color usage for emphasis</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">Deloitte</div>
-                    <div class="metric-label">Interactive Multi-touch UI</div>
-                    <div class="metric-description">Real-time collaborative interfaces</div>
-                </div>
-            </div>
-
-            <div style="background: #f8f9fa; border-left: 4px solid #1a1a1a; padding: 16px; border-radius: 0 4px 4px 0; margin-top: 20px;">
-                <h4 style="color: #1a1a1a; margin-bottom: 6px; font-size: 14px;">Industry Research Validation</h4>
-                <p style="color: #4a4a4a; font-size: 12px;">
-                    Research into consulting firm best practices confirms that standardized, interactive OCM approaches significantly improve project outcomes. These methodologies are proven across multiple industries and consulting engagements.
-                </p>
-            </div>
-        </div>
-
-        <!-- Slide 7: Strategic Solutions -->
-        <div class="slide">
-            <h2 class="action-title">Six strategic solutions will transform OCM delivery from administrative task to competitive advantage</h2>
-            
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <span class="solution-priority priority-high">High Priority</span>
-                    <h3 class="solution-title">Interactive OCM Page Templates</h3>
-                    <p class="solution-description">
-                        Replace static documents with dynamic SharePoint pages featuring embedded forms, automated workflows, and real-time collaboration.
-                    </p>
-                    <div class="solution-impact">Impact: 70% setup time reduction</div>
-                </div>
-
-                <div class="solution-card">
-                    <span class="solution-priority priority-high">High Priority</span>
-                    <h3 class="solution-title">Stakeholder Management Hub</h3>
-                    <p class="solution-description">
-                        Dynamic stakeholder directory with influence mapping, engagement tracking, and automated communication workflows.
-                    </p>
-                    <div class="solution-impact">Impact: 40% engagement improvement</div>
-                </div>
-
-                <div class="solution-card">
-                    <span class="solution-priority priority-high">High Priority</span>
-                    <h3 class="solution-title">Consulting-Grade Visual Design</h3>
-                    <p class="solution-description">
-                        Apply McKinsey, BCG, and Deloitte design patterns to all OCM pages for professional appearance and improved usability.
-                    </p>
-                    <div class="solution-impact">Impact: 85% user satisfaction increase</div>
-                </div>
-
-                <div class="solution-card">
-                    <span class="solution-priority priority-medium">Medium Priority</span>
-                    <h3 class="solution-title">Real-time Performance Dashboard</h3>
-                    <p class="solution-description">
-                        Integrated analytics showing OCM progress, stakeholder engagement metrics, and predictive success indicators.
-                    </p>
-                    <div class="solution-impact">Impact: 60% better decision making</div>
-                </div>
-
-                <div class="solution-card">
-                    <span class="solution-priority priority-medium">Medium Priority</span>
-                    <h3 class="solution-title">Automated Process Integration</h3>
-                    <p class="solution-description">
-                        Connect OCM activities with project management tools, approval workflows, and notification systems.
-                    </p>
-                    <div class="solution-impact">Impact: 50% process efficiency gain</div>
-                </div>
-
-                <div class="solution-card">
-                    <span class="solution-priority priority-low">Future Enhancement</span>
-                    <h3 class="solution-title">AI-Powered OCM Insights</h3>
-                    <p class="solution-description">
-                        Intelligent recommendations for engagement strategies, risk identification, and communication optimization.
-                    </p>
-                    <div class="solution-impact">Impact: 30% strategic effectiveness</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8: Dual-Track Implementation -->
-        <div class="slide">
-            <h2 class="action-title">Recommended dual-track approach: Immediate tactical fixes while building strategic transformation</h2>
-            
-            <div class="two-column">
-                <div>
-                    <h3 style="color: #1a1a1a; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; font-size: 16px;">🔧 Track 1: Tactical Foundation</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">Week 1-2</div>
-                            <div class="timeline-content">
-                                <strong>Repository Hygiene:</strong> Standardize folder structures, implement metadata, consolidate templates
-                            </div>
+                    <div class="two-column">
+                        <div class="column-card" style="border-left-color: #fd7e14;">
+                            <h4>📈 Current Focus Areas</h4>
+                            <ul>
+                                <li>Client-facing transformation priorities</li>
+                                <li>Project delivery and stakeholder management</li>
+                                <li>Meeting tight timelines and objectives</li>
+                                <li>External credibility and results</li>
+                            </ul>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Week 3-4</div>
-                            <div class="timeline-content">
-                                <strong>Content Governance:</strong> Establish documentation standards, create centralized library
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Week 5-6</div>
-                            <div class="timeline-content">
-                                <strong>Process Enforcement:</strong> Implement lifecycle compliance, audit mechanisms
-                            </div>
+                        <div class="column-card">
+                            <h4>✨ Untapped Opportunity</h4>
+                            <ul>
+                                <li>Turn internal practice into external credibility</li>
+                                <li>Model the behavior we want to see</li>
+                                <li>Build confidence through consistency</li>
+                                <li>Create replicable frameworks for scale</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                
+                <div class="visual-section">
+                    <div class="hero-visual">
+                        <div class="icon">🎯</div>
+                        <div class="title">Strategic Opportunity</div>
+                        <div class="subtitle">Internal excellence drives external credibility</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <div>
-                    <h3 style="color: #1a1a1a; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #666666; font-size: 16px;">🚀 Track 2: Strategic Transformation</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">Week 2-4</div>
-                            <div class="timeline-content">
-                                <strong>Design Standards:</strong> Develop consulting-grade page templates and visual hierarchy
-                            </div>
+        <!-- Slide 6: Enhancement Opportunity -->
+        <div class="slide">
+            <h2 class="slide-title-short">Embed Existing Strengths</h2>
+            
+            <div class="evidence-grid">
+                <div class="evidence-card">
+                    <div class="evidence-icon">📋</div>
+                    <div class="evidence-title">Onboarding Resource Visibility</div>
+                    <div class="evidence-description">
+                        Opportunity to better surface and embed the onboarding resources that likely exist, making them more accessible to new team members.
+                    </div>
+                    <div class="evidence-impact">Impact: Faster integration, consistent practices</div>
+                </div>
+
+                <div class="evidence-card">
+                    <div class="evidence-icon">📝</div>
+                    <div class="evidence-title">Template Organization Enhancement</div>
+                    <div class="evidence-description">
+                        Chance to better organize the existing template library and make governance around template usage more visible and accessible.
+                    </div>
+                    <div class="evidence-impact">Impact: Streamlined access, clear versioning</div>
+                </div>
+
+                <div class="evidence-card">
+                    <div class="evidence-icon">🏛️</div>
+                    <div class="evidence-title">Governance Framework Alignment</div>
+                    <div class="evidence-description">
+                        Opportunity to better reflect existing governance practices in the file structure, making standards more visible and consistently applied.
+                    </div>
+                    <div class="evidence-impact">Impact: Clear accountability, sustained standards</div>
+                </div>
+
+                <div class="evidence-card">
+                    <div class="evidence-icon">🎓</div>
+                    <div class="evidence-title">Knowledge Resource Organization</div>
+                    <div class="evidence-description">
+                        Chance to better organize and surface existing training materials and best practice resources for OCM practitioners.
+                    </div>
+                    <div class="evidence-impact">Impact: Knowledge accessibility, continuous learning</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>The Vision</h3>
+                <p>Make existing OCM excellence more visible and accessible through strategic file organization</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Future State Visualization -->
+        <div class="slide">
+            <h2 class="slide-title-short">Current vs Future State</h2>
+            
+            <div class="future-state-container">
+                <div class="future-state-title">📊 Transformation Overview</div>
+                
+                <div class="before-after">
+                    <div class="state-box before">
+                        <h4 style="color: #dc3545; margin-bottom: 12px;">📁 Current State</h4>
+                        <div class="folder-structure">
+📂 Project Folders<br>
+├── 📁 Random_Files<br>
+├── 📁 Misc_Documents<br>
+├── 📁 Old_Stuff<br>
+├── 📄 File_v1.docx<br>
+├── 📄 File_FINAL.docx<br>
+├── 📄 File_FINAL_v2.docx<br>
+└── 📄 File_Updated.docx<br>
+<br>
+❌ No clear structure<br>
+❌ Version confusion<br>
+❌ Hidden frameworks
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Week 5-8</div>
-                            <div class="timeline-content">
-                                <strong>Interactive Pages:</strong> Build stakeholder hub, assessment tools, dashboard analytics
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Week 9-12</div>
-                            <div class="timeline-content">
-                                <strong>Pilot & Scale:</strong> Test with 2-3 Kandha projects, refine, then org-wide rollout
-                            </div>
+                    </div>
+                    
+                    <div class="state-arrow">→</div>
+                    
+                    <div class="state-box after">
+                        <h4 style="color: #28a745; margin-bottom: 12px;">🎯 Future State</h4>
+                        <div class="folder-structure">
+📂 OCM_Project_Framework<br>
+├── 📁 01_Governance<br>
+│   ├── 📄 Standards_Guide_v2.0.docx<br>
+│   └── 📄 Process_Overview.pdf<br>
+│   ├── 📄 Stakeholder_Analysis_MASTER.docx<br>
+│   └── 📄 Training_Plan_MASTER.pptx<br>
+├── 📁 03_Active_Projects<br>
+└── 📁 04_Knowledge_Base<br>
+<br>
+✅ Clear methodology visible<br>
+✅ Version control enforced<br>
+✅ Frameworks accessible
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div style="background: #fff3e0; border-left: 4px solid #fd7e14; padding: 16px; border-radius: 0 4px 4px 0; margin-top: 24px;">
-                <h4 style="color: #1a1a1a; margin-bottom: 6px; font-size: 14px;">Why Dual-Track Approach?</h4>
-                <p style="color: #4a4a4a; font-size: 12px;">
-                    <strong>Immediate value:</strong> Tactical fixes provide quick wins and stakeholder confidence<br>
-                    <strong>Long-term impact:</strong> Strategic transformation positions Solenis as OCM leader<br>
-                    <strong>Risk mitigation:</strong> Foundation work ensures transformation builds on solid base
-                </p>
+            <div class="insight-box">
+                <h3>The Transformation</h3>
+                <p>From scattered files to strategic framework that showcases OCM methodology and enables consistent delivery</p>
             </div>
         </div>
 
-        <!-- Slide 9: Expected Outcomes & ROI -->
+        <!-- Slide 8: Partnership Questions -->
         <div class="slide">
-            <h2 class="action-title">Combined approach delivers measurable ROI within 90 days with sustained competitive advantage</h2>
-            
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-number">70%</div>
-                    <div class="metric-label">Project Setup Time Reduction</div>
-                    <div class="metric-description">From strategic transformation</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">50%</div>
-                    <div class="metric-label">Document Search Time Savings</div>
-                    <div class="metric-description">From tactical improvements</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">40%</div>
-                    <div class="metric-label">Stakeholder Adoption Increase</div>
-                    <div class="metric-description">Through enhanced engagement</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">85%</div>
-                    <div class="metric-label">Process Standardization</div>
-                    <div class="metric-description">Across all OCM activities</div>
-                </div>
-            </div>
-
-            <div class="two-column" style="margin-top: 24px;">
-                <div class="column-card" style="border-left-color: #28a745;">
-                    <h4>Tactical Benefits (Immediate)</h4>
-                    <ul>
-                        <li>Reduced project rework and confusion</li>
-                        <li>Improved compliance and audit readiness</li>
-                        <li>Faster team onboarding and knowledge transfer</li>
-                        <li>Better version control and governance</li>
-                    </ul>
-                </div>
-                <div class="column-card">
-                    <h4>Strategic Differentiators for Solenis</h4>
-                    <ul>
-                        <li>Elevates Solenis' OCM practice to enterprise-grade maturity</li>
-                        <li>Reduces reliance on external partners over time</li>
-                        <li>Creates competitive advantage in marketplace positioning</li>
-                        <li>Establishes Solenis as OCM innovation leader in industry</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="background: #e8f5e8; border-left: 4px solid #28a745; padding: 16px; border-radius: 0 4px 4px 0; margin-top: 20px;">
-                <h4 style="color: #1a1a1a; margin-bottom: 6px; font-size: 14px;">Business Impact for Kandha Consulting</h4>
-                <p style="color: #4a4a4a; font-size: 12px;">
-                    Enhanced repository capabilities will improve project delivery quality, reduce time-to-value for Solenis engagements, and differentiate Kandha's OCM offering in the competitive consulting market.
-                </p>
-            </div>
-        </div>
-
-        <!-- Slide 10: Questions & Next Steps -->
-        <div class="slide">
-            <h2 class="action-title">Strategic decisions needed from Brian to begin transformation this week</h2>
+            <h2 class="slide-title-short">Partnership Questions</h2>
             
             <div class="questions-section">
-                <h3 class="questions-title">🤔 Strategic Questions for Discussion</h3>
+                <h3 class="questions-title">🤝 Co-Creation Framework</h3>
                 
-                <div class="question-item">
-                    <div class="question-text">
-                        <strong>1. Implementation Approach:</strong> Should I proceed with dual-track approach or focus on tactical fixes first?
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4 style="color: #000000; margin-bottom: 12px;">📋 Standards & Processes</h4>
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>Existing Onboarding:</strong> Could you share your current onboarding materials so I can align structure to support them?
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>Template Framework:</strong> What templates are currently in use that should be better reflected in the organizational structure?
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="question-item">
-                    <div class="question-text">
-                        <strong>2. Resource Allocation:</strong> What budget and team resources can be allocated for the 12-week transformation plan?
-                    </div>
-                </div>
-                
-                <div class="question-item">
-                    <div class="question-text">
-                        <strong>3. Pilot Selection:</strong> Which 2-3 Kandha-managed Solenis projects would be best candidates for testing new approaches?
-                    </div>
-                </div>
-                
-                <div class="question-item">
-                    <div class="question-text">
-                        <strong>4. Success Metrics:</strong> What specific KPIs should I track to measure transformation success and demonstrate ROI?
-                    </div>
-                </div>
-                
-                <div class="question-item">
-                    <div class="question-text">
-                        <strong>5. Stakeholder Communication:</strong> How should I coordinate with Solenis leadership on repository changes and enhancements?
+                    
+                    <div>
+                        <h4 style="color: #000000; margin-bottom: 12px;">🏛️ Governance & Integration</h4>
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>Governance Alignment:</strong> How can we better align file structure to reflect your existing governance model?
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>Process Visibility:</strong> What OCM processes should be more visible through improved organization?
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-item">
+                <div class="question-item" style="margin-top: 16px;">
                     <div class="question-text">
-                        <strong>6. Timeline Expectations:</strong> Are there any upcoming project deadlines that should influence implementation sequencing?
+                        <strong>Framework Enhancement:</strong> How can we make your existing OCM frameworks more visible and replicable through strategic structure?
                     </div>
                 </div>
             </div>
 
-            <div class="next-steps">
-                <h3>🚀 My Immediate Next Steps (This Week)</h3>
-                <ol class="steps-list">
-                    <li><strong>Secure implementation approach approval</strong> and resource allocation</li>
-                    <li><strong>Begin tactical quick wins</strong> with folder standardization and metadata implementation</li>
-                    <li><strong>Identify pilot projects</strong> and coordinate with Kandha project managers</li>
-                    <li><strong>Start strategic design work</strong> on consulting-grade page templates</li>
-                    <li><strong>Establish progress tracking</strong> and weekly check-in schedule</li>
-                </ol>
-            </div>
-
-            <div class="highlight-box">
-                <h3>Ready to Transform OCM Repository</h3>
-                <p>Combining immediate improvements with strategic innovation for maximum impact</p>
+            <div style="background: #e8f5e8; border-left: 4px solid #000000; padding: 20px; border-radius: 0 8px 8px 0; margin-top: 20px;">
+                <h4 style="color: #000000; margin-bottom: 8px; font-size: 16px;">Collaborative Approach</h4>
+                <p style="color: #4a4a4a; font-size: 14px; line-height: 1.5;">
+                    These questions aim to understand current state and identify opportunities to strengthen the foundation together—making the Solenis OCM practice a model others can follow.
+                </p>
             </div>
         </div>
 
-        <!-- Slide 11: Summary -->
+        <!-- Slide 9: Quick Wins -->
         <div class="slide">
-            <h2 class="action-title">Three key takeaways will drive OCM transformation success at Solenis</h2>
+            <h2 class="slide-title-short">Quick Wins in 30 Days</h2>
             
-            <div style="display: flex; flex-direction: column; gap: 24px; margin: 32px 0; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <div style="background: #ffffff; padding: 24px; border-radius: 8px; border-left: 6px solid #28a745; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                    <h3 style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-bottom: 8px;">
-                        🔧 Tactical fixes can boost OCM efficiency by 50%+ in 2–4 weeks
-                    </h3>
-                    <p style="color: #4a4a4a; font-size: 14px; line-height: 1.4;">
-                        Immediate repository improvements through standardized folders, metadata, and version control deliver quick wins and stakeholder confidence.
-                    </p>
+            <div class="quick-wins-grid">
+                <div class="quick-win-card">
+                    <div class="quick-win-title">📁 Centralize Template Folder</div>
+                    <div class="quick-win-description">
+                        Create single repository for all OCM templates with clear version control and access permissions.
+                    </div>
+                    <div class="quick-win-timeline">Week 1</div>
                 </div>
 
-                <div style="background: #ffffff; padding: 24px; border-radius: 8px; border-left: 6px solid #1a1a1a; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                    <h3 style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-bottom: 8px;">
-                        🚀 Strategic upgrades will elevate Solenis' OCM to industry leadership
-                    </h3>
-                    <p style="color: #4a4a4a; font-size: 14px; line-height: 1.4;">
-                        Consulting-grade design patterns and interactive capabilities position Solenis as an OCM innovation leader with competitive market advantage.
-                    </p>
+                <div class="quick-win-card">
+                    <div class="quick-win-title">📋 Naming Convention Guide</div>
+                    <div class="quick-win-description">
+                        Develop simple, visual guide for file naming that reflects governance standards and ensures consistency.
+                    </div>
+                    <div class="quick-win-timeline">Week 1-2</div>
                 </div>
 
-                <div style="background: #ffffff; padding: 24px; border-radius: 8px; border-left: 6px solid #fd7e14; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                    <h3 style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-bottom: 8px;">
-                        📊 Dual-track roadmap enables fast execution with lasting impact
-                    </h3>
-                    <p style="color: #4a4a4a; font-size: 14px; line-height: 1.4;">
-                        Parallel implementation of tactical improvements and strategic transformation maximizes immediate value while building long-term capabilities.
-                    </p>
+                <div class="quick-win-card">
+                    <div class="quick-win-title">🎯 Pilot Project Implementation</div>
+                    <div class="quick-win-description">
+                        Apply new structure to one current OCM project as proof of concept and gather feedback.
+                    </div>
+                    <div class="quick-win-timeline">Week 2-3</div>
+                </div>
+
+                <div class="quick-win-card">
+                    <div class="quick-win-title">📊 Governance Visibility Dashboard</div>
+                    <div class="quick-win-description">
+                        Create simple SharePoint view showing project status, ownership, and compliance across all OCM initiatives.
+                    </div>
+                    <div class="quick-win-timeline">Week 3-4</div>
+                </div>
+
+                <div class="quick-win-card">
+                    <div class="quick-win-title">🎓 Resource Access Portal</div>
+                    <div class="quick-win-description">
+                        Build landing page highlighting onboarding materials, templates, and best practices for team reference.
+                    </div>
+                    <div class="quick-win-timeline">Week 4</div>
+                </div>
+
+                <div class="quick-win-card">
+                    <div class="quick-win-title">📈 Success Metrics Setup</div>
+                    <div class="quick-win-description">
+                        Establish baseline measurements for file access, template usage, and team efficiency to track improvement.
+                    </div>
+                    <div class="quick-win-timeline">Week 4</div>
                 </div>
             </div>
 
             <div class="highlight-box">
-                <h3>Transform OCM Repository in 90 Days</h3>
-                <p>From administrative burden to strategic competitive advantage</p>
+                <h3>30-Day Impact</h3>
+                <p>Immediate visibility improvements while building foundation for long-term excellence</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Implementation Plan -->
+        <div class="slide">
+            <h2 class="slide-title-short">Implementation Roadmap</h2>
+            
+            <div class="two-column">
+                <div class="column-card">
+                    <h4>🚀 Phase 1: Foundation (Weeks 1-4)</h4>
+                    <ul>
+                        <li><strong>Partner with Kandha</strong> to understand current governance</li>
+                        <li><strong>Document existing standards</strong> and identify gaps collaboratively</li>
+                        <li><strong>Co-design governance model</strong> for OCM team adoption</li>
+                        <li><strong>Create OCM onboarding materials</strong> reflecting best practices</li>
+                    </ul>
+                </div>
+                <div class="column-card" style="border-left-color: #666666;">
+                    <h4>⚡ Phase 2: Implementation (Weeks 5-8)</h4>
+                    <ul>
+                        <li><strong>Deploy standardized structure</strong> across all current projects</li>
+                        <li><strong>Train OCM team</strong> on new standards and governance</li>
+                        <li><strong>Implement quality checkpoints</strong> and accountability measures</li>
+                        <li><strong>Create template library</strong> with version control</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="column-card" style="border-left-color: #28a745;">
+                    <h4>📊 Phase 3: Measurement (Weeks 9-12)</h4>
+                    <ul>
+                        <li><strong>Track adoption metrics</strong> within OCM team</li>
+                        <li><strong>Measure efficiency gains</strong> in file access and collaboration</li>
+                        <li><strong>Document lessons learned</strong> for future projects</li>
+                        <li><strong>Prepare replication framework</strong> for other teams</li>
+                    </ul>
+                </div>
+                <div class="column-card" style="border-left-color: #fd7e14;">
+                    <h4>🎯 Phase 4: Scale (Ongoing)</h4>
+                    <ul>
+                        <li><strong>Use OCM team as showcase</strong> for organizational standards</li>
+                        <li><strong>Replicate model</strong> across other Solenis initiatives</li>
+                        <li><strong>Continuous improvement</strong> based on feedback and results</li>
+                        <li><strong>Build OCM capability</strong> as competitive advantage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; border-left: 4px solid #000000; padding: 20px; border-radius: 0 8px 8px 0; margin-top: 24px;">
+                <h4 style="color: #000000; margin-bottom: 8px; font-size: 16px;">Partnership Focus</h4>
+                <p style="color: #4a4a4a; font-size: 14px; line-height: 1.5;">
+                    This approach positions me as a strategic partner to Kandha, helping strengthen their OCM delivery capability while solving the immediate file organization challenge.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Expected Outcomes -->
+        <div class="slide">
+            <h2 class="slide-title-short">Expected Outcomes</h2>
+            
+            <div class="slide-with-visual">
+                <div class="content-section">
+                    <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="metric-card">
+                            <div class="metric-number">85%</div>
+                            <div class="metric-label">Process Consistency</div>
+                            <div class="metric-description">Across all OCM activities</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">60%</div>
+                            <div class="metric-label">Efficiency Gain</div>
+                            <div class="metric-description">In file access and collaboration</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">40%</div>
+                            <div class="metric-label">Faster Onboarding</div>
+                            <div class="metric-description">For new OCM team members</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">100%</div>
+                            <div class="metric-label">Model Compliance</div>
+                            <div class="metric-description">OCM team following own standards</div>
+                        </div>
+                    </div>
+
+                    <div class="two-column" style="margin-top: 24px;">
+                        <div class="column-card" style="border-left-color: #28a745;">
+                            <h4>Immediate Benefits</h4>
+                            <ul>
+                                <li>Reduced confusion and rework</li>
+                                <li>Faster document location and access</li>
+                                <li>Improved team collaboration</li>
+                                <li>Enhanced professional credibility</li>
+                            </ul>
+                        </div>
+                        <div class="column-card">
+                            <h4>Strategic Impact</h4>
+                            <ul>
+                                <li>OCM team becomes organizational model</li>
+                                <li>Strengthens Kandha's delivery capability</li>
+                                <li>Creates replicable excellence framework</li>
+                                <li>Builds competitive advantage for Solenis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-section">
+                    <div class="hero-visual">
+                        <div class="icon">📈</div>
+                        <div class="title">Success Metrics</div>
+                        <div class="subtitle">Measurable transformation impact</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #e8f5e8; border-left: 4px solid #000000; padding: 20px; border-radius: 0 8px 8px 0; margin-top: 20px;">
+                <h4 style="color: #000000; margin-bottom: 8px; font-size: 16px;">Value for Kandha Consulting</h4>
+                <p style="color: #4a4a4a; font-size: 14px; line-height: 1.5;">
+                    This transformation will differentiate Kandha's OCM offering, improve client satisfaction, and create a replicable model for future engagements—turning a potential weakness into a demonstrable strength.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Next Steps -->
+        <div class="slide">
+            <h2 class="slide-title-short">Next Steps & Partnership</h2>
+            
+            <div class="slide-with-visual">
+                <div class="content-section">
+                    <div class="questions-section">
+                        <h3 class="questions-title">🎯 Immediate Actions Needed</h3>
+                        
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>This Week:</strong> Schedule alignment session with Kandha leadership to discuss findings and collaborative approach
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>Week 2:</strong> Begin documenting current governance state and co-designing standards with OCM team
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-text">
+                                <strong>Week 3-4:</strong> Implement foundational changes while building sustainable governance framework
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="recommendation-card">
+                            <span class="recommendation-priority">Partnership</span>
+                            <h3 class="recommendation-title">🤝 Collaborate, Don't Audit</h3>
+                            <p class="recommendation-description">
+                                Position this as a joint improvement initiative, not a critique of current practices.
+                            </p>
+                        </div>
+
+                        <div class="recommendation-card">
+                            <span class="recommendation-priority">Strategic</span>
+                            <h3 class="recommendation-title">🎯 Build for Scale</h3>
+                            <p class="recommendation-description">
+                                Create frameworks that can be replicated across other teams and future projects.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-section">
+                    <div class="hero-visual">
+                        <div class="icon">🚀</div>
+                        <div class="title">Partnership Launch</div>
+                        <div class="subtitle">Strategic collaboration for excellence</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>The Opportunity</h3>
+                <p>Transform a simple file organization task into a strategic OCM capability enhancement that benefits everyone</p>
             </div>
         </div>
     </div>
@@ -1201,7 +1230,7 @@
         showSlide(0);
 
         // Add click indicators for interactivity
-        document.querySelectorAll('.metric-card, .solution-card').forEach(card => {
+        document.querySelectorAll('.metric-card, .evidence-card, .recommendation-card, .quick-win-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-3px)';
             });
@@ -1213,8 +1242,6 @@
 
         // Presentation mode toggle
         function toggleFullscreen() {
-            const container = document.querySelector('.presentation-container');
-            
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen().catch(err => {
                     console.log('Fullscreen not supported');
