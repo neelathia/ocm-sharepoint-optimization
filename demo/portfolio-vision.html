@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://tilda.cc/tilda-font/tilda-sans/tilda-sans.css" rel="stylesheet">
     <style>
+        /* Force clean monochromatic design */
         * {
             margin: 0;
             padding: 0;
@@ -333,7 +334,7 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ffffff, #cccccc);
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
             color: #000000;
             width: 80px;
             height: 80px;
@@ -531,14 +532,14 @@
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14,2 14,8 20,8"/>
                 </svg>
-                CURRENT STATE - Manual PowerPoint
+                CURRENT STATE - Manual Process
             </div>
             <div class="after-header">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 12px;">
                     <rect x="4" y="4" width="16" height="16" rx="2"/>
                     <rect x="9" y="9" width="6" height="6"/>
                 </svg>
-                FUTURE STATE - Live Dashboards
+                FUTURE STATE - Integrated Platform
             </div>
         </div>
 
@@ -548,12 +549,18 @@
             <div class="before-section">
                 <div class="layer-title">
                     <div class="layer-number">1</div>
-                    Portfolio Level - PowerPoint Summary
+                    Portfolio Level - Current Process
                 </div>
                 <div class="screenshot-container">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-powerpoint.png" alt="PowerPoint Portfolio Summary" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder powerpoint" style="display: none;">
-                        <div class="placeholder-icon">📊</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <rect x="7" y="7" width="3" height="9"/>
+                                <rect x="14" y="7" width="3" height="5"/>
+                            </svg>
+                        </div>
                         <div>PowerPoint Screenshot Needed</div>
                         <div class="placeholder-text">OCM Project Summary Table<br>(Image 6 from your uploads)</div>
                     </div>
@@ -561,7 +568,7 @@
                 <div class="pain-points">
                     <h4>Current Challenges</h4>
                     <ul>
-                        <li>Manual PowerPoint updates every week</li>
+                        <li>Manual process updates every week</li>
                         <li>Static data with no real-time insights</li>
                         <li>No drill-down capabilities</li>
                         <li>Time-intensive status compilation</li>
@@ -573,12 +580,18 @@
             <div class="after-section">
                 <div class="layer-title">
                     <div class="layer-number">1</div>
-                    Portfolio Level - Live Dashboard
+                    Portfolio Level - Integrated Platform
                 </div>
                 <div class="dashboard-container" onclick="showPortfolioDemo()">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/portfolio-dashboard.png" alt="Live Portfolio Dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder dashboard" style="display: none;">
-                        <div class="placeholder-icon">🖥️</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
                         <div>Dashboard Screenshot Needed</div>
                         <div class="placeholder-text">Live Portfolio Dashboard<br>(Image 5 from your uploads)</div>
                     </div>
@@ -603,12 +616,18 @@
             <div class="before-section">
                 <div class="layer-title">
                     <div class="layer-number">2</div>
-                    Project Level - PowerPoint Gantt
+                    Project Level - Current Process
                 </div>
                 <div class="screenshot-container">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-gantt.png" alt="PowerPoint Project Gantt" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder powerpoint" style="display: none;">
-                        <div class="placeholder-icon">📈</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
                         <div>PowerPoint Screenshot Needed</div>
                         <div class="placeholder-text">Project Gantt Chart<br>(Image 7 from your uploads)</div>
                     </div>
@@ -633,7 +652,15 @@
                 <div class="dashboard-container" onclick="showProjectDemo()">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/project-hub.png" alt="Coupa Implementation OCM Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder dashboard" style="display: none;">
-                        <div class="placeholder-icon">🎯</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <line x1="10" y1="9" x2="8" y2="9"/>
+                            </svg>
+                        </div>
                         <div>Dashboard Screenshot Needed</div>
                         <div class="placeholder-text">Coupa Implementation OCM Hub<br>(Image 8 from your uploads)</div>
                     </div>
@@ -658,12 +685,17 @@
             <div class="before-section">
                 <div class="layer-title">
                     <div class="layer-number">3</div>
-                    Phase Level - Static Documentation
+                    Phase Level - Current Process
                 </div>
                 <div class="screenshot-container">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-checklist.png" alt="PowerPoint Phase Activities" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder powerpoint" style="display: none;">
-                        <div class="placeholder-icon">📋</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
                         <div>PowerPoint Screenshot Needed</div>
                         <div class="placeholder-text">Stakeholder Management Activities<br>(Image 3 from your uploads)</div>
                     </div>
@@ -688,7 +720,12 @@
                 <div class="dashboard-container" onclick="showPhaseDemo()">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/phase-management.png" alt="Stakeholder Management Phase Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder dashboard" style="display: none;">
-                        <div class="placeholder-icon">🤝</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                            </svg>
+                        </div>
                         <div>Dashboard Screenshot Needed</div>
                         <div class="placeholder-text">Stakeholder Management Phase Hub<br>(Image 4 from your uploads)</div>
                     </div>
@@ -713,12 +750,18 @@
             <div class="before-section">
                 <div class="layer-title">
                     <div class="layer-number">4</div>
-                    Activity Level - Manual Tracking
+                    Activity Level - Current Process
                 </div>
                 <div class="screenshot-container">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-tracking.png" alt="Manual Activity Tracking" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder powerpoint" style="display: none;">
-                        <div class="placeholder-icon">📝</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <path d="M21 12c-1-3-4-6-9-6s-8 3-9 6c1 3 4 6 9 6s8-3 9-6z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
                         <div>PowerPoint Screenshot Needed</div>
                         <div class="placeholder-text">Individual Activity Tracking<br>(Email/Spreadsheet example)</div>
                     </div>
@@ -743,7 +786,11 @@
                 <div class="dashboard-container" onclick="showActivityDemo()">
                     <img src="https://neelathia.github.io/ocm-sharepoint-optimization/images/activity-detail.png" alt="Stakeholder Analysis & Mapping Hub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="screenshot-placeholder dashboard" style="display: none;">
-                        <div class="placeholder-icon">⚡</div>
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                            </svg>
+                        </div>
                         <div>Dashboard Screenshot Needed</div>
                         <div class="placeholder-text">Stakeholder Analysis & Mapping Hub<br>(Image 1 from your uploads)</div>
                     </div>
@@ -771,7 +818,12 @@
             
             <div class="summary-grid">
                 <div class="summary-card">
-                    <div class="summary-icon">⚡</div>
+                    <div class="summary-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="10,8 16,12 10,16"/>
+                        </svg>
+                    </div>
                     <div class="summary-title">90% Time Reduction</div>
                     <div class="summary-description">
                         Automated data collection and reporting eliminates manual PowerPoint updates and status compilation
@@ -779,7 +831,12 @@
                 </div>
                 
                 <div class="summary-card">
-                    <div class="summary-icon">👁️</div>
+                    <div class="summary-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
                     <div class="summary-title">Real-Time Visibility</div>
                     <div class="summary-description">
                         Executive dashboard provides instant portfolio insights with drill-down to activity level
@@ -787,7 +844,14 @@
                 </div>
                 
                 <div class="summary-card">
-                    <div class="summary-icon">🔗</div>
+                    <div class="summary-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
                     <div class="summary-title">Seamless Integration</div>
                     <div class="summary-description">
                         Connected 4-layer architecture ensures data flows automatically from activities to executive view
@@ -795,7 +859,13 @@
                 </div>
                 
                 <div class="summary-card">
-                    <div class="summary-icon">📊</div>
+                    <div class="summary-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </div>
                     <div class="summary-title">Predictive Analytics</div>
                     <div class="summary-description">
                         AI-driven insights predict risks and recommend interventions before issues become critical
@@ -858,12 +928,12 @@
         document.querySelectorAll('.dashboard-container').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-6px) scale(1.02)';
-                this.style.boxShadow = '0 12px 32px rgba(81, 207, 102, 0.4)';
+                this.style.boxShadow = '0 12px 32px rgba(255, 255, 255, 0.4)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 8px 32px rgba(81, 207, 102, 0.3)';
+                this.style.boxShadow = '0 8px 32px rgba(255, 255, 255, 0.2)';
             });
         });
 
