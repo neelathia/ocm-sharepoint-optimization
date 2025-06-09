@@ -310,7 +310,15 @@
     <script>
         function goToPortfolio() { alert('🔗 Navigating to OCM Portfolio Dashboard'); }
         function goToProject() { alert('🔗 Navigating to Coupa Implementation Project'); }
-        function openActivity(id) { alert('🔗 Opening Activity: ' + id + '\n\nNavigating to Level 4 - Activity Detail Page'); }
+        
+        function openActivity(id) { 
+            if (id === 'stakeholder-analysis') {
+                window.open('https://neelathia.github.io/ocm-sharepoint-optimization/demo/activity-page.html', '_blank');
+            } else {
+                alert('🔗 Opening Activity: ' + id + '\n\nNavigating to Level 4 - Activity Detail Page');
+            }
+        }
+        
         function openPhaseReport() { alert('📋 Opening Phase Report'); }
 
         document.addEventListener('DOMContentLoaded', function() {
