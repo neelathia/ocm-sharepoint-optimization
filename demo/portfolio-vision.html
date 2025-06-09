@@ -973,25 +973,64 @@
                 const header = this.querySelector('.mockup-header').textContent.trim();
                 const layerNum = this.closest('.layer').querySelector('.layer-icon').textContent;
                 
-                let navigationDetails = '';
+                // Navigate to actual pages based on layer and content
                 switch(layerNum) {
                     case '1':
-                        navigationDetails = '\n\nPortfolio Level Navigation:\n• Drill down to specific projects\n• View enterprise-wide trends\n• Access executive dashboards\n• Export portfolio reports\n• Configure alert thresholds';
+                        // Portfolio Level - Navigate to Portfolio Dashboard
+                        alert('🔗 Navigating to OCM Portfolio Dashboard\n\nThis would open the enterprise-wide portfolio view with all active OCM projects, KPIs, and executive insights.');
+                        // In a real implementation: window.location.href = '/ocm-portfolio-dashboard.html';
                         break;
                     case '2':
-                        navigationDetails = '\n\nProject Level Navigation:\n• Navigate to specific phases\n• View project timeline\n• Access risk management\n• Review stakeholder matrix\n• Update project status';
+                        // Project Level - Navigate to specific project pages
+                        if (header.includes('Coupa')) {
+                            alert('🔗 Navigating to Coupa Implementation Project Page\n\nThis would open the Coupa OCM project landing page with phase progress, stakeholder metrics, and risk indicators.');
+                            // In a real implementation: window.location.href = '/coupa-project-page.html';
+                        } else {
+                            alert(`🔗 Navigating to ${header} Project Page\n\nThis would open the project-specific OCM landing page with:\n• Phase progress tracking\n• Stakeholder engagement metrics\n• Risk and issue management\n• Training completion status\n• Communication effectiveness`);
+                        }
                         break;
                     case '3':
-                        navigationDetails = '\n\nPhase Level Navigation:\n• Drill into specific activities\n• View phase deliverables\n• Track milestone progress\n• Manage phase resources\n• Update phase metrics';
+                        // Phase Level - Navigate to phase-specific pages
+                        if (header.includes('Stakeholder Management')) {
+                            alert('🔗 Navigating to Stakeholder Management Phase\n\nThis would open the stakeholder phase page with all stakeholder activities, influence mapping, and engagement strategies.');
+                            // In a real implementation: window.location.href = '/stakeholder-phase-page.html';
+                        } else {
+                            alert(`🔗 Navigating to ${header}\n\nThis would open the phase-specific page with:\n• Activity breakdown and progress\n• Phase deliverables and artifacts\n• Resource allocation and timeline\n• Phase-specific metrics and KPIs\n• Milestone tracking`);
+                        }
                         break;
                     case '4':
-                        navigationDetails = '\n\nActivity Level Navigation:\n• Edit activity details\n• Upload documents\n• Update task status\n• Track time and resources\n• Manage activity artifacts';
+                        // Activity Level - Navigate to activity detail pages
+                        if (header.includes('Stakeholder Analysis')) {
+                            alert('🔗 Navigating to Stakeholder Analysis & Mapping Activity\n\nThis would open the detailed activity page with stakeholder register, influence matrix, and engagement plans.');
+                            // In a real implementation: window.location.href = '/stakeholder-analysis-activity.html';
+                        } else {
+                            alert(`🔗 Navigating to ${header} Activity\n\nThis would open the detailed activity page with:\n• Task breakdown and assignments\n• Document management and uploads\n• Progress tracking and updates\n• Resource utilization metrics\n• Activity-specific artifacts`);
+                        }
                         break;
                 }
-                
-                alert(`🔗 Navigation: Opening ${header}${navigationDetails}`);
             });
         });
+
+        // Navigation functions for breadcrumb-style navigation
+        function navigateToPortfolio() {
+            alert('🔗 Navigating to OCM Portfolio Dashboard\n\nEnterprise-wide view of all OCM projects with executive KPIs and strategic insights.');
+            // In a real implementation: window.location.href = '/ocm-portfolio-dashboard.html';
+        }
+
+        function navigateToProject(projectName = 'Coupa Implementation') {
+            alert(`🔗 Navigating to ${projectName} Project Page\n\nProject-specific OCM dashboard with phase progress, stakeholder engagement, and risk management.`);
+            // In a real implementation: window.location.href = '/coupa-project-page.html';
+        }
+
+        function navigateToPhase(phaseName = 'Stakeholder Management') {
+            alert(`🔗 Navigating to ${phaseName} Phase\n\nPhase-specific view with all activities, deliverables, and methodology-based tracking.`);
+            // In a real implementation: window.location.href = '/stakeholder-phase-page.html';
+        }
+
+        function navigateToActivity(activityName = 'Stakeholder Analysis & Mapping') {
+            alert(`🔗 Navigating to ${activityName} Activity\n\nDetailed activity tracking with document management, progress indicators, and atomic-level task management.`);
+            // In a real implementation: window.location.href = '/stakeholder-analysis-activity.html';
+        }
 
         // Flow box hover effects
         document.querySelectorAll('.flow-box').forEach(box => {
@@ -1029,13 +1068,50 @@
             });
         });
 
-        // Add click effects to flow arrows
+        // Add click effects to flow arrows with navigation context
         document.querySelectorAll('.flow-arrow').forEach(arrow => {
             arrow.addEventListener('click', function() {
-                alert('🔗 Flow Navigation\n\nThis demonstrates how users can navigate between layers:\n\n• Portfolio → Projects → Phases → Activities\n• Each level provides increasing detail\n• Seamless drill-down capabilities\n• Consistent user experience across layers');
+                alert('🔗 Layer Navigation Flow\n\nDemonstrates hierarchical navigation between layers:\n\n1️⃣ Portfolio Dashboard → Enterprise view\n2️⃣ Project Pages → Initiative-specific tracking\n3️⃣ Phase Pages → Methodology-based activities\n4️⃣ Activity Pages → Atomic-level task management\n\nEach level provides increasing detail with seamless drill-down capabilities.');
             });
             
             arrow.style.cursor = 'pointer';
+        });
+
+        // Add navigation helper functions for demo purposes
+        window.demoNavigation = {
+            portfolio: () => navigateToPortfolio(),
+            project: (name) => navigateToProject(name),
+            phase: (name) => navigateToPhase(name),
+            activity: (name) => navigateToActivity(name)
+        };
+
+        // Layer title click for navigation demonstration
+        document.querySelectorAll('.layer-title').forEach(title => {
+            const originalClick = title.onclick;
+            title.addEventListener('click', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    // Ctrl/Cmd click for navigation demo
+                    const layerNum = this.querySelector('.layer-icon').textContent;
+                    switch(layerNum) {
+                        case '1':
+                            navigateToPortfolio();
+                            break;
+                        case '2':
+                            navigateToProject();
+                            break;
+                        case '3':
+                            navigateToPhase();
+                            break;
+                        case '4':
+                            navigateToActivity();
+                            break;
+                    }
+                    e.preventDefault();
+                    return false;
+                }
+                // Original functionality for expand/collapse
+                if (originalClick) originalClick.call(this, e);
+            });
         });
     </script>
 </body>
