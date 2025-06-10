@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandha OCM Service Product Matrix - Solenis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://tilda.cc/tilda-font/tilda-sans/tilda-sans.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'TildaSans', 'Inter', sans-serif;
+            background: #fafbfc;
+            line-height: 1.4;
+        }
+
+        /* SharePoint Header */
+        .sp-header {
+            background: #1a1a1a;
+            color: white;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .sp-waffle {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .sp-title {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .sp-search {
+            margin-left: auto;
+            width: 440px;
+            height: 32px;
+            background: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0 12px;
+            font-size: 14px;
+            font-family: 'TildaSans', 'Inter', sans-serif;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 24px 40px;
+            border-bottom: 1px solid #e8ecef;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .page-icon {
+            width: 48px;
+            height: 48px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .header-content h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .header-content p {
+            color: #4a4a4a;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'TildaSans', 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: #333333;
+        }
+
+        .header-btn.secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 1px solid #e8ecef;
+        }
+
+        .header-btn.secondary:hover {
+            background: #f8f9fa;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+        
+        .overview {
+            background: white;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        
+        .overview h2 {
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .overview p {
+            color: #4a4a4a;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .methodology-intro {
+            background: white;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        
+        .methodology-intro h3 {
+            color: #1a1a1a;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .methodology-intro p {
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .phase-container {
+            margin-bottom: 32px;
+        }
+        
+        .phase-header {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 0;
+        }
+        
+        .step-container {
+            border: 1px solid #e8ecef;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        
+        .step-header {
+            background: #f8f9fa;
+            padding: 16px;
+            border-bottom: 1px solid #e8ecef;
+            text-align: center;
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 16px;
+        }
+        
+        .teams-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 400px;
+        }
+        
+        .team-section {
+            padding: 20px;
+            border-right: 1px solid #e8ecef;
+        }
+        
+        .team-section:last-child {
+            border-right: none;
+        }
+        
+        .team-title {
+            background: #1a1a1a;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        
+        .delivery-team {
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+        }
+        
+        .bizdev-team {
+            background: linear-gradient(135deg, #4a4a4a, #666666);
+        }
+        
+        .sub-category {
+            margin-bottom: 16px;
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 6px;
+            border-left: 3px solid #1a1a1a;
+        }
+        
+        .sub-category h4 {
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .activities {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .activities li {
+            padding: 4px 0;
+            color: #4a4a4a;
+            font-size: 13px;
+        }
+        
+        .activities li:before {
+            content: "→";
+            color: #1a1a1a;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        .content-examples {
+            background: white;
+            border: 1px solid #e8ecef;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        
+        .content-examples h5 {
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-examples ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content-examples li {
+            font-size: 12px;
+            color: #4a4a4a;
+            padding: 2px 0;
+        }
+        
+        .content-examples li:before {
+            content: "•";
+            color: #1a1a1a;
+            margin-right: 6px;
+        }
+        
+        .legend {
+            background: white;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        
+        .legend h3 {
+            color: #1a1a1a;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        
+        .legend-item {
+            background: #f8f9fa;
+            border: 1px solid #e8ecef;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .legend-item h4 {
+            color: #1a1a1a;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .legend-item p {
+            color: #4a4a4a;
+            font-size: 12px;
+        }
+
+        /* Final Summary */
+        .final-summary {
+            background: white;
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .final-summary h3 {
+            color: #1a1a1a;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .next-steps {
+            background: #f8f9fa;
+            border: 1px solid #e8ecef;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .next-steps h4 {
+            color: #1a1a1a;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .next-steps ul {
+            color: #4a4a4a;
+            font-size: 14px;
+        }
+
+        .next-steps li {
+            margin: 8px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teams-row {
+                grid-template-columns: 1fr;
+            }
+
+            .legend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SharePoint Header -->
+    <div class="sp-header">
+        <svg class="sp-waffle" viewBox="0 0 20 20" fill="currentColor">
+            <rect x="1" y="1" width="4" height="4"/>
+            <rect x="7" y="1" width="4" height="4"/>
+            <rect x="13" y="1" width="4" height="4"/>
+            <rect x="1" y="7" width="4" height="4"/>
+            <rect x="7" y="7" width="4" height="4"/>
+            <rect x="13" y="7" width="4" height="4"/>
+            <rect x="1" y="13" width="4" height="4"/>
+            <rect x="7" y="13" width="4" height="4"/>
+            <rect x="13" y="13" width="4" height="4"/>
+        </svg>
+        <div class="sp-title">SharePoint</div>
+        <input type="text" class="sp-search" placeholder="Search this site">
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-top">
+            <div class="page-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <rect x="7" y="7" width="3" height="9"/>
+                    <rect x="14" y="7" width="3" height="5"/>
+                </svg>
+            </div>
+            <div class="header-content">
+                <h1>Kandha OCM Service Product Matrix</h1>
+                <p>8-Step Solenis Methodology Mapped to Delivery & Business Development Teams</p>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Export Matrix
+                </button>
+                <button class="header-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23,4 23,10 17,10"/>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                    </svg>
+                    Back to Portfolio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="overview">
+            <h2>🚀 Kandha's Proven OCM Framework</h2>
+            <p><strong>Every Step → Dual Team Alignment → Content Strategy</strong></p>
+            <p>Each of Kandha's 8 OCM steps maps to both Delivery execution AND Business Development content, creating a unified product strategy that scales both service quality and market presence.</p>
+        </div>
+
+        <div class="methodology-intro">
+            <h3>📋 Kandha's OCM Methodology Overview</h3>
+            <p><strong>Foundation:</strong> Business Context Assessment → Stakeholder Management → Resistance Management → Change Impact Assessment</p>
+            <p><strong>Execution:</strong> Communications → Training → Sustain → Adoption and Benefit Realization</p>
+            <p><em>This proven 8-step approach has been tested and refined through real Solenis implementations, creating a systematic methodology that can be productized for market differentiation.</em></p>
+        </div>
+
+        <div class="legend">
+            <h3>📋 Team Structure Mapping</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <h4>🎯 Delivery Team</h4>
+                    <p>Training, Quality, Governance, Process, Templates</p>
+                </div>
+                <div class="legend-item">
+                    <h4>📈 Business Development</h4>
+                    <p>Marketing, Content, LinkedIn, Thought Leadership</p>
+                </div>
+                <div class="legend-item">
+                    <h4>⚙️ Activities</h4>
+                    <p>Specific tasks within each sub-category</p>
+                </div>
+                <div class="legend-item">
+                    <h4>📝 Content Examples</h4>
+                    <p>Actual deliverables for each activity</p>
+                </div>
+            </div>
+        </div>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Kandha OCM Service Product Matrix</h1>
+            <p>8-Step Solenis Methodology Mapped to Delivery & Business Development Teams</p>
+        </div>
+
+        <div class="overview">
+            <h2>🚀 Kandha's Proven OCM Framework</h2>
+            <p><strong>Every Step → Dual Team Alignment → Content Strategy</strong></p>
+            <p>Each of Kandha's 8 OCM steps maps to both Delivery execution AND Business Development content, creating a unified product strategy that scales both service quality and market presence.</p>
+        </div>
+
+        <div class="methodology-intro">
+            <h3>📋 Kandha's OCM Methodology Overview</h3>
+            <p><strong>Foundation:</strong> Business Context Assessment → Stakeholder Management → Resistance Management → Change Impact Assessment</p>
+            <p><strong>Execution:</strong> Communications → Training → Sustain → Adoption and Benefit Realization</p>
+            <p><em>This proven 8-step approach has been tested and refined through real Solenis implementations, creating a systematic methodology that can be productized for market differentiation.</em></p>
+        </div>
+
+        <div class="legend">
+            <h3>📋 Team Structure Mapping</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <h4>🎯 Delivery Team</h4>
+                    <p>Training, Quality, Governance, Process, Templates</p>
+                </div>
+                <div class="legend-item">
+                    <h4>📈 Business Development</h4>
+                    <p>Marketing, Content, LinkedIn, Thought Leadership</p>
+                </div>
+                <div class="legend-item">
+                    <h4>⚙️ Activities</h4>
+                    <p>Specific tasks within each sub-category</p>
+                </div>
+                <div class="legend-item">
+                    <h4>📝 Content Examples</h4>
+                    <p>Actual deliverables for each activity</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Business Context Assessment -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 1: Business Context Assessment
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Business Context Assessment & OCM Charter Development</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Business interdependency analysis workshops</li>
+                                    <li>Charter development methodology training</li>
+                                    <li>Leadership alignment facilitation skills</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Business Context Analysis Workshop Guide</li>
+                                        <li>OCM Charter Template & Training</li>
+                                        <li>Leadership Alignment Facilitation Guide</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Charter completeness validation</li>
+                                    <li>Business alignment verification</li>
+                                    <li>Stakeholder sign-off processes</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Charter Validation Checklist</li>
+                                        <li>Business Alignment Audit Tool</li>
+                                        <li>Stakeholder Approval Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Business context assessment framework</li>
+                                    <li>OCM charter template library</li>
+                                    <li>Leadership alignment plan templates</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Business Context Assessment Template</li>
+                                        <li>OCM Charter Template (8 Pillars)</li>
+                                        <li>Leadership Alignment Plan Template</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Business context assessment insights</li>
+                                    <li>OCM charter value demonstration</li>
+                                    <li>Leadership alignment best practices</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Why Most OCM Projects Fail at the Charter"</li>
+                                        <li>"The Business Context Questions Everyone Misses"</li>
+                                        <li>"How Proper Alignment Saved This $10M Project"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Charter development demos</li>
+                                    <li>Business context assessment tools</li>
+                                    <li>ROI of proper foundational work</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>OCM Charter Development Demo</li>
+                                        <li>Business Context Assessment Tool</li>
+                                        <li>Foundation Work ROI Calculator</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Methodology foundation showcase</li>
+                                    <li>Industry benchmark comparisons</li>
+                                    <li>Systematic approach differentiation</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Kandha's 8-Pillar OCM Charter Model"</li>
+                                        <li>Industry Foundation Work Benchmarks</li>
+                                        <li>Systematic vs Ad-hoc Approach Study</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Stakeholder Management -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 2: Stakeholder Management
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Stakeholder Identification, Analysis & Engagement Planning</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder mapping methodology</li>
+                                    <li>Interest/Influence matrix training</li>
+                                    <li>Persona development workshops</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Stakeholder Mapping Workshop</li>
+                                        <li>4-Quadrant Matrix Training</li>
+                                        <li>Persona Development Guide</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder completeness audits</li>
+                                    <li>Engagement strategy validation</li>
+                                    <li>Persona accuracy verification</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Stakeholder Completeness Checklist</li>
+                                        <li>Engagement Strategy Review Process</li>
+                                        <li>Persona Validation Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder registry systems</li>
+                                    <li>Engagement journey templates</li>
+                                    <li>Persona mapping frameworks</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Stakeholder Registry Template</li>
+                                        <li>Stakeholder Engagement Journey Map</li>
+                                        <li>Persona/Day-in-the-life Matrix</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder analysis best practices</li>
+                                    <li>Common stakeholder blind spots</li>
+                                    <li>Engagement strategy insights</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"The 5 Stakeholders Everyone Forgets"</li>
+                                        <li>"Why Stakeholder Mapping Actually Matters"</li>
+                                        <li>"From Resistance to Champion: A Case Study"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder analysis demonstrations</li>
+                                    <li>Engagement planning tools</li>
+                                    <li>Persona development showcases</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Interactive Stakeholder Mapping Demo</li>
+                                        <li>Engagement Strategy Planning Tool</li>
+                                        <li>Sample Persona Development Process</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder methodology validation</li>
+                                    <li>Industry engagement benchmarks</li>
+                                    <li>Systematic approach thought leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Kandha's 4-Quadrant Stakeholder Model"</li>
+                                        <li>Industry Stakeholder Engagement Study</li>
+                                        <li>Stakeholder Management Excellence Awards</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Resistance Management -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 3: Resistance Management
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Early Engagement, Value Clarification & Support Networks</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Co-creation facilitation techniques</li>
+                                    <li>Value communication workshops</li>
+                                    <li>Change agent network development</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Co-creation Workshop Facilitation Guide</li>
+                                        <li>WIIFM Communication Training</li>
+                                        <li>Change Agent Development Program</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Resistance monitoring systems</li>
+                                    <li>Engagement effectiveness tracking</li>
+                                    <li>Change agent performance metrics</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Resistance Monitoring Dashboard</li>
+                                        <li>Engagement Effectiveness Tracker</li>
+                                        <li>Change Agent Performance Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Stakeholder resistance mapping</li>
+                                    <li>Support structure frameworks</li>
+                                    <li>Pulse check program design</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Stakeholder Resistance Mapping Tool</li>
+                                        <li>Change Agent Network Structure</li>
+                                        <li>Enterprise Stakeholder Pulse Check</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Resistance management insights</li>
+                                    <li>Early engagement success stories</li>
+                                    <li>Change agent network case studies</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"The 4 Types of Change Resistance"</li>
+                                        <li>"How Early Engagement Prevented Crisis"</li>
+                                        <li>"Building Internal Change Champions"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Resistance management demos</li>
+                                    <li>Change agent network models</li>
+                                    <li>Early engagement ROI proof</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Resistance Management Methodology Demo</li>
+                                        <li>Change Agent Network Design</li>
+                                        <li>Early Engagement ROI Calculator</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Resistance expertise showcase</li>
+                                    <li>Industry resistance pattern research</li>
+                                    <li>Change agent methodology leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Industry Resistance Patterns Study"</li>
+                                        <li>Change Agent Network Certification</li>
+                                        <li>Resistance Management Best Practices</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Change Impact Assessment -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 4: Change Impact Assessment
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">People, Process & Technology Impact Analysis</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Current/future state analysis</li>
+                                    <li>Complexity assessment methodology</li>
+                                    <li>Impact matrix development</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Current/Future State Analysis Workshop</li>
+                                        <li>Change Complexity Assessment Guide</li>
+                                        <li>Impact Matrix Development Training</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Impact assessment validation</li>
+                                    <li>Gap analysis accuracy checks</li>
+                                    <li>Action plan feasibility reviews</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Impact Assessment Validation Process</li>
+                                        <li>Gap Analysis Quality Framework</li>
+                                        <li>Action Plan Feasibility Checklist</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Change impact matrices</li>
+                                    <li>Process heatmap tools</li>
+                                    <li>Dependency analysis frameworks</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Change Impact Matrix Template</li>
+                                        <li>Process Heatmap Tool</li>
+                                        <li>People Impact Assessment Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Impact assessment methodology</li>
+                                    <li>Hidden change impacts revelation</li>
+                                    <li>Systematic analysis value</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"The Hidden Costs of Poor Impact Analysis"</li>
+                                        <li>"Why Most Teams Underestimate Change"</li>
+                                        <li>"People + Process + Tech = Success Formula"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Impact assessment demonstrations</li>
+                                    <li>Change complexity calculators</li>
+                                    <li>Risk mitigation showcases</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Change Impact Assessment Demo</li>
+                                        <li>Change Complexity Calculator</li>
+                                        <li>Risk Mitigation Case Studies</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Impact assessment expertise</li>
+                                    <li>Industry impact benchmarks</li>
+                                    <li>Comprehensive analysis leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Industry Change Impact Benchmarks"</li>
+                                        <li>Comprehensive Impact Analysis Awards</li>
+                                        <li>Change Impact Assessment Research</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Communications -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 5: Communications
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Multi-Channel Communication Strategy & Effectiveness Measurement</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Communication strategy development</li>
+                                    <li>Multi-channel messaging design</li>
+                                    <li>Communication effectiveness measurement</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Communication Strategy Workshop</li>
+                                        <li>Multi-Channel Messaging Guide</li>
+                                        <li>Communication Measurement Training</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Message consistency validation</li>
+                                    <li>Communication effectiveness tracking</li>
+                                    <li>Message fatigue monitoring</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Message Consistency Checklist</li>
+                                        <li>Communication Effectiveness Dashboard</li>
+                                        <li>Message Fatigue Alert System</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Communications plan frameworks</li>
+                                    <li>Landing page templates</li>
+                                    <li>User experience KPI systems</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Communications Plan Template</li>
+                                        <li>Communications Landing Page Design</li>
+                                        <li>User Experience & Engagement KPIs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Communication strategy best practices</li>
+                                    <li>Multi-channel effectiveness insights</li>
+                                    <li>Communication measurement approaches</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Why 90% of Change Communication Fails"</li>
+                                        <li>"The Multi-Channel Communication Secret"</li>
+                                        <li>"Measuring What Actually Matters in Comms"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Communication strategy demonstrations</li>
+                                    <li>Multi-channel planning tools</li>
+                                    <li>Communication ROI calculators</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Communication Strategy Demo</li>
+                                        <li>Multi-Channel Planning Tool</li>
+                                        <li>Communication ROI Calculator</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Communication expertise showcase</li>
+                                    <li>Industry communication research</li>
+                                    <li>Multi-channel methodology leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Industry Communication Effectiveness Study"</li>
+                                        <li>Multi-Channel Communication Awards</li>
+                                        <li>Communication Excellence Research</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Training -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 6: Training
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Training Strategy, Content Development & Delivery</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Training needs assessment methodology</li>
+                                    <li>Digital content development techniques</li>
+                                    <li>Train-the-trainer program design</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Training Needs Assessment Workshop</li>
+                                        <li>Digital Content Development Guide</li>
+                                        <li>Train-the-Trainer Certification</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Training content validation processes</li>
+                                    <li>Training effectiveness measurement</li>
+                                    <li>SME validation frameworks</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Training Content Validation Process</li>
+                                        <li>Training Effectiveness Metrics</li>
+                                        <li>SME Validation Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Training strategy frameworks</li>
+                                    <li>Content development templates</li>
+                                    <li>Training delivery methodologies</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Training Needs Assessment Template</li>
+                                        <li>Training Content Development Framework</li>
+                                        <li>Training Delivery Plan Template</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Training methodology insights</li>
+                                    <li>Digital training innovation</li>
+                                    <li>Training effectiveness research</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Why Most OCM Training Doesn't Stick"</li>
+                                        <li>"The Future of Digital OCM Training"</li>
+                                        <li>"AI-Powered Training Content: Game Changer"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Training methodology demonstrations</li>
+                                    <li>Sample training curricula</li>
+                                    <li>Training ROI showcases</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Training Methodology Demo</li>
+                                        <li>Sample Training Curriculum Library</li>
+                                        <li>Training Investment ROI Cases</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Training innovation leadership</li>
+                                    <li>Industry training benchmarks</li>
+                                    <li>Digital learning expertise</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Industry Training Effectiveness Benchmarks"</li>
+                                        <li>Digital Learning Innovation Awards</li>
+                                        <li>Training Excellence Research Papers</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Sustain -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 7: Sustain
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Hypercare, Sustainment & Long-term Adoption</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Hypercare support methodology</li>
+                                    <li>Long-term sustainment planning</li>
+                                    <li>Competency gap closure techniques</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Hypercare Support Methodology</li>
+                                        <li>Sustainment Planning Workshop</li>
+                                        <li>Competency Gap Analysis Training</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Adoption measurement frameworks</li>
+                                    <li>Sustainment success metrics</li>
+                                    <li>Long-term monitoring systems</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Adoption Measurement Framework</li>
+                                        <li>Sustainment Success Metrics</li>
+                                        <li>Long-term Monitoring Dashboard</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Hypercare impact analysis</li>
+                                    <li>Sustainment action plans</li>
+                                    <li>Knowledge transfer protocols</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Hypercare Impact Analysis Template</li>
+                                        <li>Workforce Adoption Continuation Plan</li>
+                                        <li>Long-term Adoption Management Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Sustainment methodology insights</li>
+                                    <li>Long-term success stories</li>
+                                    <li>Hypercare best practices</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Why 70% of Changes Don't Sustain"</li>
+                                        <li>"The Hypercare Secret to Long-term Success"</li>
+                                        <li>"5 Years Later: What Actually Stuck"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Sustainment methodology demos</li>
+                                    <li>Long-term value propositions</li>
+                                    <li>Hypercare service models</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Sustainment Methodology Demo</li>
+                                        <li>Long-term Value Calculator</li>
+                                        <li>Hypercare Service Model Presentation</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Sustainment expertise validation</li>
+                                    <li>Industry sustainment research</li>
+                                    <li>Long-term success leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Industry Sustainment Success Patterns"</li>
+                                        <li>Long-term Change Success Awards</li>
+                                        <li>Sustainment Excellence Research</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 8: Adoption and Benefit Realization -->
+        <div class="phase-container">
+            <div class="phase-header">
+                Step 8: Adoption and Benefit Realization
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-container">
+                    <div class="step-header">Adoption Measurement & Benefits Tracking</div>
+                    <div class="teams-row">
+                        <div class="team-section">
+                            <div class="team-title delivery-team">🎯 Delivery Team</div>
+                            
+                            <div class="sub-category">
+                                <h4>Training</h4>
+                                <ul class="activities">
+                                    <li>Adoption metrics development</li>
+                                    <li>Benefits measurement methodology</li>
+                                    <li>Change agent network leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Adoption Metrics Workshop</li>
+                                        <li>Benefits Measurement Training</li>
+                                        <li>Change Agent Leadership Development</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Quality & Governance</h4>
+                                <ul class="activities">
+                                    <li>Adoption data validation</li>
+                                    <li>Benefits realization tracking</li>
+                                    <li>Continuous improvement monitoring</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Adoption Data Validation Process</li>
+                                        <li>Benefits Realization Tracking System</li>
+                                        <li>Continuous Improvement Framework</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Process & Templates</h4>
+                                <ul class="activities">
+                                    <li>Adoption assessment frameworks</li>
+                                    <li>Benefits realization reporting</li>
+                                    <li>Change agent network governance</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Adoption Assessment Framework</li>
+                                        <li>Adoption Findings Report Template</li>
+                                        <li>Benefits Realization Metrics Dashboard</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <div class="team-title bizdev-team">📈 Business Development</div>
+                            
+                            <div class="sub-category">
+                                <h4>Content Marketing</h4>
+                                <ul class="activities">
+                                    <li>Adoption measurement insights</li>
+                                    <li>Benefits realization success stories</li>
+                                    <li>ROI demonstration content</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"The Adoption Metrics That Actually Predict Success"</li>
+                                        <li>"From Implementation to $5M in Benefits"</li>
+                                        <li>"Why Most Organizations Can't Measure OCM ROI"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Sales Enablement</h4>
+                                <ul class="activities">
+                                    <li>Adoption measurement demonstrations</li>
+                                    <li>Benefits realization showcases</li>
+                                    <li>ROI calculation tools</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>Adoption Measurement Demo</li>
+                                        <li>Benefits Realization Case Studies</li>
+                                        <li>OCM ROI Calculator Tool</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sub-category">
+                                <h4>Market Positioning</h4>
+                                <ul class="activities">
+                                    <li>Measurement expertise showcase</li>
+                                    <li>Industry ROI benchmarks</li>
+                                    <li>Benefits realization thought leadership</li>
+                                </ul>
+                                <div class="content-examples">
+                                    <h5>Content Examples:</h5>
+                                    <ul>
+                                        <li>"Industry OCM ROI Benchmarks 2025"</li>
+                                        <li>Benefits Realization Excellence Awards</li>
+                                        <li>OCM Measurement Innovation Research</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="overview">
+            <h3>🎯 Complete Kandha OCM Product Matrix</h3>
+            <p><strong>8 Proven Steps → Dual Team Value → Unified Content Strategy</strong></p>
+            <p><strong>Foundation:</strong> Business Context → Stakeholder Management → Resistance Management → Change Impact Assessment</p>
+            <p><strong>Execution:</strong> Communications → Training → Sustain → Adoption & Benefit Realization</p>
+            <p style="margin-top: 15px;"><em>This creates 48 distinct value streams (8 steps × 6 sub-categories) based on Kandha's proven Solenis methodology. Every piece of content serves both internal capability building and external market development, positioning Kandha as having the most systematic, results-proven OCM approach in the industry.</em></p>
+            
+            <div style="margin-top: 25px; padding: 20px; background: #3a3a3a; border-radius: 10px;">
+                <h4 style="color: #667eea; margin-bottom: 15px;">🚀 Next Steps for Kandha:</h4>
+                <ul style="color: #b0b0b0;">
+                    <li><strong>Document the methodology:</strong> Create detailed templates for each of the 8 steps based on Solenis work</li>
+                    <li><strong>Build content library:</strong> Develop 48 content pieces mapping to each sub-category</li>
+                    <li><strong>Train delivery team:</strong> Certify team members on the complete 8-step methodology</li>
+                    <li><strong>Launch thought leadership:</strong> Begin systematic LinkedIn content based on real Solenis experiences</li>
+                    <li><strong>Productize the approach:</strong> Create "Kandha 8-Step OCM Method™" as market differentiator</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
